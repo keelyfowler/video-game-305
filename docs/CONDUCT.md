@@ -167,7 +167,21 @@ Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcem
 [translations]: https://www.contributor-covenant.org/translations
 
 ---
+## Contacts
+
+Keely Fowler:
+
+Nate Barrios:
+
+Bianca Riekerk:
+
+Liam Washburn: liam_washburn@uri.edu 
+
+
+
 ## Signatures 
-![Liam Washburn Signature]([https://drive.google.com](https://drive.google.com/file/d/1XcuqjrG83iFKiN-uLrsYdusII51yMDQR/view?usp=sharing))
+![Liam Washburn Signature](/docs/liamsignature.JPG)
+
+
 
 
