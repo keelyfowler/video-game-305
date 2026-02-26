@@ -166,3 +166,8 @@ Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcem
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
 
+---
+## Signatures 
+![Liam Washburn Signature]([https://drive.google.com](https://drive.google.com/file/d/1XcuqjrG83iFKiN-uLrsYdusII51yMDQR/view?usp=sharing))
+
+
