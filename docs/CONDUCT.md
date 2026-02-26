@@ -169,11 +169,11 @@ Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcem
 ---
 ## Contacts
 
-Keely Fowler:
+Keely Fowler: keelyfowler@uri.edu
 
-Nate Barrios:
+Nate Barrios: nate.barrios@uri.edu
 
-Bianca Riekerk:
+Bianca Riekerk: brietkerk2024@uri.edu
 
 Liam Washburn: liam_washburn@uri.edu 
 
