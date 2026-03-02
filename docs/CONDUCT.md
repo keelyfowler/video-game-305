@@ -182,6 +182,7 @@ Liam Washburn: liam_washburn@uri.edu
 ## Signatures 
 ![Liam Washburn Signature](/docs/liamsignature.JPG)
 ![Keely Fowler Signature](keelysignature.jpg)
+![Nate Barrios Signature](natesignature.jpg)
 
 
 
