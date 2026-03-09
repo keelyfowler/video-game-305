@@ -34,7 +34,13 @@ Make an app that fosters community and allows reviews between users to be access
 
 ## Observation 4:
 **Observation Statement:**
+Most people would want a solid recommendation system for the app
 
 **Supporting Data:**
+Reviews: “Rating system and AI recommendations based on what I like.”, “rating system so you can see how you have rated it (out of 5 stars) and how that compares to other reviews, a way to read what other players have said about the game, wishlist for games you want to play” and more.
 
 **Team Action (if any):**
+Make a 5 star review process integrated with AI(summaries, similar games)
+
+
+
