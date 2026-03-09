@@ -13,10 +13,14 @@ Allow users to provide their content creator credentials in their profile.
 
 ## Observation 2:
 **Observation Statement:**
+Most of our users play Action games.
 
 **Supporting Data:**
+What Genres do you play the most?
+75% of reviews responded with "Action" to the question.
 
 **Team Action (if any):**
+Not applicable 
 
 ## Observation 3:
 **Observation Statement:**
