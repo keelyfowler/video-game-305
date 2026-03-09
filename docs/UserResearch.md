@@ -24,10 +24,13 @@ Not applicable
 
 ## Observation 3:
 **Observation Statement:**
+Most users enjoy seeing their friends' reviews and sharing their reviews with ease with their current game rating app.
 
 **Supporting Data:**
+66% of users use game review services, and all of those reviews said they enjoy the ease of seeing their friends' reviews and sending their reviews.
 
 **Team Action (if any):**
+Make an app that fosters community and allows reviews between users to be accessed easily.
 
 ## Observation 4:
 **Observation Statement:**
