@@ -9,6 +9,4 @@ Metric 3- How it will be collected
 ****
 Metric 4- How it will be collected
 ****
-Metric 5- How it will be collected
-****
 
