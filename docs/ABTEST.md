@@ -1,11 +1,29 @@
-## A/B Test 1: Single-Step vs Multi-Step Review Creation Flow
-**User Story Number:** US[X] (Review Creation)
+## A/B Test: Single-Step vs Multi-Step Review Creation Flow
+**A/B Test Name:** Single-Step vs Multi-Step Review Creation Flow
+**User Story Number:** US4 (Golden Path)
 **Metrics:** Engagement — DAU, average reviews written per user per week
-**Hypothesis:** Users who see a single-step review form (title, rating, and text all on one screen) will complete more reviews than users who go through a multi-step flow. The bottleneck is form abandonment mid-way through multi-step flows, which reduces weekly reviews written per user.
-**Experiment:** 50% of users see the current multi-step review form, 50% see a condensed single-screen form. Tracked via Firebase Analytics — log a `review_started` event and a `review_completed` event to measure drop-off rate and completion rate per variant.
+
+**Hypothesis:** Users who start writing a review but encounter a multi-step 
+form may abandon the flow before completing it. This drop-off reduces the 
+average number of reviews written per user per week, which directly hurts 
+engagement. We hypothesize that showing all review fields on a single screen 
+will reduce abandonment and increase the number of completed reviews per 
+active user.
+
+**Experiment:** We will split users 50/50 — half will see the current 
+multi-step review form, half will see a single-screen form with all fields 
+(game title, platform, rating, review text) visible at once. We chose a 50/50 
+split to get equal data from both groups. Firebase Analytics will log a 
+`review_started` event when a user opens the review form and a 
+`review_completed` event when they submit it. We will compare completion 
+rates and weekly reviews written per user across both variants.
+
 **Variations:**
-- Variant A (control): Multi-step review form (current design)
-- Variant B (test): Single-screen review form with all fields visible at once
+- Variant A (control): Multi-step review form — user moves through multiple 
+  screens to complete a review
+- Variant B (test): Single-screen review form with all fields visible and 
+  accessible at once
+  
 
 ## **A/B Test 2:** Account Creation/Sign In on 1 Screen or 2 Screens
 **User Story Number:** US1 (Account Creation), US2 (Login)
