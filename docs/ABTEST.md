@@ -77,3 +77,31 @@ so we can measure how many users in each group complete the full golden path.
 - Variant A (control): Profile setup is fully skippable during onboarding
 - Variant B (test): Profile setup screen is shown with a clear CTA during 
   onboarding, dismissible but not hidden
+
+
+## A/B Test: Generic Home Screen vs Personalized Welcome Back Feed
+
+**A/B Test Name:** Generic Home Screen vs Personalized "Welcome Back" Feed
+
+**User Story Number:** US5 (Additional Feature)
+
+**Metrics:** Retention — 7-day / 30-day retention rate
+
+**Hypothesis:** Users who return to a generic home screen with no personalized 
+content have little immediate reason to re-engage with the app. This lack of 
+a hook at the entry point is likely contributing to low return rates. We 
+hypothesize that showing returning users a personalized feed of recent friend 
+activity and games they have logged will give them a reason to keep coming 
+back, increasing both 7-day and 30-day retention rates.
+
+**Experiment:** We will split returning users 50/50 — half will see the 
+standard default home screen, half will see a personalized "Welcome Back" 
+feed. Firebase Analytics session events will track whether users in each 
+group return to the app within 7 days and 30 days of their last session. 
+We will compare retention rates between the two variants to determine if 
+the personalized feed has a meaningful impact on return behavior.
+
+**Variations:**
+- Variant A (control): Default home screen shown to all returning users
+- Variant B (test): Personalized "Welcome Back" feed showing recent friend 
+  activity and the user's recently logged games
