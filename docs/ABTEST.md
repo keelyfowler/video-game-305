@@ -48,3 +48,32 @@ variant so we can compare drop-off rates between the two groups.
   navigate between two distinct pages
 - Variant B (test): Single combined screen with a toggle button to switch 
   between sign up and sign in fields
+
+
+## A/B Test: Profile Setup Prompted vs Skippable During Onboarding
+
+**A/B Test Name:** Profile Setup Prompted vs Skippable During Onboarding
+
+**User Story Number:** US4 (Golden Path)
+
+**Metrics:** Task Success — average number of reviews posted per active user
+
+**Hypothesis:** Users who skip profile setup during onboarding are less likely 
+to complete the full golden path (signup → profile → review a game). Skipping 
+profile creation creates a gap in the flow that makes it harder for users to 
+feel set up and ready to post their first review. We hypothesize that prompting 
+users to complete their profile during onboarding — even if they can still 
+dismiss it — will increase the percentage of users who go on to post their 
+first review.
+
+**Experiment:** We will split new users 50/50 — half will go through the 
+current onboarding where profile setup can be fully skipped, half will see 
+a prompted profile setup screen with a clear call to action that is 
+dismissible but visible. Firebase Analytics will track 
+`signup_complete`, `profile_complete`, and `review_posted` events per variant 
+so we can measure how many users in each group complete the full golden path.
+
+**Variations:**
+- Variant A (control): Profile setup is fully skippable during onboarding
+- Variant B (test): Profile setup screen is shown with a clear CTA during 
+  onboarding, dismissible but not hidden
