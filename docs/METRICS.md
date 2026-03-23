@@ -8,6 +8,6 @@ Metric 2: Adoption- Measured using Firebase Authentication signup events.
 ****
 Metric 3: DAU- Collected automatically through Firebase Analytics active users metric.
 ****
-Metric 4- How it will be collected
+Metric 4: Retention- Measured by tracking the percentage of users who return to the app within 7 days of their initial signup, collected via Firebase Analytics session events.
 ****
 
