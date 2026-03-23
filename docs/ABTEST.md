@@ -25,7 +25,7 @@ rates and weekly reviews written per user across both variants.
   accessible at once
   
 
-## **A/B Test 2:** Account Creation/Sign In on 1 Screen or 2 Screens
+## **A/B Test:** Account Creation/Sign In on 1 Screen or 2 Screens
 **User Story Number:** US1 (Account Creation), US2 (Login)
 **Metrics:** Adoption — adoption rate (new signups)
 **Hypothesis:** New users who encounter separate sign up and sign in screens 
