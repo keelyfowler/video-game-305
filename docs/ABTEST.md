@@ -7,7 +7,7 @@
 - Variant A (control): Multi-step review form (current design)
 - Variant B (test): Single-screen review form with all fields visible at once
 
-## **A/B Test Name:** Account Creation/Sign In on 1 Screen or 2 Screens
+## **A/B Test 2:** Account Creation/Sign In on 1 Screen or 2 Screens
 **User Story Number:** US1 (Account Creation), US2 (Login)
 **Metrics:** Adoption — adoption rate (new signups)
 **Hypothesis:** New users who encounter separate sign up and sign in screens 
