@@ -75,6 +75,7 @@ and `first_visit` events per variant so we can measure how many users in each
 group complete the full golden path.
 
 **Variations:**
+<<<<<<< HEAD
 - Variant A (control): Skip button hidden — `skip_goes_to_landing = false` — 
   user must complete profile setup to proceed
 - Variant B (test): Skip button visible — `skip_goes_to_landing = true` — 
@@ -107,3 +108,8 @@ to determine if the personalized feed has a meaningful impact on return behavior
 - Variant A (control): Default home screen shown to all returning users
 - Variant B (test): Personalized "Welcome Back" feed showing recent friend 
   activity and the user's recently logged games
+=======
+- Variant A (control): Profile setup is fully skippable during onboarding
+- Variant B (test): Profile setup screen is shown with a clear CTA during 
+  onboarding, dismissible but not hidden
+>>>>>>> parent of db19d1d (Document A/B test for home screen personalization)
