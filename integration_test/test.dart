@@ -33,6 +33,7 @@ void main() async {
     await tester.pumpWidget(const MyApp());
     await GoogleFonts.pendingFonts();
 
+    await tester.pumpAndSettle(const Duration(milliseconds: 3000));
     await tester.enterText(
         find.byKey(const ValueKey('Signup-Email_6xw3')), 'notanemail');
     await tester.enterText(
@@ -41,7 +42,6 @@ void main() async {
         find.byKey(const ValueKey('Signup-ConfirmPassword_hdw9')),
         'password123');
     await tester.tap(find.byKey(const ValueKey('Signup-Button_gj0s')));
-    await tester.pumpAndSettle(const Duration(milliseconds: 3000));
     expect(find.text('Error: The email address is badly formatted.'),
         findsOneWidget);
   });
