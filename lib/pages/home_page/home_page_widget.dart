@@ -157,7 +157,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   text: 'Signup',
                                 ),
                                 Tab(
-                                  key: ValueKey('LoginTab_adnq'),
                                   text: 'Login',
                                 ),
                               ],
