@@ -63,10 +63,20 @@ void main() async {
         find.byKey(const ValueKey('Login-Password_n5z7')), '123456');
     await tester.scrollUntilVisible(
       find.byKey(const ValueKey('Login-Button67')),
-      400.0,
+      600.0,
       scrollable: find
           .descendant(
             of: find.byKey(const ValueKey('Column_tewx')),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    await tester.scrollUntilVisible(
+      find.byKey(const ValueKey('Login-Button67')),
+      600.0,
+      scrollable: find
+          .descendant(
+            of: find.byKey(const ValueKey('HomePage_au42')),
             matching: find.byType(Scrollable),
           )
           .first,
