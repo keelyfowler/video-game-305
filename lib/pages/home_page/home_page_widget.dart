@@ -178,6 +178,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       TextFormField(
+                                        key: ValueKey('Signup-Email_6xw3'),
                                         controller:
                                             _model.signupEmailTextController,
                                         focusNode: _model.signupEmailFocusNode,
@@ -321,6 +322,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         ],
                                       ),
                                       TextFormField(
+                                        key: ValueKey('Signup-Password_cq3s'),
                                         controller:
                                             _model.signupPasswordTextController,
                                         focusNode:
@@ -461,6 +463,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         ],
                                       ),
                                       TextFormField(
+                                        key: ValueKey(
+                                            'Signup-ConfirmPassword_hdw9'),
                                         controller: _model
                                             .signupConfirmPasswordTextController,
                                         focusNode: _model
@@ -944,6 +948,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           ),
                         if (_model.tabBarCurrentIndex == 0)
                           FFButtonWidget(
+                            key: ValueKey('Signup-Button_gj0s'),
                             onPressed: () async {
                               logFirebaseEvent(
                                   'HOME_PAGE_PAGE_Signup-Button_ON_TAP');
