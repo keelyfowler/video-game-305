@@ -71,16 +71,6 @@ void main() async {
           )
           .first,
     );
-    await tester.scrollUntilVisible(
-      find.byKey(const ValueKey('Login-Button67')),
-      600.0,
-      scrollable: find
-          .descendant(
-            of: find.byKey(const ValueKey('HomePage_au42')),
-            matching: find.byType(Scrollable),
-          )
-          .first,
-    );
     await tester.tap(find.byKey(const ValueKey('Login-Button67')));
     await tester.pumpAndSettle(const Duration(milliseconds: 3000));
     expect(find.text('Global Reviews'), findsOneWidget);
