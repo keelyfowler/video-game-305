@@ -40,7 +40,11 @@ dependencies:
   collection: 1.19.1
   cross_file: 0.3.5+1
   csslib: 1.0.2
-  dropdown_button2: 2.3.9
+  dropdown_button2: 
+    git:
+      url: https://github.com/FlutterFlow/dropdown_button2.git
+      ref: 9bbeb2fd68e12615251a67208eb21bc75628c02c
+      path: packages/dropdown_button2
   easy_debounce: 2.0.1
   equatable: 2.0.7
   file_picker: 10.1.9

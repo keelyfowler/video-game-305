@@ -157,6 +157,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   text: 'Signup',
                                 ),
                                 Tab(
+                                  key: ValueKey('LoginTab_adnq'),
                                   text: 'Login',
                                 ),
                               ],
@@ -629,6 +630,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       TextFormField(
+                                        key: ValueKey('Login-Email_v68f'),
                                         controller:
                                             _model.loginEmailTextController,
                                         focusNode: _model.loginEmailFocusNode,
@@ -772,6 +774,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         ],
                                       ),
                                       TextFormField(
+                                        key: ValueKey('Login-Password_n5z7'),
                                         controller:
                                             _model.loginPasswordTextController,
                                         focusNode:

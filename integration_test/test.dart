@@ -45,6 +45,24 @@ void main() async {
     expect(find.text('Error: The email address is badly formatted.'),
         findsOneWidget);
   });
+
+  testWidgets('Successful Login Authentication', (WidgetTester tester) async {
+    _overrideOnError();
+
+    await tester.pumpWidget(MyApp(
+      entryPage: HomePageWidget(),
+    ));
+    await GoogleFonts.pendingFonts();
+
+    await tester.tap(find.byKey(const ValueKey('LoginTab_adnq')));
+    await tester.enterText(
+        find.byKey(const ValueKey('Login-Email_v68f')), 'liamwash@gmail.com');
+    await tester.enterText(
+        find.byKey(const ValueKey('Login-Password_n5z7')), '123456');
+    await tester.tap(find.byKey(const ValueKey('Signup-Button_gj0s')));
+    expect(find.byKey(const ValueKey('FeedPage_p0oj')), findsWidgets);
+    await tester.pumpAndSettle(const Duration(milliseconds: 3000));
+  });
 }
 
 // There are certain types of errors that can happen during tests but
