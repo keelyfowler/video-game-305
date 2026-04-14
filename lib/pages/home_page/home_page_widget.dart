@@ -927,6 +927,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       children: [
                         if (_model.tabBarCurrentIndex == 1)
                           FFButtonWidget(
+                            key: ValueKey('Login-Button67'),
                             onPressed: () async {
                               logFirebaseEvent(
                                   'HOME_PAGE_PAGE_Login-Button_ON_TAP');
