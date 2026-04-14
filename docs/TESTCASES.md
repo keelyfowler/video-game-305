@@ -4,7 +4,7 @@
   <link to template slide>
 
 - **US2: User Login**  
-  <link to template slide>
+  <https://docs.google.com/presentation/d/17QRxlhjfedG32KpY-OP-OexBu6AuAxZdoOzdJDh7-Rc/edit?usp=sharing>
 
 - **US3: Backend Management**  
   <link to template slide>
