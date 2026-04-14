@@ -61,9 +61,19 @@ void main() async {
         find.byKey(const ValueKey('Login-Email_v68f')), 'liamwash@gmail.com');
     await tester.enterText(
         find.byKey(const ValueKey('Login-Password_n5z7')), '123456');
+    await tester.scrollUntilVisible(
+      find.byKey(const ValueKey('Login-Button67')),
+      400.0,
+      scrollable: find
+          .descendant(
+            of: find.byKey(const ValueKey('Column_tewx')),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
     await tester.tap(find.byKey(const ValueKey('Login-Button67')));
     await tester.pumpAndSettle(const Duration(milliseconds: 3000));
-    expect(find.byKey(const ValueKey('Text_qhut')), findsOneWidget);
+    expect(find.text('Global Reviews'), findsOneWidget);
   });
 }
 

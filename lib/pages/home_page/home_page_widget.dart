@@ -86,6 +86,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
               child: Padding(
                 padding: EdgeInsets.all(24.0),
                 child: Column(
+                  key: ValueKey('Column_tewx'),
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,

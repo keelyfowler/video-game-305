@@ -87,7 +87,6 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
           backgroundColor: Color(0xFF4A4D4D),
           automaticallyImplyLeading: false,
           title: Text(
-            key: ValueKey('Text_qhut'),
             'Global Reviews',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   font: GoogleFonts.interTight(
