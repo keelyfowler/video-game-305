@@ -10,7 +10,7 @@
   <link to template slide>
 
 - **US4: Golden Path Description**  
-  <link to template slide>
+  <https://docs.google.com/presentation/d/1h5OOYS1ANdnPnyd_3Jk5zUdb6iYPHa62c8U9rBdps28/edit?usp=sharing>
 
 - **US5: ...**  
   <link to template slide>
