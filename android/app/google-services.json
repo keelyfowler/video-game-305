@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "532733071780",
+    "project_id": "video-game-tracker-cea14",
+    "storage_bucket": "video-game-tracker-cea14.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532733071780:android:1b6446ad96c97bad73b131",
+        "android_client_info": {
+          "package_name": "com.mycompany.videogametracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqVIv4AFmNijpQMTvGykSMpvp05w3GzZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532733071780:android:07fe451ab27f636a73b131",
+        "android_client_info": {
+          "package_name": "com.uricsc305.videogametracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqVIv4AFmNijpQMTvGykSMpvp05w3GzZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
