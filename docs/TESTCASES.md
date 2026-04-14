@@ -1,7 +1,7 @@
 ## User Stories
 
 - **US1: User Account Creation**  
-  <link to template slide>
+  <https://docs.google.com/presentation/d/17qLRnCzBAVxxGJF-tq5oddee-bAuDgJouXnSFgLDpz8/edit?usp=sharing>
 
 - **US2: User Login**  
   <https://docs.google.com/presentation/d/17QRxlhjfedG32KpY-OP-OexBu6AuAxZdoOzdJDh7-Rc/edit?usp=sharing>
