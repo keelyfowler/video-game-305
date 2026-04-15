@@ -12,5 +12,5 @@
 - **US4: Golden Path Description**  
   <https://docs.google.com/presentation/d/12c5i4oYoZ74AK37sLRzU3VYFJ0Xd5z9SZ-UBQKLMt6w/edit?usp=sharing>
 
-- **US5: ...**  
-  <link to template slide>
+- **US5: Add Game to Favorites**  
+  <https://docs.google.com/presentation/d/1PomgOnZ359CzM8vrrbmSDkY13SgAuDNbOSMyxuafJiE/edit?usp=sharing>
