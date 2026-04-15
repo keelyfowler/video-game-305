@@ -146,6 +146,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                       ),
                     ),
                     child: TextFormField(
+                      key: ValueKey('TextField_oppv'),
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(

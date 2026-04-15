@@ -75,6 +75,22 @@ void main() async {
     await tester.pumpAndSettle(const Duration(milliseconds: 3000));
     expect(find.text('Global Reviews'), findsOneWidget);
   });
+
+  testWidgets('US4 Search Results Test', (WidgetTester tester) async {
+    _overrideOnError();
+
+    await tester.pumpWidget(const MyApp());
+    await GoogleFonts.pendingFonts();
+
+    await tester.enterText(
+        find.byKey(const ValueKey('TextField_oppv')), 'Spider-Man');
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 3000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 5000),
+    );
+    expect(find.text('PS5'), findsWidgets);
+  });
 }
 
 // There are certain types of errors that can happen during tests but
