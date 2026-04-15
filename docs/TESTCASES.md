@@ -6,7 +6,7 @@
 - **US2: User Login**  
   <https://docs.google.com/presentation/d/17QRxlhjfedG32KpY-OP-OexBu6AuAxZdoOzdJDh7-Rc/edit?usp=sharing>
 
-- **US3: Backend Management**  
+- **US3: Profile Creation**  
   <https://docs.google.com/presentation/d/1IucWqI-gz43rYkzZm3Fk0fr4H5Ywabc4T_oPiJkHZxY/edit?usp=sharing>
 
 - **US4: Golden Path Description**  
