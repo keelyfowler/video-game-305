@@ -73,7 +73,7 @@ class _NPSsurveyWidgetState extends State<NPSsurveyWidget> {
       child: Container(
         width: MediaQuery.sizeOf(context).width * 1.0,
         decoration: BoxDecoration(
-          color: Color(0xFF9CC5A1),
+          color: Color(0xBF9CC5A1),
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(

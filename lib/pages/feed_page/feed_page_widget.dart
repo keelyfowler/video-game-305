@@ -457,6 +457,8 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                                       .fontStyle,
                                                               lineHeight: 1.4,
                                                             ),
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                       ),
                                                     ],
                                                   ),

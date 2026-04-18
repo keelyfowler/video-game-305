@@ -40,12 +40,18 @@ class FavoritesRecord extends FirestoreRecord {
   String get gamePic => _gamePic ?? '';
   bool hasGamePic() => _gamePic != null;
 
+  // "game_id" field.
+  int? _gameId;
+  int get gameId => _gameId ?? 0;
+  bool hasGameId() => _gameId != null;
+
   void _initializeFields() {
     _gameName = snapshotData['game_name'] as String?;
     _gameDesc = snapshotData['game_desc'] as String?;
     _userRef = snapshotData['user_ref'] as DocumentReference?;
     _userId = castToType<int>(snapshotData['user_id']);
     _gamePic = snapshotData['game_pic'] as String?;
+    _gameId = castToType<int>(snapshotData['game_id']);
   }
 
   static CollectionReference get collection =>
@@ -88,6 +94,7 @@ Map<String, dynamic> createFavoritesRecordData({
   DocumentReference? userRef,
   int? userId,
   String? gamePic,
+  int? gameId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -96,6 +103,7 @@ Map<String, dynamic> createFavoritesRecordData({
       'user_ref': userRef,
       'user_id': userId,
       'game_pic': gamePic,
+      'game_id': gameId,
     }.withoutNulls,
   );
 
@@ -111,12 +119,13 @@ class FavoritesRecordDocumentEquality implements Equality<FavoritesRecord> {
         e1?.gameDesc == e2?.gameDesc &&
         e1?.userRef == e2?.userRef &&
         e1?.userId == e2?.userId &&
-        e1?.gamePic == e2?.gamePic;
+        e1?.gamePic == e2?.gamePic &&
+        e1?.gameId == e2?.gameId;
   }
 
   @override
-  int hash(FavoritesRecord? e) => const ListEquality()
-      .hash([e?.gameName, e?.gameDesc, e?.userRef, e?.userId, e?.gamePic]);
+  int hash(FavoritesRecord? e) => const ListEquality().hash(
+      [e?.gameName, e?.gameDesc, e?.userRef, e?.userId, e?.gamePic, e?.gameId]);
 
   @override
   bool isValidKey(Object? o) => o is FavoritesRecord;

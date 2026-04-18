@@ -131,7 +131,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .displaySmall
                                       .override(
-                                        font: GoogleFonts.interTight(
+                                        font: GoogleFonts.urbanist(
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
@@ -156,7 +156,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          font: GoogleFonts.inter(
+                                          font: GoogleFonts.manrope(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -192,7 +192,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                               child: FlutterFlowIconButton(
                                 borderRadius: 8.0,
                                 buttonSize: 40.0,
-                                fillColor: FlutterFlowTheme.of(context).primary,
+                                fillColor: Color(0xFFAC9A5E),
                                 icon: Icon(
                                   Icons.arrow_forward,
                                   color: FlutterFlowTheme.of(context).info,
@@ -338,7 +338,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                           ),
                                           shape: BoxShape.circle,
                                           border: Border.all(
-                                            color: Color(0xFF177BDD),
+                                            color: Color(0xFFAC9A5E),
                                             width: 3.0,
                                           ),
                                         ),
@@ -347,7 +347,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                         width: 32.0,
                                         height: 32.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFF177BDD),
+                                          color: Color(0xFFAC9A5E),
                                           shape: BoxShape.circle,
                                         ),
                                         child: Align(
@@ -437,7 +437,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                                       .labelMedium
                                                       .fontStyle,
                                             ),
-                                            color: Color(0xFF177BDD),
+                                            color: Color(0xFFAC9A5E),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.bold,
@@ -595,7 +595,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                                       .labelMedium
                                                       .fontStyle,
                                             ),
-                                            color: Color(0xFF177BDD),
+                                            color: Color(0xFFAC9A5E),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.bold,
@@ -901,7 +901,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        font: GoogleFonts.inter(
+                                        font: GoogleFonts.manrope(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -911,7 +911,8 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                        color: Colors.white,
+                                        color: Color(0x66FFFFFF),
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -923,7 +924,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                   hintText: 'Select a genre...',
                                   icon: Icon(
                                     Icons.keyboard_arrow_down_rounded,
-                                    color: Color(0xFF177BDD),
+                                    color: Color(0xFFAC9A5E),
                                     size: 22.0,
                                   ),
                                   fillColor: Color(0x3F000000),
@@ -1448,11 +1449,11 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                         16.0, 0.0, 16.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: Color(0xFF177BDD),
+                                    color: Color(0xFFAC9A5E),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          font: GoogleFonts.interTight(
+                                          font: GoogleFonts.urbanist(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall

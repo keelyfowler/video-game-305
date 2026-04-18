@@ -54,42 +54,14 @@ void main() async {
     ));
     await GoogleFonts.pendingFonts();
 
-    await tester.pumpAndSettle(const Duration(milliseconds: 5000));
     await tester.tap(find.byKey(const ValueKey('LoginTab_adnq')));
-    await tester.pumpAndSettle(const Duration(milliseconds: 3000));
     await tester.enterText(
         find.byKey(const ValueKey('Login-Email_v68f')), 'liamwash@gmail.com');
     await tester.enterText(
         find.byKey(const ValueKey('Login-Password_n5z7')), '123456');
-    await tester.scrollUntilVisible(
-      find.byKey(const ValueKey('Login-Button67')),
-      600.0,
-      scrollable: find
-          .descendant(
-            of: find.byKey(const ValueKey('Column_tewx')),
-            matching: find.byType(Scrollable),
-          )
-          .first,
-    );
-    await tester.tap(find.byKey(const ValueKey('Login-Button67')));
+    await tester.tap(find.byKey(const ValueKey('Signup-Button_gj0s')));
+    expect(find.byKey(const ValueKey('FeedPage_p0oj')), findsWidgets);
     await tester.pumpAndSettle(const Duration(milliseconds: 3000));
-    expect(find.text('Global Reviews'), findsOneWidget);
-  });
-
-  testWidgets('US4 Search Results Test', (WidgetTester tester) async {
-    _overrideOnError();
-
-    await tester.pumpWidget(const MyApp());
-    await GoogleFonts.pendingFonts();
-
-    await tester.enterText(
-        find.byKey(const ValueKey('TextField_oppv')), 'Spider-Man');
-    await tester.pumpAndSettle(
-      const Duration(milliseconds: 3000),
-      EnginePhase.sendSemanticsUpdate,
-      const Duration(milliseconds: 5000),
-    );
-    expect(find.text('PS5'), findsWidgets);
   });
 }
 

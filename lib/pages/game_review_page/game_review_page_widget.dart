@@ -135,7 +135,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
           ),
           actions: [],
           centerTitle: true,
-          elevation: 0.0,
+          elevation: 5.0,
         ),
         body: SafeArea(
           top: true,
@@ -146,6 +146,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
                         padding: EdgeInsets.all(20.0),
@@ -191,7 +192,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                                       .headlineSmall
                                       .override(
                                         font: GoogleFonts.urbanist(
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.w600,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .headlineSmall
@@ -200,7 +201,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                                         color: Colors.white,
                                         fontSize: 20.0,
                                         letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .headlineSmall
                                             .fontStyle,
@@ -310,8 +311,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                                       child: Icon(
                                         Icons.star_rounded,
                                         color: _model.starRating! >= 3
-                                            ? FlutterFlowTheme.of(context)
-                                                .warning
+                                            ? Color(0xFFAC9A5E)
                                             : Colors.black,
                                         size: 36.0,
                                       ),
@@ -392,6 +392,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                         padding: EdgeInsets.all(20.0),
                         child: Container(
                           width: double.infinity,
+                          height: 250.0,
                           decoration: BoxDecoration(
                             color: Color(0xFF445552),
                             borderRadius: BorderRadius.circular(16.0),
@@ -510,108 +511,100 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                           ),
                         ),
                       ),
-                      Opacity(
-                        opacity: 0.0,
-                        child: Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF445552),
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Review Summary',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.manrope(
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: Color(0xFF9CC5A1),
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
+                      Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF445552),
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Review Summary',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        font: GoogleFonts.manrope(
                                           fontWeight: FontWeight.w600,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
                                                   .fontStyle,
                                         ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.star_rounded,
-                                        color: Color(0xFFFFCC00),
-                                        size: 16.0,
+                                        color: Color(0xFF9CC5A1),
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontStyle,
                                       ),
-                                      Text(
-                                        '4.0  ·  Elden Ring',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.manrope(
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color: Colors.white,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.star_rounded,
+                                      color: Color(0xFFFFCC00),
+                                      size: 16.0,
+                                    ),
+                                    Text(
+                                      '4.0  ·  Elden Ring',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.manrope(
                                               fontWeight: FontWeight.normal,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
-                                      ),
-                                    ].divide(SizedBox(width: 8.0)),
-                                  ),
-                                  Text(
-                                    'Your review will be visible to other players.',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodySmall
-                                        .override(
-                                          font: GoogleFonts.manrope(
+                                            color: Colors.white,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodySmall
+                                                    .bodyMedium
                                                     .fontStyle,
                                           ),
-                                          color: Color(0x80FFFFFF),
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
+                                    ),
+                                  ].divide(SizedBox(width: 8.0)),
+                                ),
+                                Text(
+                                  'Your review will be visible to other players.',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodySmall
+                                      .override(
+                                        font: GoogleFonts.manrope(
                                           fontWeight: FontWeight.normal,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodySmall
                                                   .fontStyle,
                                         ),
-                                  ),
-                                ].divide(SizedBox(height: 12.0)),
-                              ),
+                                        color: Color(0x80FFFFFF),
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodySmall
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ].divide(SizedBox(height: 12.0)),
                             ),
                           ),
                         ),
                       ),
-                    ]
-                        .divide(SizedBox(height: 24.0))
-                        .addToStart(SizedBox(height: 24.0))
-                        .addToEnd(SizedBox(height: 32.0)),
+                    ].addToEnd(SizedBox(height: 20.0)),
                   ),
                 ),
               ),
@@ -669,7 +662,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                         padding: EdgeInsets.all(8.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFF177BDD),
+                        color: Color(0xFFAC9A5E),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   font: GoogleFonts.manrope(

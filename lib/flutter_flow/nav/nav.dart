@@ -123,6 +123,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               'gameCover',
               ParamType.String,
             ),
+            gameId: params.getParam(
+              'gameId',
+              ParamType.int,
+            ),
           ),
         ),
         FFRoute(
@@ -168,6 +172,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'profileView')
               : ProfileViewWidget(),
+        ),
+        FFRoute(
+          name: SettingsPageWidget.routeName,
+          path: SettingsPageWidget.routePath,
+          builder: (context, params) => SettingsPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

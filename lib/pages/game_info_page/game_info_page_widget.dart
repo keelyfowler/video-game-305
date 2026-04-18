@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'game_info_page_model.dart';
 export 'game_info_page_model.dart';
@@ -44,11 +46,13 @@ class GameInfoPageWidget extends StatefulWidget {
     required this.gameName,
     required this.gameSummary,
     required this.gameCover,
+    required this.gameId,
   });
 
   final String? gameName;
   final String? gameSummary;
   final String? gameCover;
+  final int? gameId;
 
   static String routeName = 'GameInfoPage';
   static String routePath = '/gameInfoPage';
@@ -69,6 +73,15 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'GameInfoPage'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('GAME_INFO_GameInfoPage_ON_INIT_STATE');
+      logFirebaseEvent('GameInfoPage_backend_call');
+      _model.gameDetailsResult = await GetGameDetailsKFCall.call(
+        gameID: widget.gameId,
+      );
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -107,7 +120,15 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
                 logFirebaseEvent('GAME_INFO_arrow_back_rounded_ICN_ON_TAP');
                 logFirebaseEvent('IconButton_navigate_to');
 
-                context.pushNamed(SearchPageWidget.routeName);
+                context.pushNamed(
+                  SearchPageWidget.routeName,
+                  extra: <String, dynamic>{
+                    '__transition_info__': TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.leftToRight,
+                    ),
+                  },
+                );
               },
             ),
           ),
@@ -134,6 +155,7 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
                         gameDesc: widget.gameSummary,
                         userRef: currentUserReference,
                         gamePic: widget.gameCover,
+                        gameId: widget.gameId,
                       ));
                   logFirebaseEvent('IconButton_update_page_state');
                   _model.iconClicked = 1;
@@ -191,7 +213,7 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
-                                font: GoogleFonts.interTight(
+                                font: GoogleFonts.urbanist(
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FlutterFlowTheme.of(context)
                                       .displaySmall
@@ -382,7 +404,12 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
                                                 ),
                                           ),
                                           Text(
-                                            'RPG / Action',
+                                            getJsonField(
+                                              (_model.gameDetailsResult
+                                                      ?.jsonBody ??
+                                                  ''),
+                                              r'''$.game.genres[0].name''',
+                                            ).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -450,7 +477,12 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
                                                 ),
                                           ),
                                           Text(
-                                            'PC / Console',
+                                            getJsonField(
+                                              (_model.gameDetailsResult
+                                                      ?.jsonBody ??
+                                                  ''),
+                                              r'''$.game.platforms[0].name''',
+                                            ).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -523,7 +555,12 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
                                                 ),
                                           ),
                                           Text(
-                                            'NovaStar Studios',
+                                            getJsonField(
+                                              (_model.gameDetailsResult
+                                                      ?.jsonBody ??
+                                                  ''),
+                                              r'''$.game.developer''',
+                                            ).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -591,7 +628,12 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
                                                 ),
                                           ),
                                           Text(
-                                            'M (Mature)',
+                                            getJsonField(
+                                              (_model.gameDetailsResult
+                                                      ?.jsonBody ??
+                                                  ''),
+                                              r'''$.game.esrb''',
+                                            ).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
