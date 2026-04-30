@@ -1,0 +1,207 @@
+"Fix: Unknown Value Displaying Under Game Title on Reviews Feed","An unknown/unexpected value is populating underneath the game title on the reviews feed page. Identify what data field is being pulled and either correct the binding or remove it if unintentional."
+"Track Metrics -> A/B Test: Generic Home Screen vs Personalized Welcome Back Feed","A/B Test Name: Generic Home Screen vs Personalized ""Welcome Back"" Feed User Story Number: US5 (Additional Feature) Metrics: Retention — 7-day / 30-day retention rate
+Hypothesis: Users who return to a generic home screen with no personalized content have little immediate reason to re-engage with the app. This lack of a hook at the entry point is likely contributing to low return rates. We hypothesize that showing returning users a personalized feed of recent friend activity and games they have logged will give them a reason to keep coming back, increasing both 7-day and 30-day retention rates.
+Experiment: We will split returning users 50/50 — half will see the standard default home screen, half will see a personalized ""Welcome Back"" feed. Firebase Analytics session events will track whether users in each group return within 7 and 30 days of their last session. We will compare retention rates between the two variants to determine if the personalized feed has a meaningful impact on return behavior.
+Variations:
+Variant A (control): Default home screen shown to all returning users
+Variant B (test): Personalized ""Welcome Back"" feed showing recent friend activity and the user's recently logged games
+"
+"A/B Adoption: A/B Test: Sign Up/Sign In on 1 Screen or 2 Screens","A/B Test Name: Sign Up/Sign In on 1 Screen or 2 Screens
+User Story Number: US3 (Sign Up / Sign In)
+Metrics: Adoption, adoption rate (new signups)
+Hypothesis: New users who encounter separate sign up and sign in screens may abandon the flow if they land on the wrong screen and have to navigate to find the right one. This friction at the entry point of the app directly reduces our adoption rate. We hypothesize that combining sign up and sign in onto a single screen with a simple toggle will reduce drop-off during account creation and increase the number of users who successfully complete signup.
+Experiment: We will split new users 50/50 — half will see the current two-screen flow (separate sign up and sign in pages), half will see a single combined screen with a toggle between the two flows. Firebase Authentication will track signup completion events. Firebase Analytics will log a signup_screen_viewed event and a signup_completed event per variant so we can compare drop-off rates between the two groups.
+Variations:
+
+Variant A (control): Separate sign up and sign in screens — user must navigate between two distinct pages
+Variant B (test): Single combined screen with a toggle button to switch between sign up and sign in fields"
+"Feature: See All Reviews Functionality","Add a ""See All Reviews"" button or navigation path on the reviews feed so users can view the full list of reviews for a game. Should navigate to a filtered view showing all reviews for the selected game"
+"Set up Emulator / Android Device",""
+"Add In Test Mob Adds Banner","First, read and watch the videos in: [How Do You Monetize A Mobile Application](https://blog.flutterflow.io/how-do-mobile-apps-make-money/)
+
+Here is a deeper dive into how you can integrate Google's Admob advertising. Revenue Cat In-App Purchases, and Stripe payments into your app in FlutterFlow.
+
+Google Admob in FlutterFlow
+
+This video is an older version of FlutterFlow. For the current documentation, read: [Admob With FlutterFlow](https://docs.flutterflow.io/integrations/ads/admob/)
+
+****
+Business Idea with Test Mob Adds:
+
+- Implement Ads from a small but noticeable banner at the bottom of the screen when viewing another user's profile
+- Hope would be to specialize in Video Games or tech related adds(we know this is not currently possible)"
+"Screenshots game info page",""
+"Wiki: Architecture (Section B)","Create the Architecture page on the GitHub Wiki. Include an architecture diagram showing frontend/backend interaction, overview of frontend structure and major FlutterFlow components, and backend architecture including Firebase, Firestore, and Cloud Functions."
+"Wiki: Overview Page (Section A)","reate the Overview page on the GitHub Wiki following the 305Soft outline. Include project name, purpose, high-level goals, brief description, main features, and technologies used (Dart/Flutter, FlutterFlow, Firebase, Firestore, IGDB API)."
+"Wiki: Initial Setup — Create GitHub Wiki and Navigation Structure","Set up the GitHub Wiki on the repo, create the home page with links to all sections (A-G), and establish the page structure before other team members start adding content."
+"User Docs: Deploy User Guide Website","Deploy the completed user guide to a public website (Google Sites, Wix, or FlutterFlow web embed). Ensure all pages are accessible, screenshots are clear, and the site is shareable via public link for submission."
+"User Docs: User Guide Website — Reviews & NPS","Create the user guide section covering how to write a review and complete the NPS survey. Include screenshots and step-by-step instructions. Explain what each field means and how to submit.
+"
+"User Docs: User Guide Website — Onboarding & Profile","Create the user guide section covering onboarding (sign up, sign in) and profile creation. Include screenshots of each screen with step-by-step instructions. Write for a general non-technical audience.
+"
+"User Docs: User Guide Website — Search & Game Info","Create the user guide section covering game search and game info page. Include screenshots with labeled UI elements and step-by-step instructions explaining how to search for a game and view its details."
+"Wiki: UX Flow (Section C)","Create the UX Flow page on the GitHub Wiki. Include wireframes of each app screen and a flowchart showing the sequence of user interactions and screen transitions, including the full Golden Path flow."
+"Wiki: Database Schema (Section D)","Create the Database Schema page on the GitHub Wiki. Include a visual diagram of Firestore collections and documents, description of each collection (users, reviews, nps_responses), fields and data types, and the 305Soft standard JSON schema."
+"Wiki: Metrics & HEART Framework (Section E)","Create the Metrics page on the GitHub Wiki. Pull content from METRICS.md. Include the HEART framework Google Slides link, all 6 metrics (NPS, Adoption, DAU, Retention, CTR, searches per user), and how each is collected in the backend.
+"
+"User Docs: Google Play Store Listing Page","Create a Google Play-style store listing webpage for the app following Google Play App Listing Guidance and Assets Specifications. Include app name, description, screenshots, feature highlights, and any required assets. Host on Google Sites, Wix, or similar."
+"Wiki: API Documentation (Section F)","Create the API Documentation page on the GitHub Wiki. Document the IGDB API endpoint (https://api.igdb.com/v4/games), request method (POST), headers (Authorization, Client-ID, Content-Type), body format, and response format. Include authentication mechanism (Twitch Bearer token via Cloud Function proxy) and how the API key is managed."
+"Wiki: Backend Services (Section G)","Create the Backend Services page on the GitHub Wiki. Cover: Firebase Authentication (email/password), Cloud Functions (PrivateTwitchAPICallV2 — trigger, code, deployment), Firestore security rules, Firebase Analytics (how metrics are collected), A/B testing setup (skip button Remote Config test), and Remote Config configuration."
+"Fix: Reviews Feed Page Not Fully Scrollable on Mobile"," The reviews feed page gets stuck when scrolling on mobile and does not reach the bottom of the content. Investigate primary scroll widget conflicts (multiple nested scrollable widgets) and fix so the full page is scrollable on all mobile screen sizes"
+"Developer Documentation","oftware developer documentation for a full-stack app is a comprehensive set of technical resources that describe the architecture, components, and functionality of both the front-end and back-end parts of the application. It typically includes information on the codebase structure, API specifications, database schemas, deployment procedures, and development environment setup. 
+
+This documentation is needed for several reasons: 
+
+It helps new developers quickly understand and navigate the project
+
+It ensures consistency in coding practices across the team
+
+It facilitates easier maintenance and updates
+
+It aids in troubleshooting and debugging
+
+It serves as a knowledge base for the entire development lifecycle
+
+Good developer documentation also promotes code reusability, improves collaboration between team members, and can significantly reduce onboarding time for new contributors. In essence, it acts as a vital communication tool that bridges gaps in understanding and promotes efficient, scalable, and maintainable software development.
+
+GitHub Wikis
+GitHub Wikis are 305Ssoft's required way to maintain developer documentation. 
+
+Creating a Wiki
+Navigate to Your Repository: Go to your GitHub repository where you want to create the documentation.
+
+Access the Wiki Tab: Click on the ""Wiki"" tab at the top of your repository.
+
+Create the First Page: If it's your first time, GitHub will prompt you to create the first page of your Wiki. Click ""Create the first page.""
+
+Outline and Titles: Start by creating a clear structure using the outline you developed. Create separate pages for different sections like ""Requirements,"" ""Architecture,"" ""User Guides,"" etc.
+
+Page Links: Use Markdown to link between pages for easy navigation. For example:  [Architecture](https://github.com/your-repo/wiki/Architecture)
+
+Adding Content
+Write clear, concise content for each page, using plain language and avoiding unnecessary jargon. Use generative AI to help refine each section. Upload images, flowcharts, and screenshots to the Wiki. Use Markdown to embed these visuals. 
+
+Follow this 305Soft Wiki outline:
+
+A. Overview
+
+Project name:
+
+Purpose: Provide a high-level overview of the project, including its goals and objectives.
+
+Brief description:
+
+Main features:
+
+Technologies used (e.g., Dart/Flutter, FlutterFlow, Firestore, Firebase):
+
+B. Architecture
+
+Purpose: Detail the structure and components of the app, both frontend and backend.
+
+Architecture Diagram. Visual representation of the system architecture, showing the interaction between different components.
+
+Frontend Architecture. Overview of the frontend structure, major components, and libraries used.
+
+Backend Architecture.  Overview of the backend structure, including the server, database, and third-party services.
+
+C. UX Flow
+
+Purpose: Describe the user experience flow, including the navigation and interaction within the app.
+
+Wireframes: Visual sketches of each app screen.
+
+App Screen Flow: Flowchart showing the sequence of user interactions and transitions between screens.
+
+D. Database Schema
+
+Purpose: Detail the structure of the Firestore database used in the app.
+
+Database Diagram. Visual representation of the collections and documents.
+
+Collections and Documents. Description of each collection and the structure of its documents.
+
+Fields and Data Types. Details of the fields within each document, including data types and any relationships between collections.
+
+JSON Schema. 305Soft standard JSON schema
+
+E. Metrics
+
+Metrics description - HEART framework
+
+Metrics collection (formerly [METRICS.md](http://metrics.md/))
+
+F. API Documentation
+
+Purpose: Document the Web APIs and your own cloud functions used by the app, including endpoints, request methods, and data formats.
+
+API Endpoints: List of API endpoints with descriptions of their purpose.
+
+Request and Response Formats: Details of the expected request and response formats, including headers, parameters, and body content. If JSON is used, then provide the JSON schema.
+
+Authentication: Description of any authentication mechanisms used (e.g. API keys and how they are managed).
+
+G. Backend Services
+
+Purpose: Detail the configuration and usage of various services integrated into the app.
+
+Authentication. Configuration and usage of Authentication, including the authentication method(s) used (e.g. email/password, Google, Facebook, etc) any custom rules or integrations
+
+Cloud Functions.  Overview of Cloud Functions used, their triggers, code, code documentation, and deployment
+
+Database Security. Describe database security rules and how/where they are set.
+
+Metrics/Analytics.  Describe how all metrics are collected referring to specific services on the backend (e.g. Firebase Analytics).
+
+A/B Testing. Describe any A/B tests you have set up including what is being tested and the metrics used to evaluate.
+
+Remote Configuration. If Remote Configuration is used with your app, then describe the configurations controlled by it and the typical instances in which a component would be updated.
+
+List and describe any other services you used (e.g. Firebase messaging)
+
+Track Documentation Changes
+GitHub Wikis use Git under the hood, so every change you make to your documentation is recorded in the commit history. This helps track changes over time and understand the evolution of the documentation. You can review past changes and revert to previous versions if needed. This is useful for maintaining the accuracy and relevance of your documentation.
+
+305Soft Team Developer Documentation Wiki Examples
+Note that these examples are from a previous semester and the requirements may have changed since they were published.
+
+[GreenWay](https://github.com/cquinn417/Greenway/wiki)  
+
+Thorough API documentation, detailed descriptions of each endpoint, including their purpose, request methods, parameters, and response formats. Includes structured JSON response examples and an explanation of authentication mechanisms. 
+
+[StepBet](https://github.com/Jpiccoli1691/305FitnessCasino/wiki)
+
+Goes beyond outlined instructions to include extra pages (Game Documentation) that they knew would be important for a future developer to gain a proper understanding of the app. Overall very detailed and organized.
+
+External Developer Documentation Wiki Examples
+[Hystrix (uses GitHub Wiki for Developer Documentation)](https://github.com/Netflix/Hystrix/wiki)
+
+Hystrix uses 13 main pages for its wiki section, and each has its own sub-pages for different questions or discussions.
+
+[NullAway (uses GitHub Wiki for Developer Documentation)](https://github.com/uber/NullAway/wiki)
+
+Review all links on the wiki; the How NullAway Works
+
+[Flutter Architecture (uses its own website for Developer Documentation)](https://docs.flutter.dev/resources/architectural-overview)
+
+Although not implemented as a GitHub Wiki, it is well-written developer documentation"
+"Market Place Component(Little Pop up Rate your experience out of 5 stars)",""
+"Logout cancel button fix",""
+"Update ABTest.md to reflect analytics & skip button",""
+"A/B Test: Profile Setup Prompted vs Skippable During Onboarding","A/B Test Name: Profile Setup Skip Button Visible vs Hidden During Onboarding
+User Story Number: US4 (Golden Path)
+Metrics: Task Success — percentage of users who complete the full golden path (signup → profile → review a game)
+Hypothesis: Users who are given the option to skip profile setup during onboarding are more likely to abandon the golden path before posting their first review. By hiding the skip button for half of users, we force them through profile setup, which we hypothesize will increase the percentage of users who go on to complete the full golden path.
+Experiment: We will split new users 50/50 using Firebase Remote Config with a boolean parameter skip_goes_to_landing. Users assigned true will see the skip button and can navigate directly to the feed. Users assigned false will not see the skip button and must complete profile setup to continue. Firebase Analytics will track sign_up, PROFILE_CREATION_FINISH_PROFILE_BTN_ON_T, and first_visit events per variant.
+Variations:
+Variant A (control): Skip button hidden — skip_goes_to_landing = false — user must complete profile setup to proceed
+Variant B (test): Skip button visible — skip_goes_to_landing = true — user can skip profile setup and navigate directly to the feed
+
+Also update the title to match. That's it for the PBI cards.update title to match what? im updating biancas card or ?8:22 AMUpdate the title of #30 to:
+A/B Test: Profile Setup Skip Button Visible vs Hidden During Onboarding
+And yes, edit Bianca's card (#30) since that's the one that maps to what you actually built. You're already assigned to it so that makes sense — it's yours to own.is her title description not good8:22 AMHer title is fine honestly — ""Profile Setup Prompted vs Skippable During Onboarding"" still describes the concept accurately enough. The implementation is slightly different from what she wrote but the spirit is the same.
+Only change it if you want it to exactly match the ABTEST.md. Not worth stressing over for 2 points."
+"Feature: Nav Bar Path to Profile Page","Add a navigation bar item or button that takes the user to their profile page from anywhere in the app. Should be accessible from the main nav bar on all primary pages."
+"Fix Edge Case For Favorites Feature(Deselect Favorite, and only favorite once)",""
+"*Golden Path Feature: AI Functionality","Add AI functionality where users can get a recommendation for a game based on the games their favorites "
+"*Golden Path Feature: Favorite Game Save in Profile","Add ability to save favorite games"

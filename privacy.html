@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameVault – Privacy Policy</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1f1e;
+    --surface: #252c2b;
+    --surface2: #2e3836;
+    --green: #6dbf82;
+    --green-dark: #4a9c60;
+    --text: #e8f0ed;
+    --muted: #8aa49a;
+    --border: #3a4744;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(26,31,30,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 40px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { width: 36px; height: 36px; border-radius: 8px; }
+  .nav-logo span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem; color: var(--green); letter-spacing: 1px;
+  }
+  .nav-back {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--green); }
+
+  /* HEADER BANNER */
+  .policy-banner {
+    margin-top: 65px;
+    background: linear-gradient(135deg, #0e1a17 0%, #1a3328 40%, #0e2318 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px;
+    position: relative; overflow: hidden;
+  }
+  .policy-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 70% 50%, #6dbf8218, transparent);
+    pointer-events: none;
+  }
+  .policy-banner-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 3px; color: var(--green);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .policy-banner h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900; color: var(--text); margin-bottom: 12px;
+  }
+  .policy-banner h1 span { color: var(--green); }
+  .policy-meta { color: var(--muted); font-size: 0.88rem; }
+
+  /* CONTENT */
+  .policy-body {
+    max-width: 860px; margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+  .policy-section { margin-bottom: 48px; }
+  .policy-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--green); margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .policy-section p {
+    color: var(--muted); line-height: 1.8; font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+  .policy-section p:last-child { margin-bottom: 0; }
+  .policy-section ul {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+    margin: 12px 0;
+  }
+  .policy-section ul li {
+    display: flex; gap: 10px; color: var(--muted);
+    font-size: 0.93rem; line-height: 1.6;
+  }
+  .policy-section ul li::before { content: '✦'; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .policy-section a { color: var(--green); }
+  .policy-section a:hover { color: var(--text); }
+
+  /* HIGHLIGHT BOX */
+  .policy-highlight {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    color: var(--text);
+    font-size: 0.93rem;
+    line-height: 1.7;
+  }
+
+  /* DATA TABLE */
+  .data-table {
+    width: 100%; border-collapse: collapse;
+    background: var(--surface); border-radius: 12px;
+    overflow: hidden; margin: 16px 0;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    background: var(--surface2); color: var(--green);
+    font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 12px 16px; text-align: left; font-weight: 700;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 12px 16px; color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top; line-height: 1.6;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td:first-child { color: var(--text); font-weight: 500; }
+  .tag-no { color: var(--muted); font-weight: 600; }
+  .tag-yes { color: var(--green); font-weight: 600; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    color: var(--muted); font-size: 0.85rem;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-logo img { width: 28px; border-radius: 6px; }
+  .footer-logo span { font-family: 'Orbitron', sans-serif; color: var(--green); font-size: 0.9rem; }
+  footer a { color: var(--muted); text-decoration: underline; }
+  footer a:hover { color: var(--green); }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .policy-banner { padding: 48px 20px; }
+    .policy-body { padding: 48px 20px 80px; }
+    .data-table { font-size: 0.82rem; }
+    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="assets/images/icon.png" alt="GameVault Logo">
+    <span>GameVault</span>
+  </a>
+  <a class="nav-back" href="index.html">&#8592; Back to Store Listing</a>
+</nav>
+
+<!-- HEADER -->
+<div class="policy-banner">
+  <div class="policy-banner-inner">
+    <div class="section-label">Legal</div>
+    <h1>Privacy <span>Policy</span></h1>
+    <p class="policy-meta">Effective date: April 30, 2026 &nbsp;·&nbsp; Last updated: April 30, 2026 &nbsp;·&nbsp; App: GameVault for Android &nbsp;·&nbsp; Developer: Team GameVault</p>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="policy-body">
+
+  <div class="policy-section">
+    <h2>Overview</h2>
+    <p>GameVault ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy describes what information we collect, how we use it, and your rights as a user of the GameVault Android application.</p>
+    <p>By using GameVault, you agree to the collection and use of information in accordance with this policy. If you do not agree, please discontinue use of the app.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Information We Collect</h2>
+    <p>We collect the following categories of information when you use GameVault:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Data Type</th>
+          <th>Purpose</th>
+          <th>Stored?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Email address</td>
+          <td>Account creation and authentication</td>
+          <td class="tag-yes">Yes</td>
+        </tr>
+        <tr>
+          <td>Display name &amp; username</td>
+          <td>Public profile and social features</td>
+          <td class="tag-yes">Yes</td>
+        </tr>
+        <tr>
+          <td>Game ratings &amp; written reviews</td>
+          <td>App activity, community feed</td>
+          <td class="tag-yes">Yes</td>
+        </tr>
+        <tr>
+          <td>Favorites list</td>
+          <td>Personal game log and recommendations</td>
+          <td class="tag-yes">Yes</td>
+        </tr>
+        <tr>
+          <td>Optional profile fields (bio, Discord, Twitch, genres)</td>
+          <td>Profile personalization</td>
+          <td class="tag-yes">Yes (only if provided)</td>
+        </tr>
+        <tr>
+          <td>Camera / photo library access</td>
+          <td>Profile picture upload only</td>
+          <td class="tag-no">Not stored</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="policy-highlight">
+      <strong style="color:var(--green);">Camera Access:</strong> GameVault does not store camera data. Camera and photo library access is used solely to allow you to select or capture a profile picture. The image you choose is uploaded to your account; raw camera data is never recorded, retained, or transmitted beyond that single upload action.
+    </div>
+  </div>
+
+  <div class="policy-section">
+    <h2>How We Use Your Information</h2>
+    <ul>
+      <li>To create and manage your GameVault account</li>
+      <li>To display your profile, reviews, and favorites within the app</li>
+      <li>To power the global and following community feeds</li>
+      <li>To provide AI-powered game recommendations based on your activity</li>
+      <li>To respond to support requests sent to <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></li>
+    </ul>
+    <p>We do not use your data for advertising, profiling, or any purpose beyond operating the GameVault service.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Data Sharing</h2>
+    <p>We do not sell, rent, or share your personal information with third parties for commercial purposes. The only exceptions are:</p>
+    <ul>
+      <li><strong style="color:var(--text);">Firebase (Google):</strong> GameVault uses Google Firebase for authentication, database storage, and file hosting. Data is processed in accordance with <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+      <li><strong style="color:var(--text);">IGDB (Twitch):</strong> Game metadata (titles, cover art, descriptions) is fetched from the IGDB API. No personal data is sent to IGDB.</li>
+      <li><strong style="color:var(--text);">Public reviews:</strong> Reviews and ratings you post are visible to all GameVault users by design.</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>Data Security</h2>
+    <ul>
+      <li>All data in transit is encrypted using HTTPS / TLS</li>
+      <li>Data at rest is encrypted via Firebase's default encryption</li>
+      <li>Authentication is handled by Firebase Authentication — we do not store passwords</li>
+    </ul>
+    <p>While we implement industry-standard safeguards, no method of transmission over the Internet is 100% secure. We cannot guarantee absolute security.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Your Rights &amp; Data Deletion</h2>
+    <p>You have the right to access, correct, or delete your personal data at any time. To request deletion of your account and associated data, contact us at <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a>. We will process deletion requests within 30 days.</p>
+    <p>Public reviews you have posted may remain visible briefly after account deletion while caches clear.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Children's Privacy</h2>
+    <p>GameVault is rated Everyone and is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us and we will delete it promptly.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted to this page with an updated effective date. Continued use of GameVault after changes are posted constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy or how your data is handled, please contact us:</p>
+    <ul>
+      <li>Email: <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></li>
+      <li>Developer: Team GameVault &nbsp;·&nbsp; URI CSC 305 &nbsp;·&nbsp; Spring 2026</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="assets/images/icon.png" alt="GameVault">
+    <span>GameVault</span>
+  </div>
+  <div>Built by Team GameVault &middot; URI CSC 305 &middot; Spring 2026 &middot; <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></div>
+  <div><a href="index.html">Store Listing</a> &middot; Privacy Policy</div>
+</footer>
+
+</body>
+</html>

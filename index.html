@@ -50,9 +50,8 @@
 
   /* HERO */
   .hero {
-    min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
-    padding: 120px 40px 80px;
+    padding: 60px 40px;
     position: relative;
     overflow: hidden;
   }
@@ -338,25 +337,24 @@
   }
   .kf-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px 48px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
   .kf-item {
     display: flex;
-    gap: 22px;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
-    padding: 24px;
+    padding: 20px;
     transition: border-color 0.2s, transform 0.2s;
   }
   .kf-item:hover { border-color: var(--green); transform: translateY(-3px); }
   .kf-mockup {
-    flex-shrink: 0;
-    width: 150px;
+    width: 100%;
     background: #0e1210;
-    border-radius: 18px;
+    border-radius: 14px;
     border: 2px solid var(--border);
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0,0,0,0.5);
@@ -474,13 +472,172 @@
     color: var(--muted);
     font-style: italic;
   }
+  .kf-emoji { font-size: 2rem; margin-bottom: 10px; line-height: 1; }
   .kf-text h3 {
     font-size: 1.05rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: var(--text);
   }
   .kf-text p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
+
+  /* GOLDEN PATH */
+  .golden-path {
+    background: var(--surface);
+    border: 1px solid var(--green);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 48px;
+  }
+  .golden-path-label {
+    font-size: 0.7rem; letter-spacing: 2px; color: var(--green);
+    text-transform: uppercase; margin-bottom: 14px; font-weight: 700;
+  }
+  .golden-path-steps { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .gp-step {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 13px;
+    font-size: 0.82rem; color: var(--text); font-weight: 500;
+  }
+  .gp-arrow { color: var(--green); font-size: 1rem; font-weight: 700; }
+
+  /* DOCS SUBSECTIONS */
+  .docs-subsection { margin-bottom: 52px; }
+  .docs-subsection-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .docs-subsection-icon { font-size: 1.3rem; }
+  .docs-subsection-title { font-size: 1.05rem; font-weight: 700; color: var(--green); }
+  .docs-steps-row {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 32px; align-items: start;
+  }
+  .docs-steps { display: flex; flex-direction: column; gap: 10px; }
+  .docs-step {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .docs-step-num {
+    flex-shrink: 0; width: 24px; height: 24px;
+    background: var(--green); color: #111;
+    border-radius: 50%; font-size: 0.72rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .docs-step-text { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .docs-step-text strong { color: var(--text); }
+  .docs-thumb {
+    width: 100%; background: #0e1210;
+    border-radius: 20px; border: 2px solid var(--border);
+    overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .docs-thumb img { width: 100%; display: block; }
+
+  /* HOW WE BUILT IT */
+  .built-section {
+    border-top: 1px solid var(--border);
+    padding: 80px 40px;
+  }
+  .built-inner { max-width: 1100px; margin: 0 auto; }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px; margin-top: 36px;
+  }
+  .tech-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .tech-card:hover { border-color: var(--green); transform: translateY(-3px); }
+  .tech-icon { font-size: 1.7rem; margin-bottom: 10px; }
+  .tech-name { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+  .tech-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+  /* A/B TESTING */
+  .abtest-section {
+    border-top: 1px solid var(--border);
+    padding: 80px 40px;
+    background: var(--surface);
+  }
+  .abtest-inner { max-width: 1100px; margin: 0 auto; }
+  .abtest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px; margin-top: 36px;
+  }
+  .abtest-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px;
+  }
+  .abtest-name { font-size: 1rem; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+  .abtest-metric {
+    font-size: 0.73rem; color: var(--muted); letter-spacing: 0.5px;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .abtest-variants { display: flex; flex-direction: column; gap: 8px; }
+  .abtest-variant {
+    background: var(--surface); border-radius: 8px; padding: 10px 13px;
+    font-size: 0.85rem; color: var(--muted); line-height: 1.55;
+  }
+  .abtest-variant strong { color: var(--text); font-size: 0.72rem; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* USER DOCS */
+  .docs-section {
+    border-top: 1px solid var(--border);
+    padding: 80px 40px;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+  }
+  .docs-inner { max-width: 1100px; margin: 0 auto; }
+  .docs-divider {
+    border: none;
+    border-top: 2px solid var(--green);
+    margin: 20px 0 40px;
+    opacity: 0.6;
+  }
+  .docs-intro { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-bottom: 56px; max-width: 700px; }
+  .docs-feature-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center; margin-bottom: 64px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 36px; overflow: hidden;
+  }
+  .docs-feature-phone {
+    width: 200px; margin: 0 auto;
+    background: #0e1210; border-radius: 28px;
+    border: 2px solid var(--border); overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  }
+  .docs-feature-phone img { width: 100%; display: block; }
+  .docs-feature-text h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 900; color: var(--green);
+    margin-bottom: 16px; line-height: 1.2;
+  }
+  .docs-feature-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.75; }
+  .docs-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .docs-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px;
+    display: flex; gap: 20px; align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .docs-card:hover { border-color: var(--green); transform: translateY(-3px); }
+  .docs-card-thumb {
+    flex-shrink: 0; width: 110px;
+    background: #0e1210; border-radius: 16px;
+    border: 2px solid var(--border); overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .docs-card-thumb img { width: 100%; display: block; }
+  .docs-card-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+  .docs-card-body p { color: var(--muted); font-size: 0.85rem; line-height: 1.65; }
 
   @media (max-width: 768px) {
     .hero-grid { grid-template-columns: 1fr; }
@@ -490,11 +647,17 @@
     .nav-links { display: none; }
     section { padding: 60px 20px; }
     .rating-row { gap: 32px; padding: 28px 20px; }
-    .kf-grid { grid-template-columns: 1fr; }
+    .kf-grid { grid-template-columns: 1fr 1fr; }
     .kf-section { padding: 60px 20px; }
     .fg-inner { flex-direction: column; padding: 32px 24px; gap: 20px; }
     .data-safety-section { padding: 60px 20px; }
     .whats-new-section { padding: 48px 20px; }
+    .docs-section { padding: 60px 20px; }
+    .docs-feature-row { grid-template-columns: 1fr; gap: 28px; padding: 24px; }
+    .docs-grid { grid-template-columns: 1fr; }
+    .docs-steps-row { grid-template-columns: 1fr; }
+    .built-section { padding: 60px 20px; }
+    .abtest-section { padding: 60px 20px; }
   }
 </style>
 </head>
@@ -507,10 +670,12 @@
     <span>GameVault</span>
   </div>
   <div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#key-features">How It Works</a>
+    <a href="#user-docs">User Docs</a>
+    <a href="#key-features">Key Features</a>
     <a href="#screenshots">Screenshots</a>
     <a href="#about">About</a>
+    <a href="#built-with">How We Built It</a>
+    <a href="#ab-testing">A/B Testing</a>
     <a href="#data-safety">Data Safety</a>
     <a href="#whats-new">What's New</a>
   </div>
@@ -566,131 +731,224 @@
 
 <!-- RATING ROW -->
 <div class="rating-row">
-  <div class="stat"><div class="num">500K+</div><div class="label">Games in Database</div></div>
-  <div class="stat"><div class="num">★ 4.8</div><div class="label">User Rating</div></div>
+  <div class="stat"><div class="num">500K+</div><div class="label">Games via IGDB</div></div>
+  <div class="stat"><div class="num">New</div><div class="label">Latest Release</div></div>
   <div class="stat"><div class="num">Free</div><div class="label">To Download</div></div>
   <div class="stat"><div class="num">Everyone</div><div class="label">Content Rating</div></div>
 </div>
 
-<!-- FEATURES -->
-<section id="features">
-  <div class="section-label">What You Get</div>
-  <h2 class="section-title">Everything a Gamer Needs</h2>
-  <p class="section-sub">Powered by the IGDB game database, GameVault gives you the tools to build your gaming identity and stay connected with other players.</p>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feat-icon">🎮</div>
-      <h3>Search Any Game</h3>
-      <p>Access hundreds of thousands of titles from IGDB. Find any game by name with instant results, cover art, and detailed info.</p>
+<!-- USER DOCUMENTATION -->
+<div class="docs-section" id="user-docs">
+  <div class="docs-inner">
+    <div class="section-label">User Documentation</div>
+    <h2 class="section-title">How to Use GameVault</h2>
+    <hr class="docs-divider">
+    <p class="docs-intro">This guide walks you through everything you need to get started with GameVault — no technical experience required.</p>
+
+    <!-- Golden Path -->
+    <div class="golden-path">
+      <div class="golden-path-label">⚡ Golden Path — the full GameVault experience</div>
+      <div class="golden-path-steps">
+        <span class="gp-step">Sign Up</span>
+        <span class="gp-arrow">→</span>
+        <span class="gp-step">Create Profile</span>
+        <span class="gp-arrow">→</span>
+        <span class="gp-step">Search for a Game</span>
+        <span class="gp-arrow">→</span>
+        <span class="gp-step">View Game Details</span>
+        <span class="gp-arrow">→</span>
+        <span class="gp-step">Write a Review</span>
+        <span class="gp-arrow">→</span>
+        <span class="gp-step">View it on the Feed</span>
+        <span class="gp-arrow">→</span>
+        <span class="gp-step">Follow Another User</span>
+      </div>
     </div>
-    <div class="feature-card">
-      <div class="feat-icon">⭐</div>
-      <h3>Rate & Review</h3>
-      <p>Leave star ratings and written reviews for games you've played. Build your personal review history over time.</p>
+
+    <!-- SUBSECTION 1: Search & Game Info -->
+    <div class="docs-subsection">
+      <div class="docs-subsection-header">
+        <span class="docs-subsection-icon">🔍</span>
+        <span class="docs-subsection-title">Search &amp; Game Info</span>
+      </div>
+      <div class="docs-steps-row">
+        <div class="docs-thumb">
+          <img src="assets/images/ss_search.png" alt="Discover Games screen">
+        </div>
+        <div class="docs-steps">
+          <div class="docs-step">
+            <div class="docs-step-num">1</div>
+            <div class="docs-step-text">Open the app and tap the <strong>Discover</strong> tab at the bottom of the screen.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">2</div>
+            <div class="docs-step-text">Type any game name into the search bar and tap the search button or press enter on your keyboard.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">3</div>
+            <div class="docs-step-text">A list of matching games appears. Each result shows the <strong>game title</strong>, <strong>cover art</strong>, and basic info pulled from the IGDB database.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">4</div>
+            <div class="docs-step-text">Tap any game to open its detail page. Here you can see the <strong>genre</strong>, <strong>platform</strong>, <strong>developer</strong>, <strong>screenshots</strong>, and full description.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">5</div>
+            <div class="docs-step-text">From the game detail page, tap <strong>Write a Review</strong> to leave your rating, or <strong>See All Reviews</strong> to read what the community thinks.</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="feature-card">
-      <div class="feat-icon">📰</div>
-      <h3>Global Feed</h3>
-      <p>See what games the community is reviewing right now. Switch between Global and Following feeds to stay up to date.</p>
+
+    <!-- SUBSECTION 2: Onboarding & Profile -->
+    <div class="docs-subsection">
+      <div class="docs-subsection-header">
+        <span class="docs-subsection-icon">👤</span>
+        <span class="docs-subsection-title">Onboarding &amp; Profile</span>
+      </div>
+      <div class="docs-steps-row">
+        <div class="docs-thumb">
+          <img src="assets/images/ss_login2.png" alt="Sign up and profile screen">
+        </div>
+        <div class="docs-steps">
+          <div class="docs-step">
+            <div class="docs-step-num">1</div>
+            <div class="docs-step-text">When you open GameVault for the first time, you'll see the sign in / sign up screen. Use the <strong>toggle</strong> at the top to switch between <strong>Sign In</strong> (returning user) and <strong>Sign Up</strong> (new account).</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">2</div>
+            <div class="docs-step-text">To create a new account, select <strong>Sign Up</strong>, enter your email address and a password, then tap <strong>Sign Up</strong>.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">3</div>
+            <div class="docs-step-text">You'll be taken to the <strong>Create Your Gamer Profile</strong> screen. Fill in your display name, username, bio, and optional fields like favorite genres, Discord handle, and Twitch handle.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">4</div>
+            <div class="docs-step-text">If you want to set up your profile later, tap <strong>Skip</strong> to go straight to the feed. You can always come back and complete your profile.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">5</div>
+            <div class="docs-step-text">To view or edit your profile at any time, tap the <strong>Profile</strong> icon in the navigation bar at the bottom of the screen.</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="feature-card">
-      <div class="feat-icon">👤</div>
-      <h3>Gamer Profile</h3>
-      <p>Set up your gamer tag, favorite genres, Discord and Twitch handles. Show off your favorite games and review history.</p>
+
+    <!-- SUBSECTION 3: Reviews -->
+    <div class="docs-subsection">
+      <div class="docs-subsection-header">
+        <span class="docs-subsection-icon">⭐</span>
+        <span class="docs-subsection-title">Reviews &amp; Feed</span>
+      </div>
+      <div class="docs-steps-row">
+        <div class="docs-thumb">
+          <img src="assets/images/ss_review.png" alt="Write a review screen">
+        </div>
+        <div class="docs-steps">
+          <div class="docs-step">
+            <div class="docs-step-num">1</div>
+            <div class="docs-step-text">Find a game using Search, then tap <strong>Write a Review</strong> on the game's detail page.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">2</div>
+            <div class="docs-step-text">Tap the <strong>stars</strong> to choose a rating from 1 to 5, then type your written review in the text box below.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">3</div>
+            <div class="docs-step-text">Tap <strong>Submit</strong> to post your review. It will appear on the game's page and on the community feed immediately.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">4</div>
+            <div class="docs-step-text">To read all reviews for a specific game, tap <strong>See All Reviews</strong> on any game's detail page.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">5</div>
+            <div class="docs-step-text">To browse the community, tap the <strong>Feed</strong> tab. Use the toggle at the top to switch between <strong>Global</strong> (everyone's reviews in real time) and <strong>Following</strong> (only reviews from gamers you follow).</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="feature-card">
-      <div class="feat-icon">🤖</div>
-      <h3>AI Recommendations</h3>
-      <p>Not sure what to play next? Ask our AI assistant for personalized game recommendations based on your taste.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feat-icon">❤️</div>
-      <h3>Favorites List</h3>
-      <p>Save games you love to your favorites and keep a running log of everything you want to play or remember.</p>
-    </div>
+
   </div>
-</section>
+</div>
 
 <!-- KEY FEATURES SHOWCASE -->
 <div class="kf-section" id="key-features">
   <div class="kf-inner">
     <h2 class="kf-heading">Key Features of GameVault</h2>
-    <p class="kf-mission">A brief description of the project's mission</p>
+    <p class="kf-mission">The social hub for gamers to track, review, and discover their next favorite game — just like Letterboxd, built for gaming culture.</p>
     <div class="kf-grid">
 
-      <!-- Game Search -->
       <div class="kf-item">
-        <div class="kf-mockup">
-          <div class="kf-mockup-header">Discover Games</div>
-          <div class="kf-mockup-body">
-            <div class="kf-search-bar">🔍 Search games...</div>
-            <div class="kf-popular-label">Popular Games</div>
-            <div class="kf-pill-row">
-              <div class="kf-pill">rpg</div>
-              <div class="kf-pill">action</div>
-            </div>
-            <div class="kf-game-card"><div class="kf-game-card-label">[$name] · PC, PS5</div></div>
-            <div class="kf-game-card"><div class="kf-game-card-label">[$name] · PC, PS5</div></div>
-          </div>
-        </div>
+        <div class="kf-emoji">🔍</div>
         <div class="kf-text">
           <h3>Game Search</h3>
-          <p>Users can search for video games by entering a title into the search bar. The app retrieves matching results and displays them in a list, allowing users to quickly find games they are interested in.</p>
+          <p>Search any game by title via IGDB. Results show cover art and basic info instantly, giving you access to hundreds of thousands of titles.</p>
         </div>
       </div>
 
-      <!-- AI Recommendations -->
       <div class="kf-item">
-        <div class="kf-mockup">
-          <div class="kf-mockup-header">Discover Games</div>
-          <div class="kf-mockup-body">
-            <p class="kf-ai-hint">Press the button to get recommendations</p>
-            <div class="kf-ai-btn">✦ Ask AI For A Recommendation</div>
-          </div>
-        </div>
-        <div class="kf-text">
-          <h3>AI Recommendations</h3>
-          <p>GameVault uses AI to suggest games based on what users like and rate highly. This helps users discover new games that match their preferences without having to search manually.</p>
-        </div>
-      </div>
-
-      <!-- Game Details -->
-      <div class="kf-item">
-        <div class="kf-mockup">
-          <div class="kf-mockup-body" style="padding:12px;">
-            <div class="kf-detail-name">gameName</div>
-            <div class="kf-detail-year">2024</div>
-            <div class="kf-detail-sect">About</div>
-            <div class="kf-detail-summ">gameSummary</div>
-            <div class="kf-detail-sect">Details</div>
-            <div class="kf-detail-chips">
-              <div class="kf-detail-chip"><span>GENRE</span>[$.game.genres[0].name]</div>
-              <div class="kf-detail-chip"><span>PLATFORM</span>[$.game.platforms[0].name]</div>
-            </div>
-          </div>
-        </div>
+        <div class="kf-emoji">🎮</div>
         <div class="kf-text">
           <h3>Game Details</h3>
-          <p>Users can tap on a game from the search results to view more detailed information. This helps users learn more about a game before deciding if they are interested in it.</p>
+          <p>Tap any game to view genre, platform, developer, screenshots, and full description. Everything you need to decide if a game is worth your time.</p>
         </div>
       </div>
 
-      <!-- Profile Creation -->
       <div class="kf-item">
-        <div class="kf-mockup">
-          <div class="kf-profile-header">
-            Create Your Gamer Profile
-            <small>Track and review your favorite games.</small>
-          </div>
-          <div class="kf-mockup-body" style="padding:10px;">
-            <div class="kf-avatar">📷</div>
-            <div class="kf-field-label">Display Name *</div>
-            <div class="kf-field-input">e.g. ShadowBlade99</div>
-          </div>
-        </div>
+        <div class="kf-emoji">⭐</div>
         <div class="kf-text">
-          <h3>Profile Creation</h3>
-          <p>Users can create a personalized profile by entering a display name, username, bio, and preferences. This allows users to customize their experience and interact more effectively within the app.</p>
+          <h3>Rate &amp; Review</h3>
+          <p>Leave 1–5 star ratings and written reviews for games you've played. Build your personal review history over time and share your takes with the community.</p>
+        </div>
+      </div>
+
+      <div class="kf-item">
+        <div class="kf-emoji">📰</div>
+        <div class="kf-text">
+          <h3>Global Feed</h3>
+          <p>Scrollable feed showing the entire community's latest reviews in real time. Discover what everyone is playing and talking about right now.</p>
+        </div>
+      </div>
+
+      <div class="kf-item">
+        <div class="kf-emoji">👥</div>
+        <div class="kf-text">
+          <h3>Following Feed</h3>
+          <p>See reviews only from gamers you follow, personalized to your social circle. Stay in the loop with the opinions that matter most to you.</p>
+        </div>
+      </div>
+
+      <div class="kf-item">
+        <div class="kf-emoji">➕</div>
+        <div class="kf-text">
+          <h3>Follow Users</h3>
+          <p>Follow other gamers to build your network and populate your Following feed. Grow your community of like-minded players.</p>
+        </div>
+      </div>
+
+      <div class="kf-item">
+        <div class="kf-emoji">🤖</div>
+        <div class="kf-text">
+          <h3>AI Recommendations</h3>
+          <p>Tap the Ask AI button to get personalized game recommendations based on the games in your favorites list. GameVault analyzes what you love and suggests your next obsession instantly.</p>
+        </div>
+      </div>
+
+      <div class="kf-item">
+        <div class="kf-emoji">❤️</div>
+        <div class="kf-text">
+          <h3>Favorites List</h3>
+          <p>Save games to a personal favorites list to track everything you love. Your collection is always one tap away.</p>
+        </div>
+      </div>
+
+      <div class="kf-item">
+        <div class="kf-emoji">👤</div>
+        <div class="kf-text">
+          <h3>Gamer Profile</h3>
+          <p>Create a profile with display name, bio, favorite genres, Discord and Twitch handles. Show off your gaming identity to the whole community.</p>
         </div>
       </div>
 
@@ -792,6 +1050,105 @@
   </div>
 </section>
 
+<!-- HOW WE BUILT IT -->
+<div class="built-section" id="built-with">
+  <div class="built-inner">
+    <div class="section-label">Technology</div>
+    <h2 class="section-title">How We Built It</h2>
+    <p class="section-sub">GameVault is a full-stack mobile app built with a modern, production-ready tech stack — from a FlutterFlow frontend to a Firebase backend and AI-powered recommendations.</p>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">⚡</div>
+        <div class="tech-name">FlutterFlow</div>
+        <div class="tech-desc">Frontend UI and app logic. FlutterFlow lets us build native Android screens visually while generating clean Dart/Flutter code under the hood.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🔐</div>
+        <div class="tech-name">Firebase Authentication</div>
+        <div class="tech-desc">Handles all user sign up and sign in with email and password. Secure, scalable, and built into the Firebase ecosystem.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🗄️</div>
+        <div class="tech-name">Firestore</div>
+        <div class="tech-desc">NoSQL cloud database storing all users, reviews, and favorites. Real-time sync means the feed updates instantly when anyone posts.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🎮</div>
+        <div class="tech-name">IGDB API</div>
+        <div class="tech-desc">Game data for 500K+ titles — cover art, genres, platforms, developers, and descriptions — fetched via a Twitch Bearer token through a secure Cloud Function proxy.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">📊</div>
+        <div class="tech-name">Firebase Analytics</div>
+        <div class="tech-desc">Tracks user behavior and key metrics including session events, golden path completion, and A/B test performance across all variants.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🧪</div>
+        <div class="tech-name">Firebase Remote Config</div>
+        <div class="tech-desc">Powers our A/B testing by remotely toggling features per user group — like showing or hiding the onboarding skip button — without a new app release.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🤖</div>
+        <div class="tech-name">Claude AI</div>
+        <div class="tech-desc">Powers the game recommendation feature. Claude analyzes the titles in your favorites list and returns personalized suggestions instantly.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- A/B TESTING -->
+<div class="abtest-section" id="ab-testing">
+  <div class="abtest-inner">
+    <div class="section-label">Research</div>
+    <h2 class="section-title">A/B Testing</h2>
+    <p class="section-sub">We ran three controlled experiments using Firebase Remote Config and Firebase Analytics to measure how design decisions affect real user behavior.</p>
+    <div class="abtest-grid">
+      <div class="abtest-card">
+        <div class="abtest-name">Sign Up / Sign In Screen Layout</div>
+        <div class="abtest-metric">Metric: Signup completion rate (Adoption)</div>
+        <div class="abtest-variants">
+          <div class="abtest-variant">
+            <strong>Variant A — Control</strong>
+            Two separate screens: one for Sign In, one for Sign Up. Users must navigate between them to find the right flow.
+          </div>
+          <div class="abtest-variant">
+            <strong>Variant B — Test</strong>
+            A single combined screen with a toggle to switch between Sign In and Sign Up fields — reducing friction at the very first step.
+          </div>
+        </div>
+      </div>
+      <div class="abtest-card">
+        <div class="abtest-name">Profile Setup: Skip Button Visible vs Hidden</div>
+        <div class="abtest-metric">Metric: Golden path completion rate (Task Success)</div>
+        <div class="abtest-variants">
+          <div class="abtest-variant">
+            <strong>Variant A — Control</strong>
+            Skip button hidden during onboarding. Users must complete profile setup before continuing to the app.
+          </div>
+          <div class="abtest-variant">
+            <strong>Variant B — Test</strong>
+            Skip button visible. Users can bypass profile setup and go straight to the feed, completing it later if they choose.
+          </div>
+        </div>
+      </div>
+      <div class="abtest-card">
+        <div class="abtest-name">Generic Home Screen vs Personalized Welcome Back Feed</div>
+        <div class="abtest-metric">Metric: 7-day and 30-day retention rate</div>
+        <div class="abtest-variants">
+          <div class="abtest-variant">
+            <strong>Variant A — Control</strong>
+            Standard default home screen shown to all returning users with no personalized content.
+          </div>
+          <div class="abtest-variant">
+            <strong>Variant B — Test</strong>
+            Personalized "Welcome Back" feed showing recent friend activity and the user's recently logged games to give them an immediate reason to re-engage.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- DATA SAFETY -->
 <div class="data-safety-section" id="data-safety">
   <div class="ds-inner">
@@ -832,6 +1189,10 @@
           <span class="ds-row-label">Favorite games list</span>
           <span class="ds-row-val">App activity</span>
         </div>
+        <div class="ds-row">
+          <span class="ds-row-label">Camera (profile pictures only, not stored)</span>
+          <span class="ds-row-no">Not stored</span>
+        </div>
       </div>
       <div class="ds-card">
         <div class="ds-card-title">&#128257; Data Sharing</div>
@@ -854,6 +1215,7 @@
       </div>
     </div>
     <p style="margin-top:24px; font-size:0.82rem; color:var(--muted);">
+      GameVault does not store camera data — it is only used for profile pictures.<br>
       For full details, see our <a href="privacy.html" style="color:var(--green);">Privacy Policy</a>.
     </p>
   </div>
@@ -883,7 +1245,7 @@
     <img src="assets/images/icon.png" alt="GameVault">
     <span>GameVault</span>
   </div>
-  <div>Built by Team GameVault &middot; URI CSC 305 &middot; Spring 2026 &middot; <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></div>
+  <div>Built by Team GameVault — Keely, Liam, Nate, Bianca &middot; URI CSC 305 Spring 2026 &middot; <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></div>
   <div>Free &middot; Android 5.0+ &middot; Everyone &middot; <a href="privacy.html">Privacy Policy</a></div>
 </footer>
 
