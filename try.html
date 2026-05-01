@@ -7,203 +7,157 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #1a1f1e;
-    --surface: #252c2b;
-    --surface2: #2e3836;
-    --green: #6dbf82;
-    --green-dark: #4a9c60;
-    --green-glow: #6dbf8240;
-    --text: #e8f0ed;
-    --muted: #8aa49a;
-    --border: #3a4744;
+    --bg: #1a1f1e; --surface: #252c2b; --surface2: #2e3836;
+    --green: #6dbf82; --green-dark: #4a9c60; --green-glow: #6dbf8240;
+    --text: #e8f0ed; --muted: #8aa49a; --border: #3a4744;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-  }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
 
   /* NAV */
   nav {
     position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(26,31,30,0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(26,31,30,0.85); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; justify-content: space-between;
     padding: 14px 40px;
   }
-  .nav-logo { display: flex; align-items: center; gap: 12px; }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo img { width: 36px; height: 36px; border-radius: 8px; }
-  .nav-logo span {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.1rem; color: var(--green); letter-spacing: 1px;
-  }
-  nav a {
-    color: var(--muted); text-decoration: none; font-size: 0.9rem;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--green); }
-  nav a.active { color: var(--green); }
+  .nav-logo span { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: var(--green); letter-spacing: 1px; }
   .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-more { position: relative; }
-  .nav-more-btn {
-    background: none; border: none; cursor: pointer;
-    color: var(--muted); font-size: 0.9rem;
-    font-family: 'DM Sans', sans-serif;
-    display: flex; align-items: center; gap: 4px;
-    padding: 0; transition: color 0.2s;
-  }
-  .nav-more-btn::after { content: '▾'; font-size: 0.75rem; margin-top: 1px; }
-  .nav-more-btn:hover,
-  .nav-more:hover .nav-more-btn { color: var(--green); }
-  .dropdown-menu {
-    display: none; position: absolute; top: calc(100% + 14px); right: 0;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 10px; padding: 8px; min-width: 184px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-    flex-direction: column; gap: 2px; z-index: 200;
-  }
-  .dropdown-menu a {
-    display: block; padding: 8px 12px; border-radius: 6px;
-    font-size: 0.88rem; transition: background 0.15s, color 0.15s;
-  }
-  .dropdown-menu a:hover { background: var(--surface2); color: var(--green); }
-  .nav-more:hover .dropdown-menu { display: flex; }
-  .dropdown-menu::before {
-    content: ''; position: absolute;
-    top: -14px; left: 0; right: 0; height: 14px;
-  }
+  nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  nav a:hover { color: var(--green); }
   .nav-cta {
-    background: var(--green); color: #111;
+    background: var(--green); color: #111 !important;
     padding: 8px 18px; border-radius: 8px;
     font-weight: 600; font-size: 0.88rem;
     transition: background 0.2s, transform 0.15s;
   }
-  .nav-cta:hover { background: var(--green-dark) !important; color: #111 !important; transform: translateY(-1px); }
+  .nav-cta:hover { background: var(--green-dark) !important; transform: translateY(-1px); }
+  .nav-active { color: var(--text) !important; font-weight: 600; }
+
+  /* SECTION LABELS */
+  .section-label { font-size: 0.75rem; letter-spacing: 3px; color: var(--green); text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-family: 'Orbitron', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; margin-bottom: 16px; }
+  .section-sub { color: var(--muted); max-width: 600px; line-height: 1.7; margin-bottom: 40px; }
 
   /* HERO */
-  .hero {
-    padding: 140px 40px 60px;
+  .try-hero {
+    padding: 120px 40px 60px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #0e1a17 0%, var(--bg) 100%);
   }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 40%, #6dbf8218, transparent);
+  .try-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, #6dbf8220, transparent);
     pointer-events: none;
   }
-  .hero h1 {
+  .try-hero h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 900; line-height: 1.1;
-    color: var(--text);
-    margin-bottom: 20px;
-    position: relative;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900; color: var(--text); margin-bottom: 16px; position: relative;
   }
-  .hero h1 span { color: var(--green); }
-  .hero p {
-    color: var(--muted); font-size: 1.05rem; line-height: 1.7;
-    max-width: 580px; margin: 0 auto 16px;
-    position: relative;
-  }
-  .hero-note {
+  .try-hero h1 span { color: var(--green); }
+  .try-hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 560px; margin: 0 auto 24px; position: relative; }
+  .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
     background: var(--surface2); border: 1px solid var(--border);
     border-radius: 20px; padding: 6px 16px;
-    font-size: 0.82rem; color: var(--muted);
-    position: relative;
+    font-size: 0.82rem; color: var(--muted); position: relative;
   }
-  .hero-note::before { content: '📱'; }
 
-  /* PHONE MOCKUP WRAPPER */
-  .mockup-section {
-    padding: 40px 20px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  /* PHONE MOCKUP */
+  .mockup-section { padding: 48px 20px 16px; display: flex; flex-direction: column; align-items: center; }
   .phone-frame {
-    width: 390px;
-    height: 844px;
-    border-radius: 40px;
-    border: 8px solid #1c2423;
-    box-shadow:
-      0 0 0 2px #3a4744,
-      0 32px 80px rgba(0,0,0,0.7),
-      0 8px 24px rgba(109,191,130,0.06);
-    overflow: hidden;
-    background: #0e1210;
-    position: relative;
+    width: 390px; height: 844px;
+    border-radius: 44px; border: 8px solid #1c2423;
+    box-shadow: 0 0 0 2px #3a4744, 0 32px 80px rgba(0,0,0,0.7), 0 8px 24px rgba(109,191,130,0.08);
+    overflow: hidden; background: #0e1210; position: relative;
   }
   .phone-frame::before {
-    content: '';
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 120px; height: 6px;
-    background: #1c2423;
-    border-radius: 0 0 8px 8px;
-    z-index: 10;
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 6px; background: #1c2423;
+    border-radius: 0 0 8px 8px; z-index: 10;
   }
-  .phone-frame iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    border-radius: 32px;
-  }
-
-  /* FALLBACK LINK */
+  .phone-frame iframe { width: 100%; height: 100%; border: none; display: block; border-radius: 36px; }
   .fallback {
-    margin-top: 32px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.92rem;
+    margin-top: 28px; text-align: center; color: var(--muted); font-size: 0.9rem;
   }
   .fallback a {
-    display: inline-block;
-    margin-top: 12px;
+    display: inline-block; margin-top: 10px;
     background: var(--surface); border: 1px solid var(--green);
     color: var(--green); text-decoration: none;
-    padding: 12px 28px; border-radius: 10px;
-    font-weight: 600; font-size: 0.95rem;
-    transition: background 0.2s, transform 0.15s;
+    padding: 11px 26px; border-radius: 10px;
+    font-weight: 600; transition: background 0.2s, transform 0.15s;
   }
   .fallback a:hover { background: var(--green); color: #111; transform: translateY(-2px); }
 
+  /* DIVIDER */
+  .section-divider { border: none; border-top: 1px solid var(--border); margin: 64px 0 0; }
+
+  /* COMMUNITY WRAPPER */
+  .community-wrapper { max-width: 1200px; margin: 0 auto; padding: 64px 40px; }
+
+  /* LEADERBOARDS */
+  .leaderboards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 64px; }
+  .lb-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .lb-panel-header { padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; gap: 10px; }
+  .lb-panel-icon { font-size: 1rem; }
+  .lb-panel-title { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--green); letter-spacing: 0.5px; }
+  .lb-list { padding: 4px 0; }
+  .lb-row { display: flex; align-items: center; gap: 12px; padding: 9px 16px; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .lb-row:last-child { border-bottom: none; }
+  .lb-row:hover { background: var(--surface2); }
+  .lb-rank { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+  .lb-rank.gold   { background: #c9a84c18; border-color: #c9a84c; color: #c9a84c; }
+  .lb-rank.silver { background: #9ba3ab18; border-color: #9ba3ab; color: #9ba3ab; }
+  .lb-rank.bronze { background: #a0614418; border-color: #a06144; color: #a06144; }
+  .lb-name { flex: 1; font-size: 0.85rem; color: var(--text); font-weight: 500; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lb-badge { flex-shrink: 0; background: var(--green-dark); color: #fff; border-radius: 20px; padding: 3px 9px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+  .lb-badge.rating { background: transparent; border: 1px solid var(--green); color: var(--green); }
+
+  /* RECENT REVIEWS */
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .review-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; transition: border-color 0.2s, transform 0.15s; display: flex; flex-direction: column; }
+  .review-card:hover { border-color: var(--green); transform: translateY(-2px); }
+  .review-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+  .review-game-name { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--text); line-height: 1.3; flex: 1; }
+  .review-stars { color: var(--green); font-size: 0.82rem; white-space: nowrap; flex-shrink: 0; }
+  .review-stars .dim { color: var(--border); }
+  .review-meta { font-size: 0.74rem; color: var(--muted); display: flex; align-items: center; gap: 5px; margin-bottom: 10px; }
+  .review-meta-dot { color: var(--border); }
+  .review-body { font-size: 0.84rem; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 10px; flex: 1; }
+  .review-body em { color: var(--surface2); font-style: italic; }
+
+  /* SPINNER / EMPTY */
+  .spinner-wrap { display: flex; justify-content: center; align-items: center; padding: 40px; }
+  .spinner { width: 34px; height: 34px; border: 3px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .empty-state { text-align: center; padding: 36px 20px; color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+  .empty-icon { font-size: 1.8rem; margin-bottom: 8px; }
+
   /* FOOTER */
-  footer {
-    margin-top: 64px;
-    border-top: 1px solid var(--border);
-    padding: 40px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
-    color: var(--muted); font-size: 0.85rem;
-  }
+  footer { border-top: 1px solid var(--border); padding: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; color: var(--muted); font-size: 0.85rem; }
   .footer-logo { display: flex; align-items: center; gap: 10px; }
   .footer-logo img { width: 28px; border-radius: 6px; }
   .footer-logo span { font-family: 'Orbitron', sans-serif; color: var(--green); font-size: 0.9rem; }
   footer a { color: var(--muted); text-decoration: underline; }
   footer a:hover { color: var(--green); }
 
+  @media (max-width: 900px) { .leaderboards-grid { grid-template-columns: 1fr; } }
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
-    .nav-links { display: none; }
-    .hero { padding: 110px 20px 40px; }
-    .mockup-section { padding: 24px 0 16px; }
-    .phone-frame {
-      width: 100vw;
-      height: calc(100vw * 844 / 390);
-      border-radius: 0;
-      border-left: none;
-      border-right: none;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
-    }
+    .nav-links { gap: 16px; }
+    .try-hero { padding: 100px 20px 40px; }
+    .mockup-section { padding: 28px 0 16px; }
+    .phone-frame { width: 100vw; height: calc(100vw * 844 / 390); border-radius: 0; border-left: none; border-right: none; }
     .phone-frame::before { display: none; }
-    footer { padding: 28px 20px; }
+    .community-wrapper { padding: 48px 20px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -216,30 +170,20 @@
     <span>GameVault</span>
   </a>
   <div class="nav-links">
-    <a href="index.html#user-docs">User Docs</a>
-    <a href="community.html">Community</a>
-    <div class="nav-more">
-      <button class="nav-more-btn">More</button>
-      <div class="dropdown-menu">
-        <a href="index.html#built-with">How We Built It</a>
-        <a href="index.html#ab-testing">A/B Testing</a>
-        <a href="index.html#data-safety">Data Safety</a>
-        <a href="index.html#whats-new">What's New</a>
-        <a href="lean-canvas.html">Lean Canvas</a>
-      </div>
-    </div>
-    <a href="try.html" class="nav-cta">Try It</a>
+    <a href="index.html">Home</a>
+    <a href="try.html" class="nav-cta nav-active">Try GameVault</a>
+    <a href="about.html">About</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<div class="try-hero">
   <h1>Try <span>GameVault</span> in Your Browser</h1>
-  <p>No download needed — experience the full app right here. Search games, read reviews, and explore the community.</p>
-  <div class="hero-note">Best experienced on mobile screen size.</div>
+  <p>No download needed — search games, read reviews, explore the community.</p>
+  <div class="hero-badge">📱 Best experienced on mobile screen size</div>
 </div>
 
-<!-- PHONE MOCKUP + IFRAME -->
+<!-- PHONE MOCKUP -->
 <div class="mockup-section">
   <div class="phone-frame">
     <iframe
@@ -249,13 +193,42 @@
       loading="lazy"
     ></iframe>
   </div>
-
   <div class="fallback">
-    Can't see the app? Open it directly &rarr;
+    Can't see the app? Open it directly →
     <br>
     <a href="https://video-game-tracker-s3r8uv.flutterflow.app/" target="_blank" rel="noopener">
       Open GameVault ↗
     </a>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- COMMUNITY LEADERBOARDS -->
+<div class="community-wrapper">
+  <div class="section-label">Live Data</div>
+  <h2 class="section-title">See What the Community is Playing</h2>
+  <p class="section-sub">Live rankings and reviews pulled in real time from GameVault players.</p>
+
+  <div class="leaderboards-grid">
+    <div class="lb-panel">
+      <div class="lb-panel-header"><span class="lb-panel-icon">🎮</span><span class="lb-panel-title">Top Reviewed Games</span></div>
+      <div id="lb-top-reviewed" class="lb-list"><div class="spinner-wrap"><div class="spinner"></div></div></div>
+    </div>
+    <div class="lb-panel">
+      <div class="lb-panel-header"><span class="lb-panel-icon">⭐</span><span class="lb-panel-title">Highest Rated Games</span></div>
+      <div id="lb-highest-rated" class="lb-list"><div class="spinner-wrap"><div class="spinner"></div></div></div>
+    </div>
+    <div class="lb-panel">
+      <div class="lb-panel-header"><span class="lb-panel-icon">🏆</span><span class="lb-panel-title">Most Active Reviewers</span></div>
+      <div id="lb-top-reviewers" class="lb-list"><div class="spinner-wrap"><div class="spinner"></div></div></div>
+    </div>
+  </div>
+
+  <div class="section-label">Community Feed</div>
+  <h2 class="section-title" style="font-size:clamp(1.2rem,2.5vw,1.8rem);margin-bottom:24px;">Recent Reviews</h2>
+  <div id="recent-reviews" class="reviews-grid">
+    <div style="grid-column:1/-1" class="spinner-wrap"><div class="spinner"></div></div>
   </div>
 </div>
 
@@ -269,5 +242,99 @@
   <div>Free &middot; Android 5.0+ &middot; Everyone &middot; <a href="privacy.html">Privacy Policy</a></div>
 </footer>
 
+<script type="module">
+import { initializeApp }                       from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, getDocs,
+         query, orderBy, limit }               from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const app = initializeApp({
+  apiKey: "AIzaSyDjjlj9e327UiDgy_jqWyEuUzEfZcJ1kmk",
+  authDomain: "video-game-tracker-cea14.firebaseapp.com",
+  projectId: "video-game-tracker-cea14",
+  storageBucket: "video-game-tracker-cea14.firebasestorage.app",
+  messagingSenderId: "532733071780",
+  appId: "1:532733071780:web:6f99dfdaf239bdcf73b131",
+  measurementId: "G-35KLHPDZN0"
+});
+const db = getFirestore(app);
+
+/* ── Helpers ── */
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function rankClass(i) { return ['gold','silver','bronze'][i] ?? ''; }
+function stars(r) {
+  const n = Math.max(0, Math.min(5, Math.round(Number(r)||0)));
+  return '★'.repeat(n) + '<span class="dim">★</span>'.repeat(5-n);
+}
+function timeAgo(ts) {
+  if (!ts) return 'recently';
+  const ms = ts.toDate ? ts.toDate().getTime() : Number(ts);
+  const d = Math.floor((Date.now()-ms)/1000);
+  if (d < 60) return 'just now';
+  if (d < 3600) return `${Math.floor(d/60)}m ago`;
+  if (d < 86400) return `${Math.floor(d/3600)}h ago`;
+  if (d < 604800) return `${Math.floor(d/86400)}d ago`;
+  return new Date(ms).toLocaleDateString();
+}
+function trunc(s, n) { return s && s.length > n ? s.slice(0,n).trimEnd()+'…' : (s||''); }
+function empty(msg) { return `<div class="empty-state"><div class="empty-icon">🎮</div>${msg}</div>`; }
+function row(i, name, badge, cls='') {
+  return `<div class="lb-row"><div class="lb-rank ${rankClass(i)}">${i+1}</div><div class="lb-name" title="${esc(name)}">${esc(name)}</div><div class="lb-badge ${cls}">${badge}</div></div>`;
+}
+function set(id, html) { document.getElementById(id).innerHTML = html; }
+
+/* ── Load ── */
+async function load() {
+  try {
+    const [revSnap, usrSnap, recSnap] = await Promise.all([
+      getDocs(collection(db,'reviews')),
+      getDocs(collection(db,'users')),
+      getDocs(query(collection(db,'reviews'), orderBy('timestamp','desc'), limit(20)))
+    ]);
+    const reviews = revSnap.docs.map(d => d.data());
+    const usersMap = {};
+    usrSnap.docs.forEach(d => { const u=d.data(); if(u.uid) usersMap[u.uid] = u.display_name||null; });
+
+    /* Section 1 */
+    const gc = {};
+    reviews.forEach(r => { const n=r.game_name||'Unknown'; gc[n]=(gc[n]||0)+1; });
+    const top = Object.entries(gc).sort((a,b)=>b[1]-a[1]).slice(0,10);
+    set('lb-top-reviewed', top.length ? top.map(([n,c],i)=>row(i,n,`${c} review${c!==1?'s':''}`)).join('') : empty('No reviews yet.'));
+
+    /* Section 2 */
+    const ga = {};
+    reviews.forEach(r => { const n=r.game_name||'Unknown'; const v=Number(r.rating); if(!isNaN(v)){if(!ga[n])ga[n]={s:0,c:0}; ga[n].s+=v; ga[n].c++;} });
+    const rated = Object.entries(ga).filter(([,v])=>v.c>=2).map(([n,v])=>[n,v.s/v.c]).sort((a,b)=>b[1]-a[1]).slice(0,10);
+    set('lb-highest-rated', rated.length ? rated.map(([n,a],i)=>row(i,n,`${a.toFixed(1)} ★`,'rating')).join('') : empty('Need 2+ reviews per game to rank.'));
+
+    /* Section 3 */
+    const uc = {};
+    reviews.forEach(r => { const u=r.user_id||'anon'; uc[u]=(uc[u]||0)+1; });
+    const topU = Object.entries(uc).sort((a,b)=>b[1]-a[1]).slice(0,10);
+    set('lb-top-reviewers', topU.length ? topU.map(([uid,c],i)=>row(i, usersMap[uid]||'Anonymous Gamer', `${c} review${c!==1?'s':''}`)).join('') : empty('No reviewers yet.'));
+
+    /* Section 4 */
+    const items = recSnap.docs.map(d=>d.data());
+    if (!items.length) { set('recent-reviews',`<div style="grid-column:1/-1">${empty('No reviews yet.')}</div>`); return; }
+    set('recent-reviews', items.map(r => {
+      const name = esc(r.game_name||'Unknown Game');
+      const reviewer = esc(usersMap[r.user_id]||'Anonymous Gamer');
+      const body = trunc(r.review_text, 100);
+      return `<div class="review-card">
+        <div class="review-card-top"><div class="review-game-name">${name}</div><div class="review-stars">${stars(r.rating)}</div></div>
+        <div class="review-meta"><span>${reviewer}</span><span class="review-meta-dot">·</span><span>${timeAgo(r.timestamp)}</span></div>
+        <div class="review-body">${body ? esc(body) : '<em>No review text</em>'}</div>
+      </div>`;
+    }).join(''));
+  } catch(e) {
+    console.error(e);
+    const msg = empty('Could not load data. Please try again.');
+    ['lb-top-reviewed','lb-highest-rated','lb-top-reviewers'].forEach(id=>set(id,msg));
+    set('recent-reviews',`<div style="grid-column:1/-1">${msg}</div>`);
+  }
+}
+load();
+</script>
 </body>
 </html>

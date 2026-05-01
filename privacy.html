@@ -12,6 +12,7 @@
     --surface2: #2e3836;
     --green: #6dbf82;
     --green-dark: #4a9c60;
+    --green-glow: #6dbf8240;
     --text: #e8f0ed;
     --muted: #8aa49a;
     --border: #3a4744;
@@ -40,11 +41,16 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 1.1rem; color: var(--green); letter-spacing: 1px;
   }
-  .nav-back {
-    color: var(--muted); text-decoration: none; font-size: 0.9rem;
-    transition: color 0.2s;
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  nav a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--green); color: #111 !important;
+    padding: 8px 18px; border-radius: 8px;
+    font-weight: 600; font-size: 0.88rem;
+    transition: background 0.2s, transform 0.15s;
   }
-  .nav-back:hover { color: var(--green); }
+  .nav-cta:hover { background: var(--green-dark) !important; transform: translateY(-1px); }
 
   /* HEADER BANNER */
   .policy-banner {
@@ -170,7 +176,11 @@
     <img src="assets/images/icon.png" alt="GameVault Logo">
     <span>GameVault</span>
   </a>
-  <a class="nav-back" href="index.html">&#8592; Back to Store Listing</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="try.html" class="nav-cta">Try GameVault</a>
+    <a href="about.html">About</a>
+  </div>
 </nav>
 
 <!-- HEADER -->

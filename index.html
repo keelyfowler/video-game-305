@@ -47,6 +47,7 @@
   }
   nav a:hover { color: var(--green); }
   .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-active { color: var(--text) !important; font-weight: 600; }
   .nav-more { position: relative; }
   .nav-more-btn {
     background: none; border: none; cursor: pointer;
@@ -695,6 +696,70 @@
   .docs-card-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--green); margin-bottom: 8px; }
   .docs-card-body p { color: var(--muted); font-size: 0.85rem; line-height: 1.65; }
 
+  /* STICKY SIDEBAR SCROLLSPY */
+  .page-sidebar {
+    position: fixed;
+    right: 16px;
+    top: 78px;
+    z-index: 50;
+    background: rgba(37, 44, 43, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 0 8px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+    min-width: 158px;
+  }
+  .sidebar-title {
+    font-size: 0.58rem; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--muted); font-weight: 700;
+    padding: 0 16px 10px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .sidebar-nav { display: flex; flex-direction: column; }
+  .sidebar-nav a {
+    display: flex; align-items: center; justify-content: flex-start; gap: 10px;
+    padding: 7px 16px;
+    font-size: 0.8rem; color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+    line-height: 1.2;
+  }
+  .sidebar-nav a::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .sidebar-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .sidebar-nav a:hover::before { background: var(--muted); border-color: var(--muted); }
+  .sidebar-nav a.spy-active { color: var(--green); font-weight: 600; }
+  .sidebar-nav a.spy-active::before {
+    background: var(--green);
+    border-color: var(--green);
+    transform: scale(1.4);
+    box-shadow: 0 0 8px rgba(109,191,130,0.5);
+  }
+  @media (max-width: 900px) {
+    .page-sidebar {
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      min-width: auto;
+      padding: 10px 8px;
+      border-radius: 999px;
+    }
+    .sidebar-title { display: none; }
+    .sidebar-nav a { padding: 6px 8px; gap: 0; justify-content: center; }
+    .sidebar-nav a span { display: none; }
+    .sidebar-nav a::before { width: 8px; height: 8px; }
+  }
+
   @media (max-width: 768px) {
     .hero-grid { grid-template-columns: 1fr; }
     .hero-phones { display: none; }
@@ -721,29 +786,31 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">
+  <a href="index.html" class="nav-logo">
     <img src="assets/images/icon.png" alt="GameVault Logo">
     <span>GameVault</span>
-  </div>
+  </a>
   <div class="nav-links">
-    <a href="#user-docs">User Docs</a>
-    <a href="community.html">Community</a>
-    <div class="nav-more">
-      <button class="nav-more-btn">More</button>
-      <div class="dropdown-menu">
-        <a href="#built-with">How We Built It</a>
-        <a href="#ab-testing">A/B Testing</a>
-        <a href="#data-safety">Data Safety</a>
-        <a href="#whats-new">What's New</a>
-        <a href="lean-canvas.html">Lean Canvas</a>
-      </div>
-    </div>
-    <a href="try.html" class="nav-cta">Try It</a>
+    <a href="index.html" class="nav-active">Home</a>
+    <a href="try.html" class="nav-cta">Try GameVault</a>
+    <a href="about.html">About</a>
   </div>
 </nav>
 
+<!-- SIDEBAR SCROLLSPY -->
+<aside class="page-sidebar">
+  <div class="sidebar-title">On This Page</div>
+  <nav class="sidebar-nav">
+    <a href="#app-listing"  data-spy="app-listing"  title="App Listing"><span>App Listing</span></a>
+    <a href="#user-docs"    data-spy="user-docs"    title="User Docs"><span>User Docs</span></a>
+    <a href="#key-features" data-spy="key-features" title="Key Features"><span>Key Features</span></a>
+    <a href="#data-safety"  data-spy="data-safety"  title="Data Safety"><span>Data Safety</span></a>
+    <a href="#whats-new"    data-spy="whats-new"    title="What's New"><span>What's New</span></a>
+  </nav>
+</aside>
+
 <!-- FEATURE GRAPHIC (Google Play: 1024×500 banner) -->
-<div class="feature-graphic">
+<div class="feature-graphic" id="app-listing">
   <div class="fg-inner">
     <img src="assets/images/icon.png" alt="GameVault" class="fg-icon">
     <div class="fg-text">
@@ -772,8 +839,8 @@
       <h1>Your Games.<br><span>Your Reviews.</span><br>Your Vault.</h1>
       <p>GameVault is your personal hub for tracking, rating, and reviewing video games. Find your next obsession, share your takes, and connect with a community of gamers.</p>
       <div>
-        <a href="try.html" class="btn-install">▶ Try It</a>
-        <a href="#screenshots" class="btn-screenshots">Screenshots</a>
+        <a href="try.html" class="btn-install">▶ Try GameVault</a>
+        <a href="try.html" class="btn-screenshots">Try in Browser →</a>
       </div>
     </div>
     <div class="hero-phones">
@@ -796,14 +863,6 @@
   <div class="stat"><div class="num">New</div><div class="label">Latest Release</div></div>
   <div class="stat"><div class="num">Free</div><div class="label">To Download</div></div>
   <div class="stat"><div class="num">Everyone</div><div class="label">Content Rating</div></div>
-</div>
-
-<!-- PAGE SUB-NAV -->
-<div class="page-subnav">
-  <span class="page-subnav-label">On this page</span>
-  <a href="#key-features">Key Features</a>
-  <a href="#screenshots">Screenshots</a>
-  <a href="#about">About</a>
 </div>
 
 <!-- USER DOCUMENTATION -->
@@ -1025,41 +1084,6 @@
   </div>
 </div>
 
-<!-- SCREENSHOTS -->
-<section id="screenshots" style="max-width:100%; padding-left:40px; padding-right:40px;">
-  <div style="max-width:1100px; margin:0 auto;">
-    <div class="section-label">See It In Action</div>
-    <h2 class="section-title">Screenshots</h2>
-    <p class="section-sub">A look at the core GameVault experience on Android.</p>
-  </div>
-  <div class="screenshots-scroll">
-    <div class="screenshot-frame">
-      <img src="assets/images/ss_login.png" alt="Login / Signup">
-      <div class="screenshot-label">Login / Signup</div>
-    </div>
-    <div class="screenshot-frame">
-      <img src="assets/images/ss_feed.png" alt="Global Reviews Feed">
-      <div class="screenshot-label">Global Reviews Feed</div>
-    </div>
-    <div class="screenshot-frame">
-      <img src="assets/images/ss_search.png" alt="Discover Games">
-      <div class="screenshot-label">Discover Games</div>
-    </div>
-    <div class="screenshot-frame">
-      <img src="assets/images/ss_game.png" alt="Game Details">
-      <div class="screenshot-label">Game Details</div>
-    </div>
-    <div class="screenshot-frame">
-      <img src="assets/images/ss_review.png" alt="Write a Review">
-      <div class="screenshot-label">Write a Review</div>
-    </div>
-    <div class="screenshot-frame">
-      <img src="assets/images/ss_login2.png" alt="User Profile">
-      <div class="screenshot-label">Gamer Profile</div>
-    </div>
-  </div>
-</section>
-
 <!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
@@ -1118,105 +1142,6 @@
     </div>
   </div>
 </section>
-
-<!-- HOW WE BUILT IT -->
-<div class="built-section" id="built-with">
-  <div class="built-inner">
-    <div class="section-label">Technology</div>
-    <h2 class="section-title">How We Built It</h2>
-    <p class="section-sub">GameVault is a full-stack mobile app built with a modern, production-ready tech stack — from a FlutterFlow frontend to a Firebase backend and AI-powered recommendations.</p>
-    <div class="tech-grid">
-      <div class="tech-card">
-        <div class="tech-icon">⚡</div>
-        <div class="tech-name">FlutterFlow</div>
-        <div class="tech-desc">Frontend UI and app logic. FlutterFlow lets us build native Android screens visually while generating clean Dart/Flutter code under the hood.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🔐</div>
-        <div class="tech-name">Firebase Authentication</div>
-        <div class="tech-desc">Handles all user sign up and sign in with email and password. Secure, scalable, and built into the Firebase ecosystem.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🗄️</div>
-        <div class="tech-name">Firestore</div>
-        <div class="tech-desc">NoSQL cloud database storing all users, reviews, and favorites. Real-time sync means the feed updates instantly when anyone posts.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🎮</div>
-        <div class="tech-name">IGDB API</div>
-        <div class="tech-desc">Game data for 500K+ titles — cover art, genres, platforms, developers, and descriptions — fetched via a Twitch Bearer token through a secure Cloud Function proxy.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">📊</div>
-        <div class="tech-name">Firebase Analytics</div>
-        <div class="tech-desc">Tracks user behavior and key metrics including session events, golden path completion, and A/B test performance across all variants.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🧪</div>
-        <div class="tech-name">Firebase Remote Config</div>
-        <div class="tech-desc">Powers our A/B testing by remotely toggling features per user group — like showing or hiding the onboarding skip button — without a new app release.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🤖</div>
-        <div class="tech-name">Claude AI</div>
-        <div class="tech-desc">Powers the game recommendation feature. Claude analyzes the titles in your favorites list and returns personalized suggestions instantly.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- A/B TESTING -->
-<div class="abtest-section" id="ab-testing">
-  <div class="abtest-inner">
-    <div class="section-label">Research</div>
-    <h2 class="section-title">A/B Testing</h2>
-    <p class="section-sub">We ran three controlled experiments using Firebase Remote Config and Firebase Analytics to measure how design decisions affect real user behavior.</p>
-    <div class="abtest-grid">
-      <div class="abtest-card">
-        <div class="abtest-name">Sign Up / Sign In Screen Layout</div>
-        <div class="abtest-metric">Metric: Signup completion rate (Adoption)</div>
-        <div class="abtest-variants">
-          <div class="abtest-variant">
-            <strong>Variant A — Control</strong>
-            Two separate screens: one for Sign In, one for Sign Up. Users must navigate between them to find the right flow.
-          </div>
-          <div class="abtest-variant">
-            <strong>Variant B — Test</strong>
-            A single combined screen with a toggle to switch between Sign In and Sign Up fields — reducing friction at the very first step.
-          </div>
-        </div>
-      </div>
-      <div class="abtest-card">
-        <div class="abtest-name">Profile Setup: Skip Button Visible vs Hidden</div>
-        <div class="abtest-metric">Metric: Golden path completion rate (Task Success)</div>
-        <div class="abtest-variants">
-          <div class="abtest-variant">
-            <strong>Variant A — Control</strong>
-            Skip button hidden during onboarding. Users must complete profile setup before continuing to the app.
-          </div>
-          <div class="abtest-variant">
-            <strong>Variant B — Test</strong>
-            Skip button visible. Users can bypass profile setup and go straight to the feed, completing it later if they choose.
-          </div>
-        </div>
-      </div>
-      <div class="abtest-card">
-        <div class="abtest-name">Generic Home Screen vs Personalized Welcome Back Feed</div>
-        <div class="abtest-metric">Metric: 7-day and 30-day retention rate</div>
-        <div class="abtest-variants">
-          <div class="abtest-variant">
-            <strong>Variant A — Control</strong>
-            Standard default home screen shown to all returning users with no personalized content.
-          </div>
-          <div class="abtest-variant">
-            <strong>Variant B — Test</strong>
-            Personalized "Welcome Back" feed showing recent friend activity and the user's recently logged games to give them an immediate reason to re-engage.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- DATA SAFETY -->
 <div class="data-safety-section" id="data-safety">
@@ -1318,5 +1243,36 @@
   <div>Free &middot; Android 5.0+ &middot; Everyone &middot; <a href="privacy.html">Privacy Policy</a></div>
 </footer>
 
+<script>
+(function () {
+  const links  = document.querySelectorAll('.sidebar-nav a[data-spy]');
+  const ids    = [...links].map(a => a.dataset.spy);
+  const lastId = ids[ids.length - 1];
+
+  function setActive(id) {
+    links.forEach(a => a.classList.remove('spy-active'));
+    const a = document.querySelector(`.sidebar-nav a[data-spy="${id}"]`);
+    if (a) a.classList.add('spy-active');
+  }
+
+  // Clicking a tab immediately lights it up
+  links.forEach(link => {
+    link.addEventListener('click', () => setActive(link.dataset.spy));
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) setActive(e.target.id);
+    });
+  }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+  ids.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+
+  // Activate last tab when scrolled to (or near) the bottom of the page
+  window.addEventListener('scroll', () => {
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 60;
+    if (atBottom) setActive(lastId);
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
