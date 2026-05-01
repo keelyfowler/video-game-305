@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameVault – Community</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1f1e;
+    --surface: #252c2b;
+    --surface2: #2e3836;
+    --green: #6dbf82;
+    --green-dark: #4a9c60;
+    --green-glow: #6dbf8240;
+    --text: #e8f0ed;
+    --muted: #8aa49a;
+    --border: #3a4744;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(26,31,30,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 40px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { width: 36px; height: 36px; border-radius: 8px; }
+  .nav-logo span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem; color: var(--green); letter-spacing: 1px;
+  }
+  nav a {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--green); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-active { color: var(--green) !important; }
+  .nav-more { position: relative; }
+  .nav-more-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; gap: 4px;
+    padding: 0; transition: color 0.2s;
+  }
+  .nav-more-btn::after { content: '▾'; font-size: 0.75rem; margin-top: 1px; }
+  .nav-more-btn:hover,
+  .nav-more:hover .nav-more-btn { color: var(--green); }
+  .dropdown-menu {
+    display: none; position: absolute; top: calc(100% + 14px); right: 0;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 8px; min-width: 184px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    flex-direction: column; gap: 2px; z-index: 200;
+  }
+  .dropdown-menu a {
+    display: block; padding: 8px 12px; border-radius: 6px;
+    font-size: 0.88rem; transition: background 0.15s, color 0.15s;
+  }
+  .dropdown-menu a:hover { background: var(--surface2); color: var(--green); }
+  .nav-more:hover .dropdown-menu { display: flex; }
+  .dropdown-menu::before {
+    content: ''; position: absolute;
+    top: -14px; left: 0; right: 0; height: 14px;
+  }
+  .nav-cta {
+    background: var(--green); color: #111;
+    padding: 8px 18px; border-radius: 8px;
+    font-weight: 600; font-size: 0.88rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--green-dark) !important; color: #111 !important; transform: translateY(-1px); }
+
+  /* SECTION LABELS */
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 3px; color: var(--green);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700; margin-bottom: 16px;
+  }
+  .section-sub { color: var(--muted); max-width: 600px; line-height: 1.7; margin-bottom: 40px; }
+
+  /* BANNER */
+  .community-banner {
+    margin-top: 65px;
+    width: 100%;
+    background: linear-gradient(135deg, #0e1a17 0%, #1a3328 40%, #0e2318 100%);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 180px;
+    position: relative; overflow: hidden;
+  }
+  .community-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 60% 50%, #6dbf8228, transparent);
+    pointer-events: none;
+  }
+  .community-banner::after {
+    content: '';
+    position: absolute; right: -60px; top: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #6dbf8215, transparent 70%);
+  }
+  .banner-inner {
+    max-width: 1100px; width: 100%;
+    padding: 36px 60px;
+    display: flex; align-items: center; gap: 32px;
+    position: relative; z-index: 1;
+  }
+  .banner-icon { width: 80px; height: 80px; border-radius: 18px; flex-shrink: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+  .banner-text h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 900; color: var(--text); margin-bottom: 8px;
+  }
+  .banner-text h1 span { color: var(--green); }
+  .banner-text p { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
+
+  /* WRAPPER */
+  .community-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* SECTION */
+  .community-section { padding: 72px 0; border-top: 1px solid var(--border); }
+  .community-section:first-child { border-top: none; padding-top: 64px; }
+
+  /* LEADERBOARD 3-COL GRID */
+  .leaderboards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .lb-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .lb-panel-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .lb-panel-icon { font-size: 1rem; }
+  .lb-panel-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--green); letter-spacing: 0.5px;
+  }
+  .lb-list { padding: 4px 0; }
+  .lb-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .lb-row:last-child { border-bottom: none; }
+  .lb-row:hover { background: var(--surface2); }
+  .lb-rank {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.68rem; font-weight: 700;
+    background: var(--surface2); color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .lb-rank.gold   { background: #c9a84c18; border-color: #c9a84c; color: #c9a84c; }
+  .lb-rank.silver { background: #9ba3ab18; border-color: #9ba3ab; color: #9ba3ab; }
+  .lb-rank.bronze { background: #a0614418; border-color: #a06144; color: #a06144; }
+  .lb-name {
+    flex: 1; font-size: 0.85rem; color: var(--text); font-weight: 500;
+    min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    line-height: 1.3;
+  }
+  .lb-badge {
+    flex-shrink: 0;
+    background: var(--green-dark); color: #fff;
+    border-radius: 20px; padding: 3px 9px;
+    font-size: 0.7rem; font-weight: 700; white-space: nowrap;
+  }
+  .lb-badge.rating { background: transparent; border: 1px solid var(--green); color: var(--green); }
+
+  /* RECENT REVIEWS FEED */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .review-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+    transition: border-color 0.2s, transform 0.15s;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .review-card:hover { border-color: var(--green); transform: translateY(-2px); }
+  .review-card-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 8px; margin-bottom: 8px;
+  }
+  .review-game-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--text); line-height: 1.3; flex: 1;
+  }
+  .review-stars { color: var(--green); font-size: 0.82rem; white-space: nowrap; flex-shrink: 0; }
+  .review-stars .dim { color: var(--border); }
+  .review-meta {
+    font-size: 0.74rem; color: var(--muted);
+    display: flex; align-items: center; gap: 5px; margin-bottom: 10px;
+  }
+  .review-meta-dot { color: var(--border); }
+  .review-body {
+    font-size: 0.84rem; color: var(--muted); line-height: 1.6;
+    border-top: 1px solid var(--border); padding-top: 10px; flex: 1;
+  }
+  .review-body em { color: var(--surface2); font-style: italic; }
+
+  /* SPINNER */
+  .spinner-wrap {
+    display: flex; justify-content: center; align-items: center;
+    padding: 40px 20px;
+  }
+  .spinner {
+    width: 34px; height: 34px;
+    border: 3px solid var(--border);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center; padding: 36px 20px;
+    color: var(--muted); font-size: 0.88rem; line-height: 1.6;
+  }
+  .empty-icon { font-size: 1.8rem; margin-bottom: 8px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    color: var(--muted); font-size: 0.85rem;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-logo img { width: 28px; border-radius: 6px; }
+  .footer-logo span { font-family: 'Orbitron', sans-serif; color: var(--green); font-size: 0.9rem; }
+  footer a { color: var(--muted); text-decoration: underline; }
+  footer a:hover { color: var(--green); }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .leaderboards-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .community-wrapper { padding: 0 20px; }
+    .banner-inner { flex-direction: column; padding: 28px 20px; gap: 16px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="assets/images/icon.png" alt="GameVault Logo">
+    <span>GameVault</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#user-docs">User Docs</a>
+    <a href="community.html" class="nav-active">Community</a>
+    <div class="nav-more">
+      <button class="nav-more-btn">More</button>
+      <div class="dropdown-menu">
+        <a href="index.html#built-with">How We Built It</a>
+        <a href="index.html#ab-testing">A/B Testing</a>
+        <a href="index.html#data-safety">Data Safety</a>
+        <a href="index.html#whats-new">What's New</a>
+        <a href="lean-canvas.html">Lean Canvas</a>
+      </div>
+    </div>
+    <a href="try.html" class="nav-cta">Try It</a>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<div class="community-banner">
+  <div class="banner-inner">
+    <img src="assets/images/icon.png" alt="GameVault" class="banner-icon">
+    <div class="banner-text">
+      <h1>GameVault <span>Community</span></h1>
+      <p>Live leaderboards and the latest reviews — pulled in real time from our player base.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="community-wrapper">
+
+  <!-- LEADERBOARDS -->
+  <div class="community-section" id="leaderboards">
+    <div class="section-label">Live Data</div>
+    <h2 class="section-title">Community Leaderboards</h2>
+    <p class="section-sub">Rankings updated in real time from GameVault player reviews.</p>
+
+    <div class="leaderboards-grid">
+
+      <!-- 1: Top Reviewed Games -->
+      <div class="lb-panel">
+        <div class="lb-panel-header">
+          <span class="lb-panel-icon">🎮</span>
+          <span class="lb-panel-title">Top Reviewed Games</span>
+        </div>
+        <div id="top-reviewed-list" class="lb-list">
+          <div class="spinner-wrap"><div class="spinner"></div></div>
+        </div>
+      </div>
+
+      <!-- 2: Highest Rated Games -->
+      <div class="lb-panel">
+        <div class="lb-panel-header">
+          <span class="lb-panel-icon">⭐</span>
+          <span class="lb-panel-title">Highest Rated Games</span>
+        </div>
+        <div id="highest-rated-list" class="lb-list">
+          <div class="spinner-wrap"><div class="spinner"></div></div>
+        </div>
+      </div>
+
+      <!-- 3: Most Active Reviewers -->
+      <div class="lb-panel">
+        <div class="lb-panel-header">
+          <span class="lb-panel-icon">🏆</span>
+          <span class="lb-panel-title">Most Active Reviewers</span>
+        </div>
+        <div id="top-reviewers-list" class="lb-list">
+          <div class="spinner-wrap"><div class="spinner"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RECENT REVIEWS FEED -->
+  <div class="community-section" id="recent-reviews">
+    <div class="section-label">Community Feed</div>
+    <h2 class="section-title">Recent Reviews</h2>
+    <p class="section-sub">The latest reviews posted by the GameVault community.</p>
+    <div id="recent-reviews-grid" class="reviews-grid">
+      <div style="grid-column:1/-1" class="spinner-wrap"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="assets/images/icon.png" alt="GameVault">
+    <span>GameVault</span>
+  </div>
+  <div>Built by Team GameVault — Keely, Liam, Nate, Bianca &middot; URI CSC 305 Spring 2026 &middot; <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></div>
+  <div><a href="index.html">Store Listing</a> &middot; <a href="privacy.html">Privacy Policy</a></div>
+</footer>
+
+<!-- FIREBASE + DATA -->
+<script type="module">
+import { initializeApp }                          from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, getDocs,
+         query, orderBy, limit }                  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey:            "AIzaSyDjjlj9e327UiDgy_jqWyEuUzEfZcJ1kmk",
+  authDomain:        "video-game-tracker-cea14.firebaseapp.com",
+  projectId:         "video-game-tracker-cea14",
+  storageBucket:     "video-game-tracker-cea14.firebasestorage.app",
+  messagingSenderId: "532733071780",
+  appId:             "1:532733071780:web:6f99dfdaf239bdcf73b131",
+  measurementId:     "G-35KLHPDZN0"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function rankClass(i) {
+  return i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+}
+
+function stars(rating) {
+  const n = Math.max(0, Math.min(5, Math.round(Number(rating) || 0)));
+  return '★'.repeat(n) + `<span class="dim">★</span>`.repeat(5 - n);
+}
+
+function timeAgo(ts) {
+  if (!ts) return 'recently';
+  const ms   = ts.toDate ? ts.toDate().getTime() : Number(ts);
+  const diff = Math.floor((Date.now() - ms) / 1000);
+  if (diff < 60)     return 'just now';
+  if (diff < 3600)   return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400)  return `${Math.floor(diff / 3600)}h ago`;
+  if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
+  return new Date(ms).toLocaleDateString();
+}
+
+function truncate(str, n) {
+  if (!str) return '';
+  return str.length > n ? str.slice(0, n).trimEnd() + '…' : str;
+}
+
+function emptyState(msg) {
+  return `<div class="empty-state"><div class="empty-icon">🎮</div>${msg}</div>`;
+}
+
+function lbRow(i, name, badgeText, badgeClass = '') {
+  return `
+    <div class="lb-row">
+      <div class="lb-rank ${rankClass(i)}">${i + 1}</div>
+      <div class="lb-name" title="${esc(name)}">${esc(name)}</div>
+      <div class="lb-badge ${badgeClass}">${badgeText}</div>
+    </div>`;
+}
+
+function setHTML(id, html) {
+  document.getElementById(id).innerHTML = html;
+}
+
+// ─── Data Fetch ───────────────────────────────────────────────────────────────
+
+async function load() {
+  try {
+    // Fetch reviews + users in parallel; recent feed ordered separately
+    const [reviewsSnap, usersSnap, recentSnap] = await Promise.all([
+      getDocs(collection(db, 'reviews')),
+      getDocs(collection(db, 'users')),
+      getDocs(query(collection(db, 'reviews'), orderBy('timestamp', 'desc'), limit(20)))
+    ]);
+
+    const reviews = reviewsSnap.docs.map(d => d.data());
+
+    // uid → display_name lookup
+    const usersMap = {};
+    usersSnap.docs.forEach(d => {
+      const u = d.data();
+      // when building usersMap
+      if (u.uid) {
+        usersMap[u.uid] =
+          (u.display_name && u.display_name.trim() !== '')
+            ? u.display_name
+            : null;
+      }
+    });
+
+    renderTopReviewed(reviews);
+    renderHighestRated(reviews);
+    renderTopReviewers(reviews, usersMap);
+    renderRecentFeed(recentSnap.docs.map(d => d.data()), usersMap);
+
+  } catch (err) {
+    console.error('Community load error:', err);
+    const msg = emptyState('Could not load data. Check your connection and try again.');
+    ['top-reviewed-list', 'highest-rated-list', 'top-reviewers-list'].forEach(id => setHTML(id, msg));
+    setHTML('recent-reviews-grid', `<div style="grid-column:1/-1">${msg}</div>`);
+  }
+}
+
+// ─── Section 1: Top Reviewed Games ──────────────────────────────────────────
+
+function renderTopReviewed(reviews) {
+  const counts = {};
+  reviews.forEach(r => {
+    const name = r.game_name || 'Unknown';
+    counts[name] = (counts[name] || 0) + 1;
+  });
+
+  const sorted = Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+
+  if (!sorted.length) {
+    setHTML('top-reviewed-list', emptyState('No reviews yet — be the first!'));
+    return;
+  }
+
+  setHTML('top-reviewed-list',
+    sorted.map(([name, n], i) =>
+      lbRow(i, name, `${n} review${n !== 1 ? 's' : ''}`)
+    ).join('')
+  );
+}
+
+// ─── Section 2: Highest Rated Games (2+ reviews) ────────────────────────────
+
+function renderHighestRated(reviews) {
+  const agg = {};
+  reviews.forEach(r => {
+    const name   = r.game_name || 'Unknown';
+    const rating = Number(r.rating);
+    if (isNaN(rating)) return;
+    if (!agg[name]) agg[name] = { sum: 0, count: 0 };
+    agg[name].sum   += rating;
+    agg[name].count += 1;
+  });
+
+  const sorted = Object.entries(agg)
+    .filter(([, v]) => v.count >= 2)
+    .map(([name, v]) => [name, v.sum / v.count])
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+
+  if (!sorted.length) {
+    setHTML('highest-rated-list', emptyState('Not enough reviews yet to rank games.<br>Games need 2+ reviews to qualify.'));
+    return;
+  }
+
+  setHTML('highest-rated-list',
+    sorted.map(([name, avg], i) =>
+      lbRow(i, name, `${avg.toFixed(1)} ★`, 'rating')
+    ).join('')
+  );
+}
+
+// ─── Section 3: Most Active Reviewers ───────────────────────────────────────
+
+function renderTopReviewers(reviews, usersMap) {
+  const counts = {};
+  reviews.forEach(r => {
+    const uid = r.user_id || 'anonymous';
+    counts[uid] = (counts[uid] || 0) + 1;
+  });
+
+  const sorted = Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+
+  if (!sorted.length) {
+    setHTML('top-reviewers-list', emptyState('No reviewers yet — start reviewing!'));
+    return;
+  }
+
+  setHTML('top-reviewers-list',
+    sorted.map(([uid, n], i) => {
+      const name = usersMap[uid] || 'Anonymous Gamer';
+      return lbRow(i, name, `${n} review${n !== 1 ? 's' : ''}`);
+    }).join('')
+  );
+}
+
+// ─── Section 4: Recent Reviews Feed ─────────────────────────────────────────
+
+function renderRecentFeed(items, usersMap) {
+  const el = document.getElementById('recent-reviews-grid');
+
+  if (!items.length) {
+    el.innerHTML = `<div style="grid-column:1/-1">${emptyState('No reviews yet — be the first to post!')}</div>`;
+    return;
+  }
+
+  el.innerHTML = items.map(r => {
+    const gameName  = esc(r.game_name  || 'Unknown Game');
+    const reviewer  = esc(usersMap[r.user_id] || 'Anonymous Gamer');
+    const rating    = Number(r.rating) || 0;
+    const bodyText  = truncate(r.review_text, 100);
+    const bodyHtml  = bodyText ? esc(bodyText) : '<em>No review text</em>';
+    const timestamp = timeAgo(r.timestamp);
+
+    return `
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-game-name">${gameName}</div>
+          <div class="review-stars">${stars(rating)}</div>
+        </div>
+        <div class="review-meta">
+          <span>${reviewer}</span>
+          <span class="review-meta-dot">·</span>
+          <span>${timestamp}</span>
+        </div>
+        <div class="review-body">${bodyHtml}</div>
+      </div>`;
+  }).join('');
+}
+
+load();
+</script>
+
+</body>
+</html>

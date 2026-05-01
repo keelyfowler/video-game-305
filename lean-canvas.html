@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lean Canvas – GameVault</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1f1e;
+    --surface: #252c2b;
+    --surface2: #2e3836;
+    --green: #6dbf82;
+    --green-dark: #4a9c60;
+    --text: #e8f0ed;
+    --muted: #8aa49a;
+    --border: #3a4744;
+
+    --c-problem:   #c95050;
+    --c-solution:  #508cc9;
+    --c-uvp:       #6dbf82;
+    --c-unfair:    #9b6dbf;
+    --c-customers: #c9a050;
+    --c-metrics:   #50bfb8;
+    --c-channels:  #bf9b50;
+    --c-early:     #8abf6d;
+    --c-cost:      #bf6868;
+    --c-revenue:   #50af78;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(26,31,30,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 40px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { width: 36px; height: 36px; border-radius: 8px; }
+  .nav-logo span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem; color: var(--green); letter-spacing: 1px;
+  }
+  nav a {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--green); }
+  nav a.active { color: var(--green); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-more { position: relative; }
+  .nav-more-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; gap: 4px;
+    padding: 0; transition: color 0.2s;
+  }
+  .nav-more-btn::after { content: '▾'; font-size: 0.75rem; margin-top: 1px; }
+  .nav-more-btn:hover,
+  .nav-more:hover .nav-more-btn { color: var(--green); }
+  .dropdown-menu {
+    display: none; position: absolute; top: calc(100% + 14px); right: 0;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 8px; min-width: 184px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    flex-direction: column; gap: 2px; z-index: 200;
+  }
+  .dropdown-menu a {
+    display: block; padding: 8px 12px; border-radius: 6px;
+    font-size: 0.88rem; transition: background 0.15s, color 0.15s;
+  }
+  .dropdown-menu a:hover { background: var(--surface2); color: var(--green); }
+  .nav-more:hover .dropdown-menu { display: flex; }
+  .dropdown-menu::before {
+    content: ''; position: absolute;
+    top: -14px; left: 0; right: 0; height: 14px;
+  }
+  .nav-cta {
+    background: var(--green); color: #111;
+    padding: 8px 18px; border-radius: 8px;
+    font-weight: 600; font-size: 0.88rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--green-dark) !important; color: #111 !important; transform: translateY(-1px); }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 120px 40px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, #6dbf8218, transparent);
+    pointer-events: none;
+  }
+  .page-label {
+    font-size: 0.75rem; letter-spacing: 3px; color: var(--green);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .page-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900; color: var(--text);
+    margin-bottom: 24px; position: relative;
+  }
+  .page-header h1 span { color: var(--green); }
+
+  .lc-meta {
+    display: inline-flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; position: relative;
+  }
+  .lc-meta-chip {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 16px;
+    font-size: 0.82rem; color: var(--muted);
+  }
+  .lc-meta-chip strong { color: var(--text); }
+
+  /* CANVAS WRAPPER */
+  .canvas-wrap {
+    padding: 32px 24px 80px;
+    overflow-x: auto;
+  }
+  .canvas-inner {
+    min-width: 900px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* CANVAS GRID */
+  .lc-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto auto auto;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  }
+
+  /* GRID PLACEMENT */
+  .lc-problem   { grid-column: 1; grid-row: 1; }
+  .lc-solution  { grid-column: 2; grid-row: 1; }
+  .lc-uvp       { grid-column: 3; grid-row: 1 / 3; }
+  .lc-unfair    { grid-column: 4; grid-row: 1 / 3; }
+  .lc-customers { grid-column: 5; grid-row: 1; }
+  .lc-metrics   { grid-column: 1; grid-row: 2; }
+  .lc-channels  { grid-column: 2; grid-row: 2; }
+  .lc-early     { grid-column: 5; grid-row: 2; }
+  .lc-cost      { grid-column: 1 / 3; grid-row: 3; }
+  .lc-revenue   { grid-column: 3 / 6; grid-row: 3; }
+
+  /* CARD BASE */
+  .lc-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+  }
+
+  /* COLORED HEADERS */
+  .lc-header {
+    padding: 10px 14px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    flex-shrink: 0;
+  }
+  .lc-problem  .lc-header { background: var(--c-problem); }
+  .lc-solution .lc-header { background: var(--c-solution); }
+  .lc-uvp      .lc-header { background: var(--c-uvp); color: #111; }
+  .lc-unfair   .lc-header { background: var(--c-unfair); }
+  .lc-customers .lc-header { background: var(--c-customers); color: #111; }
+  .lc-metrics  .lc-header { background: var(--c-metrics); color: #111; }
+  .lc-channels .lc-header { background: var(--c-channels); color: #111; }
+  .lc-early    .lc-header { background: var(--c-early); color: #111; }
+  .lc-cost     .lc-header { background: var(--c-cost); }
+  .lc-revenue  .lc-header { background: var(--c-revenue); color: #111; }
+
+  /* CARD BODY */
+  .lc-body {
+    padding: 16px 14px;
+    flex: 1;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .lc-body strong {
+    display: block;
+    color: var(--text);
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 12px 0 5px;
+  }
+  .lc-body strong:first-child { margin-top: 0; }
+
+  /* UVP center highlight */
+  .lc-uvp .lc-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 14px;
+  }
+  .lc-uvp .uvp-tagline {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.3;
+  }
+  .lc-uvp .uvp-sub {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 240px;
+  }
+  .lc-uvp .uvp-badge {
+    background: rgba(109,191,130,0.15);
+    border: 1px solid var(--green);
+    color: var(--green);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  /* Bullet list style */
+  .lc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+  }
+  .lc-list li {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .lc-list li::before {
+    content: '✦';
+    color: var(--green);
+    font-size: 0.6rem;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  /* override bullet color per card */
+  .lc-problem  .lc-list li::before { color: var(--c-problem); }
+  .lc-solution .lc-list li::before { color: var(--c-solution); }
+  .lc-unfair   .lc-list li::before { color: var(--c-unfair); }
+  .lc-customers .lc-list li::before { color: var(--c-customers); }
+  .lc-metrics  .lc-list li::before { color: var(--c-metrics); }
+  .lc-channels .lc-list li::before { color: var(--c-channels); }
+  .lc-early    .lc-list li::before { color: var(--c-early); }
+  .lc-cost     .lc-list li::before { color: var(--c-cost); }
+  .lc-revenue  .lc-list li::before { color: var(--c-revenue); }
+
+  /* Revenue items horizontal on wide box */
+  .lc-revenue .lc-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0 20px;
+    align-content: start;
+  }
+  .lc-revenue .rev-block { }
+
+  /* Cost + Revenue bottom row min-height */
+  .lc-cost, .lc-revenue { min-height: 160px; }
+
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 860px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .page-header { padding: 100px 20px 32px; }
+    .canvas-wrap { padding: 20px 0 60px; }
+    .canvas-inner { min-width: unset; }
+
+    .lc-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: none;
+      border-radius: 12px;
+    }
+    .lc-problem   { grid-column: 1; grid-row: unset; }
+    .lc-solution  { grid-column: 2; grid-row: unset; }
+    .lc-uvp       { grid-column: 1 / 3; grid-row: unset; }
+    .lc-unfair    { grid-column: 1; grid-row: unset; }
+    .lc-customers { grid-column: 2; grid-row: unset; }
+    .lc-metrics   { grid-column: 1; grid-row: unset; }
+    .lc-channels  { grid-column: 2; grid-row: unset; }
+    .lc-early     { grid-column: 1 / 3; grid-row: unset; }
+    .lc-cost      { grid-column: 1; grid-row: unset; }
+    .lc-revenue   { grid-column: 2; grid-row: unset; }
+
+    .lc-uvp .lc-body { min-height: 180px; }
+    .lc-revenue .lc-body { grid-template-columns: 1fr; }
+    .lc-box { min-height: 160px; }
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    color: var(--muted); font-size: 0.85rem;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-logo img { width: 28px; border-radius: 6px; }
+  .footer-logo span { font-family: 'Orbitron', sans-serif; color: var(--green); font-size: 0.9rem; }
+  footer a { color: var(--muted); text-decoration: underline; }
+  footer a:hover { color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="assets/images/icon.png" alt="GameVault Logo">
+    <span>GameVault</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#user-docs">User Docs</a>
+    <a href="community.html">Community</a>
+    <div class="nav-more">
+      <button class="nav-more-btn">More</button>
+      <div class="dropdown-menu">
+        <a href="index.html#built-with">How We Built It</a>
+        <a href="index.html#ab-testing">A/B Testing</a>
+        <a href="index.html#data-safety">Data Safety</a>
+        <a href="index.html#whats-new">What's New</a>
+        <a href="lean-canvas.html" class="active">Lean Canvas</a>
+      </div>
+    </div>
+    <a href="try.html" class="nav-cta">Try It</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-label">Business Strategy</div>
+  <h1>Lean <span>Canvas</span></h1>
+  <div class="lc-meta">
+    <div class="lc-meta-chip"><strong>Product:</strong> GameVault ~ Video Game Tracker/Reviewer</div>
+    <div class="lc-meta-chip"><strong>Team:</strong> 305Soft — Keely, Liam, Nate, Bianca</div>
+    <div class="lc-meta-chip"><strong>Date:</strong> 04/27/26</div>
+  </div>
+</div>
+
+<!-- LEAN CANVAS GRID -->
+<div class="canvas-wrap">
+  <div class="canvas-inner">
+    <div class="lc-grid">
+
+      <!-- PROBLEM -->
+      <div class="lc-box lc-problem">
+        <div class="lc-header">Problem</div>
+        <div class="lc-body">
+          <ul class="lc-list">
+            <li>No clean, social-focused app for tracking and reviewing video games the way Letterboxd does for movies.</li>
+            <li>Gamers struggle to track what they've played, want to play, or would recommend.</li>
+            <li>Reviews are scattered across Reddit, YouTube, Metacritic, and Steam — no centralized personal hub.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SOLUTION -->
+      <div class="lc-box lc-solution">
+        <div class="lc-header">Solution</div>
+        <div class="lc-body">
+          <ul class="lc-list">
+            <li>Personal game library tracker: Played, Playing, and Want to Play lists.</li>
+            <li>Social reviews with star ratings, written comments, and recommendations.</li>
+            <li>Personalized feed based on user ratings and favorite genres.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- UNIQUE VALUE PROPOSITION -->
+      <div class="lc-box lc-uvp">
+        <div class="lc-header">Unique Value Proposition</div>
+        <div class="lc-body">
+          <div class="uvp-tagline">The social hub for gamers to track, review, and discover their next favorite game.</div>
+          <div class="uvp-sub">A clean, community-driven platform where gamers build their personal game journal, share opinions, and discover new games through friends.</div>
+          <div class="uvp-badge">Just like Letterboxd — built for gaming culture.</div>
+        </div>
+      </div>
+
+      <!-- UNFAIR ADVANTAGE -->
+      <div class="lc-box lc-unfair">
+        <div class="lc-header">Unfair Advantage</div>
+        <div class="lc-body">
+          <ul class="lc-list">
+            <li>Built specifically for gamers — not a general review site.</li>
+            <li>Social-first design with friend activity feeds and a clean modern UI (unlike cluttered Metacritic).</li>
+            <li>Potential gaming platform integration.</li>
+            <li>Strong natural engagement — gamers love ranking and sharing opinions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CUSTOMER SEGMENTS -->
+      <div class="lc-box lc-customers">
+        <div class="lc-header">Customer Segments</div>
+        <div class="lc-body">
+          <strong>Primary</strong>
+          <ul class="lc-list">
+            <li>Casual gamers, ages 16–24</li>
+            <li>Hardcore / competitive gamers, 18–30</li>
+            <li>College students, 18–22</li>
+            <li>Console &amp; PC players</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- KEY METRICS -->
+      <div class="lc-box lc-metrics">
+        <div class="lc-header">Key Metrics</div>
+        <div class="lc-body">
+          <ul class="lc-list">
+            <li>Registered users &amp; monthly active users</li>
+            <li>Games logged &amp; reviews written</li>
+            <li>Friend connections made</li>
+            <li>User retention rate</li>
+            <li>App store rating &amp; review sentiment</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CHANNELS -->
+      <div class="lc-box lc-channels">
+        <div class="lc-header">Channels</div>
+        <div class="lc-body">
+          <ul class="lc-list">
+            <li>App Store &amp; Google Play listings</li>
+            <li>TikTok, Instagram, Reddit gaming communities</li>
+            <li>Partnerships with YouTubers &amp; Twitch streamers</li>
+            <li>Word of mouth via college gaming communities</li>
+            <li>Letterboxd user crossover</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EARLY ADOPTERS -->
+      <div class="lc-box lc-early">
+        <div class="lc-header">Early Adopters</div>
+        <div class="lc-body">
+          <ul class="lc-list">
+            <li>Gaming content creators on YouTube &amp; Twitch</li>
+            <li>Reddit gaming community members</li>
+            <li>Existing Letterboxd users</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- COST STRUCTURE -->
+      <div class="lc-box lc-cost">
+        <div class="lc-header">Cost Structure</div>
+        <div class="lc-body">
+          <ul class="lc-list">
+            <li>FlutterFlow development &amp; hosting fees</li>
+            <li>Firebase backend costs (scales with user base)</li>
+            <li>IGDB API access — free via Twitch developer program</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- REVENUE STREAMS -->
+      <div class="lc-box lc-revenue">
+        <div class="lc-header">Revenue Streams</div>
+        <div class="lc-body">
+          <div class="rev-block">
+            <strong>Free Tier</strong>
+            <ul class="lc-list">
+              <li>Basic game tracking &amp; reviews</li>
+              <li>Capped at following 5 users</li>
+            </ul>
+          </div>
+          <div class="rev-block">
+            <strong>GameVault Pro — $4.99/mo</strong>
+            <ul class="lc-list">
+              <li>Unlimited follows</li>
+              <li>Detailed stats &amp; custom lists</li>
+              <li>Early access to features</li>
+              <li>Managed via RevenueCat</li>
+            </ul>
+          </div>
+          <div class="rev-block">
+            <strong>Advertising</strong>
+            <ul class="lc-list">
+              <li>Google AdMob banner ads on profile pages for free-tier users</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="assets/images/icon.png" alt="GameVault">
+    <span>GameVault</span>
+  </div>
+  <div>Built by Team GameVault — Keely, Liam, Nate, Bianca &middot; URI CSC 305 Spring 2026 &middot; <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></div>
+  <div>Free &middot; Android 5.0+ &middot; Everyone &middot; <a href="privacy.html">Privacy Policy</a></div>
+</footer>
+
+</body>
+</html>

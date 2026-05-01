@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Try GameVault – In Your Browser</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1f1e;
+    --surface: #252c2b;
+    --surface2: #2e3836;
+    --green: #6dbf82;
+    --green-dark: #4a9c60;
+    --green-glow: #6dbf8240;
+    --text: #e8f0ed;
+    --muted: #8aa49a;
+    --border: #3a4744;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(26,31,30,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 40px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; }
+  .nav-logo img { width: 36px; height: 36px; border-radius: 8px; }
+  .nav-logo span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem; color: var(--green); letter-spacing: 1px;
+  }
+  nav a {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--green); }
+  nav a.active { color: var(--green); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-more { position: relative; }
+  .nav-more-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; gap: 4px;
+    padding: 0; transition: color 0.2s;
+  }
+  .nav-more-btn::after { content: '▾'; font-size: 0.75rem; margin-top: 1px; }
+  .nav-more-btn:hover,
+  .nav-more:hover .nav-more-btn { color: var(--green); }
+  .dropdown-menu {
+    display: none; position: absolute; top: calc(100% + 14px); right: 0;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 8px; min-width: 184px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    flex-direction: column; gap: 2px; z-index: 200;
+  }
+  .dropdown-menu a {
+    display: block; padding: 8px 12px; border-radius: 6px;
+    font-size: 0.88rem; transition: background 0.15s, color 0.15s;
+  }
+  .dropdown-menu a:hover { background: var(--surface2); color: var(--green); }
+  .nav-more:hover .dropdown-menu { display: flex; }
+  .dropdown-menu::before {
+    content: ''; position: absolute;
+    top: -14px; left: 0; right: 0; height: 14px;
+  }
+  .nav-cta {
+    background: var(--green); color: #111;
+    padding: 8px 18px; border-radius: 8px;
+    font-weight: 600; font-size: 0.88rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--green-dark) !important; color: #111 !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    padding: 140px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, #6dbf8218, transparent);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero h1 span { color: var(--green); }
+  .hero p {
+    color: var(--muted); font-size: 1.05rem; line-height: 1.7;
+    max-width: 580px; margin: 0 auto 16px;
+    position: relative;
+  }
+  .hero-note {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 0.82rem; color: var(--muted);
+    position: relative;
+  }
+  .hero-note::before { content: '📱'; }
+
+  /* PHONE MOCKUP WRAPPER */
+  .mockup-section {
+    padding: 40px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .phone-frame {
+    width: 390px;
+    height: 844px;
+    border-radius: 40px;
+    border: 8px solid #1c2423;
+    box-shadow:
+      0 0 0 2px #3a4744,
+      0 32px 80px rgba(0,0,0,0.7),
+      0 8px 24px rgba(109,191,130,0.06);
+    overflow: hidden;
+    background: #0e1210;
+    position: relative;
+  }
+  .phone-frame::before {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 6px;
+    background: #1c2423;
+    border-radius: 0 0 8px 8px;
+    z-index: 10;
+  }
+  .phone-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    border-radius: 32px;
+  }
+
+  /* FALLBACK LINK */
+  .fallback {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .fallback a {
+    display: inline-block;
+    margin-top: 12px;
+    background: var(--surface); border: 1px solid var(--green);
+    color: var(--green); text-decoration: none;
+    padding: 12px 28px; border-radius: 10px;
+    font-weight: 600; font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .fallback a:hover { background: var(--green); color: #111; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    margin-top: 64px;
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    color: var(--muted); font-size: 0.85rem;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-logo img { width: 28px; border-radius: 6px; }
+  .footer-logo span { font-family: 'Orbitron', sans-serif; color: var(--green); font-size: 0.9rem; }
+  footer a { color: var(--muted); text-decoration: underline; }
+  footer a:hover { color: var(--green); }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 110px 20px 40px; }
+    .mockup-section { padding: 24px 0 16px; }
+    .phone-frame {
+      width: 100vw;
+      height: calc(100vw * 844 / 390);
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+    }
+    .phone-frame::before { display: none; }
+    footer { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="assets/images/icon.png" alt="GameVault Logo">
+    <span>GameVault</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#user-docs">User Docs</a>
+    <a href="community.html">Community</a>
+    <div class="nav-more">
+      <button class="nav-more-btn">More</button>
+      <div class="dropdown-menu">
+        <a href="index.html#built-with">How We Built It</a>
+        <a href="index.html#ab-testing">A/B Testing</a>
+        <a href="index.html#data-safety">Data Safety</a>
+        <a href="index.html#whats-new">What's New</a>
+        <a href="lean-canvas.html">Lean Canvas</a>
+      </div>
+    </div>
+    <a href="try.html" class="nav-cta">Try It</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Try <span>GameVault</span> in Your Browser</h1>
+  <p>No download needed — experience the full app right here. Search games, read reviews, and explore the community.</p>
+  <div class="hero-note">Best experienced on mobile screen size.</div>
+</div>
+
+<!-- PHONE MOCKUP + IFRAME -->
+<div class="mockup-section">
+  <div class="phone-frame">
+    <iframe
+      src="https://video-game-tracker-s3r8uv.flutterflow.app/"
+      title="GameVault App"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <div class="fallback">
+    Can't see the app? Open it directly &rarr;
+    <br>
+    <a href="https://video-game-tracker-s3r8uv.flutterflow.app/" target="_blank" rel="noopener">
+      Open GameVault ↗
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="assets/images/icon.png" alt="GameVault">
+    <span>GameVault</span>
+  </div>
+  <div>Built by Team GameVault — Keely, Liam, Nate, Bianca &middot; URI CSC 305 Spring 2026 &middot; <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></div>
+  <div>Free &middot; Android 5.0+ &middot; Everyone &middot; <a href="privacy.html">Privacy Policy</a></div>
+</footer>
+
+</body>
+</html>
