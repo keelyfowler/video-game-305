@@ -241,6 +241,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                 safeSetState(() {});
                               },
                               child: Container(
+                                key: ValueKey('Container_0tzw'),
                                 height: 38.0,
                                 decoration: BoxDecoration(
                                   color: _model.selectedTab == '\"following\"'
