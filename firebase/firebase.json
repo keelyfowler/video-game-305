@@ -5,10 +5,6 @@
   },
   "functions": [
     {
-      "source": "custom_cloud_functions",
-      "codebase": "custom_cloud_functions"
-    },
-    {
       "source": "functions",
       "codebase": "functions"
     }

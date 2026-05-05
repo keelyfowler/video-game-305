@@ -57,8 +57,10 @@ void main() async {
     await tester.tap(find.byKey(const ValueKey('LoginTab_adnq')));
     await tester.enterText(
         find.byKey(const ValueKey('Login-Email_v68f')), 'liamwash@gmail.com');
+    FocusManager.instance.primaryFocus?.unfocus();
     await tester.enterText(
         find.byKey(const ValueKey('Login-Password_n5z7')), '123456');
+    FocusManager.instance.primaryFocus?.unfocus();
     await tester.tap(find.byKey(const ValueKey('Signup-Button_gj0s')));
     expect(find.byKey(const ValueKey('FeedPage_p0oj')), findsWidgets);
     await tester.pumpAndSettle(const Duration(milliseconds: 3000));

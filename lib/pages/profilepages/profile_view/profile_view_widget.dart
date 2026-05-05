@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/settings_option_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -80,7 +81,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).alternate,
+            backgroundColor: Color(0xFF4A4D4D),
             body: Center(
               child: SizedBox(
                 width: 50.0,
@@ -110,7 +111,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
           },
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).alternate,
+            backgroundColor: Color(0xFF4A4D4D),
             body: SafeArea(
               top: true,
               child: SingleChildScrollView(
@@ -127,9 +128,25 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                         onTap: () async {
                           logFirebaseEvent(
                               'PROFILE_VIEW_Container_p2ihe6q1_ON_TAP');
-                          logFirebaseEvent('Container_navigate_to');
-
-                          context.pushNamed(SettingsPageWidget.routeName);
+                          logFirebaseEvent('Container_bottom_sheet');
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () {
+                                  FocusScope.of(context).unfocus();
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                },
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: SettingsOptionWidget(),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
                         },
                         child: Container(
                           decoration: BoxDecoration(),
@@ -146,6 +163,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                       ),
                     ),
                     SingleChildScrollView(
+                      primary: false,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -513,30 +531,29 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                     .discordName,
                                                 'Discord',
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        color: Colors.white,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    font: GoogleFonts.dmSans(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    color: Colors.white,
+                                                    fontSize: 14.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
                                             ),
                                           ],
                                         ),
@@ -651,6 +668,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             child: SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -671,34 +689,34 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                             labelPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
-                                            labelStyle: FlutterFlowTheme.of(
-                                                    context)
-                                                .titleMedium
-                                                .override(
-                                                  font: GoogleFonts.interTight(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMedium
-                                                          .fontStyle,
-                                                ),
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMedium
+                                                    .override(
+                                                      font: GoogleFonts.dmSans(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .fontStyle,
+                                                    ),
                                             unselectedLabelStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .titleMedium
@@ -870,7 +888,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                                               Text(
                                                                             listViewReviewsRecord.gameName,
                                                                             style: FlutterFlowTheme.of(context).titleMedium.override(
-                                                                                  font: GoogleFonts.interTight(
+                                                                                  font: GoogleFonts.dmSans(
                                                                                     fontWeight: FontWeight.bold,
                                                                                     fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
                                                                                   ),
@@ -909,7 +927,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                                                 Text(
                                                                                   listViewReviewsRecord.rating.toString(),
                                                                                   style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                        font: GoogleFonts.inter(
+                                                                                        font: GoogleFonts.dmSans(
                                                                                           fontWeight: FontWeight.bold,
                                                                                           fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                         ),
@@ -936,7 +954,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                                           .bodyMedium
                                                                           .override(
                                                                             font:
-                                                                                GoogleFonts.inter(
+                                                                                GoogleFonts.dmSans(
                                                                               fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                               fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                             ),
@@ -981,7 +999,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .labelSmall
                                                                               .override(
-                                                                                font: GoogleFonts.inter(
+                                                                                font: GoogleFonts.dmSans(
                                                                                   fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
                                                                                   fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                 ),
@@ -1052,6 +1070,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                       return ListView.builder(
                                                         padding:
                                                             EdgeInsets.zero,
+                                                        primary: false,
                                                         shrinkWrap: true,
                                                         scrollDirection:
                                                             Axis.vertical,
@@ -1095,27 +1114,31 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                                       {
                                                                     'gameName':
                                                                         serializeParam(
-                                                                      '',
+                                                                      listViewFavoritesRecord
+                                                                          .gameName,
                                                                       ParamType
                                                                           .String,
                                                                     ),
                                                                     'gameSummary':
                                                                         serializeParam(
-                                                                      '',
+                                                                      listViewFavoritesRecord
+                                                                          .gameDesc,
                                                                       ParamType
                                                                           .String,
                                                                     ),
                                                                     'gameCover':
                                                                         serializeParam(
-                                                                      '',
+                                                                      listViewFavoritesRecord
+                                                                          .gamePic,
                                                                       ParamType
                                                                           .String,
                                                                     ),
                                                                     'gameId':
                                                                         serializeParam(
-                                                                      0,
+                                                                      listViewFavoritesRecord
+                                                                          .gameId,
                                                                       ParamType
-                                                                          .int,
+                                                                          .String,
                                                                     ),
                                                                   }.withoutNulls,
                                                                 );

@@ -23,6 +23,8 @@ class EditProfilePageModel extends FlutterFlowModel<EditProfilePageWidget> {
 
   FFUploadedFile? uploadDataProfilePic;
 
+  String photoUrl = 'photoUrlPgState';
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading_uploadedPhotoUrl = false;
@@ -30,8 +32,8 @@ class EditProfilePageModel extends FlutterFlowModel<EditProfilePageWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadedPhotoUrl = '';
 
-  bool isDataUploading_photoUrl = false;
-  FFUploadedFile uploadedLocalFile_photoUrl =
+  bool isDataUploading_photoUrlStored = false;
+  FFUploadedFile uploadedLocalFile_photoUrlStored =
       FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
 
   // State field(s) for TextField widget.

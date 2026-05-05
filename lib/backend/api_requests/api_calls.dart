@@ -1,6 +1,4 @@
 import 'dart:convert';
-import '../cloud_functions/cloud_functions.dart';
-
 import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
@@ -32,23 +30,6 @@ class GetIGDBTokenKFCall {
         response,
         r'''$.access_token''',
       ));
-}
-
-class SearchGameCall {
-  static Future<ApiCallResponse> call({
-    String? query = 'search \"halo\"; fields name,cover.url,summary; limit 20;',
-  }) async {
-    final response = await makeCloudCall(
-      _kPrivateApiFunctionName,
-      {
-        'callName': 'SearchGameCall',
-        'variables': {
-          'query': query,
-        },
-      },
-    );
-    return ApiCallResponse.fromCloudCallResponse(response);
-  }
 }
 
 class SearchGamesKFCall {
@@ -126,41 +107,13 @@ class SearchGamesKFCall {
       ));
 }
 
-class NewSearchGameCall {
-  static Future<ApiCallResponse> call({
-    String? query = 'search \"halo\"; fields name,cover.url,summary; limit 10;',
-  }) async {
-    final ffApiRequestBody = '''
-{
-  "query": "${escapeStringForJson(query)}"
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'NewSearchGame',
-      apiUrl: 'https://searchgamev2-pfuvu2mvja-ue.a.run.app',
-      callType: ApiCallType.POST,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
 class GetGameDetailsKFCall {
   static Future<ApiCallResponse> call({
-    int? gameID,
+    String? gameID = '',
   }) async {
     final ffApiRequestBody = '''
 {
-  "gameId": ${gameID}
+  "gameId": ${escapeStringForJson(gameID)}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'getGameDetailsKF',

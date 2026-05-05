@@ -133,115 +133,134 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).alternate,
-            appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).alternate,
-              automaticallyImplyLeading: false,
-              leading: FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 22.0,
-                buttonSize: 44.0,
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  color: Color(0xFF445552),
-                  size: 24.0,
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(50.0),
+              child: AppBar(
+                backgroundColor: FlutterFlowTheme.of(context).alternate,
+                automaticallyImplyLeading: false,
+                leading: FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 20.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  icon: Icon(
+                    Icons.arrow_back_ios_rounded,
+                    color: Color(0xFF9CC5A1),
+                    size: 24.0,
+                  ),
+                  onPressed: () async {
+                    logFirebaseEvent(
+                        'EDIT_PROFILE_arrow_back_ios_rounded_ICN_');
+                    logFirebaseEvent('IconButton_navigate_back');
+                    context.safePop();
+                  },
                 ),
-                onPressed: () async {
-                  logFirebaseEvent('EDIT_PROFILE_arrow_back_rounded_ICN_ON_T');
-                  logFirebaseEvent('IconButton_navigate_back');
-                  context.safePop();
-                },
-              ),
-              title: Text(
-                'Edit Profile',
-                style: FlutterFlowTheme.of(context).titleLarge.override(
-                      font: GoogleFonts.interTight(
+                title: Text(
+                  'Edit Profile',
+                  style: FlutterFlowTheme.of(context).titleLarge.override(
+                        font: GoogleFonts.dmSans(
+                          fontWeight: FontWeight.bold,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleLarge.fontStyle,
+                        ),
+                        color: Color(0xFF445552),
+                        letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
                         fontStyle:
                             FlutterFlowTheme.of(context).titleLarge.fontStyle,
                       ),
-                      color: Color(0xFF445552),
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.bold,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                    ),
-              ),
-              actions: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 12.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent(
-                          'EDIT_PROFILE_PAGE_PAGE_SAVE_BTN_ON_TAP');
-                      logFirebaseEvent('Button_upload_media_to_firebase');
-                      {
-                        safeSetState(() =>
-                            _model.isDataUploading_uploadedPhotoUrl = true);
-                        var selectedUploadedFiles = <FFUploadedFile>[];
-                        var selectedMedia = <SelectedFile>[];
-                        var downloadUrls = <String>[];
-                        try {
-                          selectedUploadedFiles =
-                              _model.uploadDataProfilePic!.bytes!.isNotEmpty
-                                  ? [_model.uploadDataProfilePic!]
+                ),
+                actions: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 12.0, 8.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'EDIT_PROFILE_PAGE_PAGE_SAVE_BTN_ON_TAP');
+                        logFirebaseEvent('Button_backend_call');
+
+                        await currentUserReference!
+                            .update(createUsersRecordData(
+                          displayName: _model.textController1.text,
+                          username: _model.textController2.text,
+                          bio: _model.textController3.text,
+                          favoriteGenre: _model.dropDownValue,
+                          favoriteGame: _model.textController4.text,
+                          discordName: _model.textController5.text,
+                          twitchName: _model.textController6.text,
+                          photoUrl: _model.uploadedFileUrl_uploadedPhotoUrl,
+                        ));
+                        if (_model.uploadedFileUrl_uploadedPhotoUrl != '') {
+                          logFirebaseEvent('Button_upload_media_to_firebase');
+                          {
+                            safeSetState(() =>
+                                _model.isDataUploading_uploadedPhotoUrl = true);
+                            var selectedUploadedFiles = <FFUploadedFile>[];
+                            var selectedMedia = <SelectedFile>[];
+                            var downloadUrls = <String>[];
+                            try {
+                              selectedUploadedFiles = _model
+                                      .uploadedLocalFile_photoUrlStored
+                                      .bytes!
+                                      .isNotEmpty
+                                  ? [_model.uploadedLocalFile_photoUrlStored]
                                   : <FFUploadedFile>[];
-                          selectedMedia = selectedFilesFromUploadedFiles(
-                            selectedUploadedFiles,
-                          );
-                          downloadUrls = (await Future.wait(
-                            selectedMedia.map(
-                              (m) async =>
-                                  await uploadData(m.storagePath, m.bytes),
-                            ),
-                          ))
-                              .where((u) => u != null)
-                              .map((u) => u!)
-                              .toList();
-                        } finally {
-                          _model.isDataUploading_uploadedPhotoUrl = false;
+                              selectedMedia = selectedFilesFromUploadedFiles(
+                                selectedUploadedFiles,
+                              );
+                              downloadUrls = (await Future.wait(
+                                selectedMedia.map(
+                                  (m) async =>
+                                      await uploadData(m.storagePath, m.bytes),
+                                ),
+                              ))
+                                  .where((u) => u != null)
+                                  .map((u) => u!)
+                                  .toList();
+                            } finally {
+                              _model.isDataUploading_uploadedPhotoUrl = false;
+                            }
+                            if (selectedUploadedFiles.length ==
+                                    selectedMedia.length &&
+                                downloadUrls.length == selectedMedia.length) {
+                              safeSetState(() {
+                                _model.uploadedLocalFile_uploadedPhotoUrl =
+                                    selectedUploadedFiles.first;
+                                _model.uploadedFileUrl_uploadedPhotoUrl =
+                                    downloadUrls.first;
+                              });
+                            } else {
+                              safeSetState(() {});
+                              return;
+                            }
+                          }
                         }
-                        if (selectedUploadedFiles.length ==
-                                selectedMedia.length &&
-                            downloadUrls.length == selectedMedia.length) {
-                          safeSetState(() {
-                            _model.uploadedLocalFile_uploadedPhotoUrl =
-                                selectedUploadedFiles.first;
-                            _model.uploadedFileUrl_uploadedPhotoUrl =
-                                downloadUrls.first;
-                          });
-                        } else {
-                          safeSetState(() {});
-                          return;
-                        }
-                      }
+                        logFirebaseEvent('Button_navigate_to');
 
-                      logFirebaseEvent('Button_backend_call');
-
-                      await currentUserReference!.update(createUsersRecordData(
-                        displayName: _model.textController1.text,
-                        username: _model.textController2.text,
-                        bio: _model.textController3.text,
-                        favoriteGenre: _model.dropDownValue,
-                        favoriteGame: _model.textController4.text,
-                        discordName: _model.textController5.text,
-                        twitchName: _model.textController6.text,
-                        photoUrl: _model.uploadedFileUrl_uploadedPhotoUrl,
-                      ));
-                      logFirebaseEvent('Button_navigate_to');
-
-                      context.pushNamed(FeedPageWidget.routeName);
-                    },
-                    text: 'Save',
-                    options: FFButtonOptions(
-                      height: 2.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFFAC9A5E),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                font: GoogleFonts.urbanist(
+                        context.pushNamed(FeedPageWidget.routeName);
+                      },
+                      text: 'Save',
+                      options: FFButtonOptions(
+                        height: 2.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Color(0xFFAC9A5E),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  font: GoogleFonts.urbanist(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                                  color: Colors.white,
+                                  fontSize: 12.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .fontWeight,
@@ -249,27 +268,18 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                       .titleSmall
                                       .fontStyle,
                                 ),
-                                color: Colors.white,
-                                fontSize: 12.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .fontStyle,
-                              ),
-                      elevation: 2.0,
-                      borderSide: BorderSide(
-                        color: Color(0x3A000000),
+                        elevation: 2.0,
+                        borderSide: BorderSide(
+                          color: Color(0x3A000000),
+                        ),
+                        borderRadius: BorderRadius.circular(16.0),
                       ),
-                      borderRadius: BorderRadius.circular(16.0),
                     ),
                   ),
-                ),
-              ],
-              centerTitle: true,
-              elevation: 0.0,
+                ],
+                centerTitle: true,
+                elevation: 0.0,
+              ),
             ),
             body: SafeArea(
               top: true,
@@ -296,18 +306,16 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                       'EDIT_PROFILE_Container_kcm9n2ap_ON_TAP');
                                   logFirebaseEvent(
                                       'Container_store_media_for_upload');
-                                  final selectedMedia =
-                                      await selectMediaWithSourceBottomSheet(
-                                    context: context,
-                                    maxWidth: 50.00,
-                                    allowPhoto: true,
+                                  final selectedMedia = await selectMedia(
+                                    mediaSource: MediaSource.photoGallery,
+                                    multiImage: false,
                                   );
                                   if (selectedMedia != null &&
                                       selectedMedia.every((m) =>
                                           validateFileFormat(
                                               m.storagePath, context))) {
-                                    safeSetState(() =>
-                                        _model.isDataUploading_photoUrl = true);
+                                    safeSetState(() => _model
+                                        .isDataUploading_photoUrlStored = true);
                                     var selectedUploadedFiles =
                                         <FFUploadedFile>[];
 
@@ -326,12 +334,13 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                               ))
                                           .toList();
                                     } finally {
-                                      _model.isDataUploading_photoUrl = false;
+                                      _model.isDataUploading_photoUrlStored =
+                                          false;
                                     }
                                     if (selectedUploadedFiles.length ==
                                         selectedMedia.length) {
                                       safeSetState(() {
-                                        _model.uploadedLocalFile_photoUrl =
+                                        _model.uploadedLocalFile_photoUrlStored =
                                             selectedUploadedFiles.first;
                                       });
                                     } else {
@@ -343,7 +352,9 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                   logFirebaseEvent(
                                       'Container_update_page_state');
                                   _model.uploadDataProfilePic =
-                                      _model.uploadedLocalFile_photoUrl;
+                                      _model.uploadedLocalFile_photoUrlStored;
+                                  _model.photoUrl =
+                                      _model.uploadedFileUrl_uploadedPhotoUrl;
                                   safeSetState(() {});
                                 },
                                 child: Container(
@@ -375,31 +386,21 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                   ),
                                   child: Stack(
                                     children: [
-                                      if (_model.isDataUploading_photoUrl)
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(110.0),
-                                          child: Image.memory(
-                                            _model.uploadDataProfilePic
-                                                    ?.bytes ??
-                                                Uint8List.fromList([]),
-                                            width: 200.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(110.0),
+                                        child: Image.network(
+                                          _model.uploadedFileUrl_uploadedPhotoUrl !=
+                                                      ''
+                                              ? _model
+                                                  .uploadedFileUrl_uploadedPhotoUrl
+                                              : editProfilePageUsersRecord
+                                                  .photoUrl,
+                                          width: 200.0,
+                                          height: 200.0,
+                                          fit: BoxFit.cover,
                                         ),
-                                      if (!_model.isDataUploading_photoUrl)
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(110.0),
-                                          child: Image.network(
-                                            editProfilePageUsersRecord
-                                                .photoUrl,
-                                            width: 200.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -478,7 +479,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.inter(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -606,7 +607,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.inter(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -733,7 +734,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.inter(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -904,7 +905,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.inter(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -1223,7 +1224,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            font: GoogleFonts.inter(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1373,7 +1374,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            font: GoogleFonts.inter(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium

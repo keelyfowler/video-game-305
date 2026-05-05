@@ -13,8 +13,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
 String? joinGamesNames(List<FavoritesRecord>? favorites) {
-  return favorites!
+  if (favorites == null || favorites.isEmpty) return null;
+  return favorites
       .map((f) => f.gameName ?? '')
       .where((name) => name.isNotEmpty)
       .join(', ');
+}
+
+List<String> splitStringToList(
+  String? inputString,
+  String delimiter,
+) {
+  if (inputString == null || inputString.isEmpty) {
+    return [];
+  }
+
+  return inputString
+      .split(delimiter)
+      .map((e) => e.trim())
+      .where((e) => e.isNotEmpty)
+      .toList();
 }

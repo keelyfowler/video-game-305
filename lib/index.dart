@@ -14,4 +14,7 @@ export '/pages/recommended_games/recommended_games_widget.dart'
     show RecommendedGamesWidget;
 export '/pages/profilepages/profile_view/profile_view_widget.dart'
     show ProfileViewWidget;
-export '/pages/settings_page/settings_page_widget.dart' show SettingsPageWidget;
+export '/pages/user_profile_page/user_profile_page_widget.dart'
+    show UserProfilePageWidget;
+export '/pages/all_reviews_page/all_reviews_page_widget.dart'
+    show AllReviewsPageWidget;

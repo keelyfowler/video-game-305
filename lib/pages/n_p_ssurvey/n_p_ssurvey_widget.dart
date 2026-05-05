@@ -73,7 +73,7 @@ class _NPSsurveyWidgetState extends State<NPSsurveyWidget> {
       child: Container(
         width: MediaQuery.sizeOf(context).width * 1.0,
         decoration: BoxDecoration(
-          color: Color(0xBF9CC5A1),
+          color: Color(0xFF57886C),
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
@@ -86,7 +86,7 @@ class _NPSsurveyWidgetState extends State<NPSsurveyWidget> {
                 'How likely are you to recommend this app?',
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).titleMedium.override(
-                      font: GoogleFonts.interTight(
+                      font: GoogleFonts.dmSans(
                         fontWeight: FontWeight.w600,
                         fontStyle:
                             FlutterFlowTheme.of(context).titleMedium.fontStyle,
@@ -105,7 +105,7 @@ class _NPSsurveyWidgetState extends State<NPSsurveyWidget> {
                   Text(
                     'Not likely',
                     style: FlutterFlowTheme.of(context).labelSmall.override(
-                          font: GoogleFonts.inter(
+                          font: GoogleFonts.dmSans(
                             fontWeight: FlutterFlowTheme.of(context)
                                 .labelSmall
                                 .fontWeight,
@@ -125,7 +125,7 @@ class _NPSsurveyWidgetState extends State<NPSsurveyWidget> {
                   Text(
                     'Very likely',
                     style: FlutterFlowTheme.of(context).labelSmall.override(
-                          font: GoogleFonts.inter(
+                          font: GoogleFonts.dmSans(
                             fontWeight: FlutterFlowTheme.of(context)
                                 .labelSmall
                                 .fontWeight,
@@ -167,9 +167,9 @@ class _NPSsurveyWidgetState extends State<NPSsurveyWidget> {
                   safeSetState(() {});
                 },
                 selectedChipStyle: ChipStyle(
-                  backgroundColor: Color(0xFF177BDD),
+                  backgroundColor: Color(0xFFAC9A5E),
                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.inter(
+                        font: GoogleFonts.dmSans(
                           fontWeight: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .fontWeight,
@@ -192,7 +192,7 @@ class _NPSsurveyWidgetState extends State<NPSsurveyWidget> {
                 unselectedChipStyle: ChipStyle(
                   backgroundColor: Color(0xFF455552),
                   textStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                        font: GoogleFonts.inter(
+                        font: GoogleFonts.dmSans(
                           fontWeight:
                               FlutterFlowTheme.of(context).bodySmall.fontWeight,
                           fontStyle:
@@ -252,9 +252,9 @@ class _NPSsurveyWidgetState extends State<NPSsurveyWidget> {
                   padding: EdgeInsets.all(8.0),
                   iconPadding:
                       EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: Color(0xFF177BDD),
+                  color: Color(0xFFAC9A5E),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        font: GoogleFonts.interTight(
+                        font: GoogleFonts.dmSans(
                           fontWeight: FlutterFlowTheme.of(context)
                               .titleSmall
                               .fontWeight,

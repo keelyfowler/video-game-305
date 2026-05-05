@@ -8,6 +8,7 @@ class ProfileCreationPageModel
     extends FlutterFlowModel<ProfileCreationPageWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final formKey = GlobalKey<FormState>();
   bool isDataUploading_uploadDataProfilePic = false;
   FFUploadedFile uploadedLocalFile_uploadDataProfilePic =
       FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
