@@ -30,7 +30,9 @@ void main() async {
   testWidgets('Invalid-Input-Misformed-Email', (WidgetTester tester) async {
     _overrideOnError();
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(
+      entryPage: HomePageWidget(),
+    ));
     await GoogleFonts.pendingFonts();
 
     await tester.pumpAndSettle(const Duration(milliseconds: 3000));

@@ -735,20 +735,43 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                           getCurrentTimestamp,
                                                     ));
 
-                                                logFirebaseEvent(
-                                                    'Signup-Button_wait__delay');
-                                                await Future.delayed(
-                                                  Duration(
-                                                    milliseconds: 2000,
-                                                  ),
-                                                );
-                                                logFirebaseEvent(
-                                                    'Signup-Button_navigate_to');
+                                                if (currentUserUid != '') {
+                                                  logFirebaseEvent(
+                                                      'Signup-Button_wait__delay');
+                                                  await Future.delayed(
+                                                    Duration(
+                                                      milliseconds: 2000,
+                                                    ),
+                                                  );
+                                                  logFirebaseEvent(
+                                                      'Signup-Button_navigate_to');
 
-                                                context.goNamedAuth(
-                                                    ProfileCreationPageWidget
-                                                        .routeName,
-                                                    context.mounted);
+                                                  context.goNamedAuth(
+                                                      ProfileCreationPageWidget
+                                                          .routeName,
+                                                      context.mounted);
+                                                } else {
+                                                  logFirebaseEvent(
+                                                      'Signup-Button_show_snack_bar');
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Invalid email format.',
+                                                        style: TextStyle(
+                                                          color:
+                                                              Color(0xFFB70000),
+                                                        ),
+                                                      ),
+                                                      duration: Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                  );
+                                                }
                                               },
                                               text: 'Sign up',
                                               options: FFButtonOptions(
@@ -800,6 +823,37 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     BorderRadius.circular(24.0),
                                               ),
                                             ),
+                                          Text(
+                                            '',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.dmSans(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFFE30F0F),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                          ),
                                         ].divide(SizedBox(height: 12.0)),
                                       ),
                                     ],
