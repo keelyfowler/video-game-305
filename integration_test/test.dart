@@ -78,6 +78,23 @@ void main() async {
     expect(find.text('Submit Review '), findsOneWidget);
     expect(find.text('Cancel'), findsOneWidget);
   });
+
+  testWidgets('Favorite Button Test', (WidgetTester tester) async {
+    _overrideOnError();
+
+    await tester.pumpWidget(const MyApp());
+    await GoogleFonts.pendingFonts();
+
+    await tester.tap(find.byKey(const ValueKey('IconButton_pqe9')));
+    expect(find.byKey(const ValueKey('IconButton_pqe9')), findsOneWidget);
+    expect(
+      tester
+          .widget<FlutterFlowIconButton>(
+              find.byKey(const ValueKey('IconButton_pqe9')))
+          .onPressed,
+      isNotNull,
+    );
+  });
 }
 
 // There are certain types of errors that can happen during tests but

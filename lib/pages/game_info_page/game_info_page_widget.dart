@@ -300,6 +300,7 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: FlutterFlowIconButton(
+                        key: ValueKey('IconButton_pqe9'),
                         borderRadius: 22.0,
                         hoverIconColor: Color(0xFF552E2E),
                         icon: Icon(
