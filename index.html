@@ -709,23 +709,26 @@
     border-radius: 14px;
     padding: 14px 0 8px;
     box-shadow: 0 8px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
-    min-width: 158px;
+    width: 164px;
   }
   .sidebar-title {
     font-size: 0.58rem; letter-spacing: 2.5px;
     text-transform: uppercase; color: var(--muted); font-weight: 700;
-    padding: 0 16px 10px;
+    padding: 0 10px 10px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 4px;
   }
   .sidebar-nav { display: flex; flex-direction: column; }
   .sidebar-nav a {
-    display: flex; align-items: center; justify-content: flex-start; gap: 10px;
-    padding: 7px 16px;
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 10px;
+    width: 100%;
     font-size: 0.8rem; color: var(--muted);
     text-decoration: none;
     transition: color 0.15s, background 0.15s;
     line-height: 1.2;
+    white-space: nowrap;
+    box-sizing: border-box;
   }
   .sidebar-nav a::before {
     content: '';
@@ -750,12 +753,12 @@
       top: 50%;
       right: 10px;
       transform: translateY(-50%);
-      min-width: auto;
+      width: auto;
       padding: 10px 8px;
       border-radius: 999px;
     }
     .sidebar-title { display: none; }
-    .sidebar-nav a { padding: 6px 8px; gap: 0; justify-content: center; }
+    .sidebar-nav a { padding: 6px 8px; gap: 0; justify-content: center; width: auto; }
     .sidebar-nav a span { display: none; }
     .sidebar-nav a::before { width: 8px; height: 8px; }
   }
@@ -845,13 +848,13 @@
     </div>
     <div class="hero-phones">
       <div class="phone phone-right">
-        <img src="assets/images/hero_right.png" alt="Search screen">
+        <img src="assets/images/hero-right.png" alt="AI Recommendations">
       </div>
       <div class="phone phone-left">
-        <img src="assets/images/hero_left.png" alt="Login screen">
+        <img src="assets/images/hero-left.png" alt="Sign In">
       </div>
       <div class="phone phone-center">
-        <img src="assets/images/hero_center.png" alt="Reviews feed">
+        <img src="assets/images/hero-center.png" alt="Gamer Profile">
       </div>
     </div>
   </div>
@@ -998,6 +1001,41 @@
       </div>
     </div>
 
+    <!-- SUBSECTION 4: AI Recommendations -->
+    <div class="docs-subsection">
+      <div class="docs-subsection-header">
+        <span class="docs-subsection-icon">🤖</span>
+        <span class="docs-subsection-title">AI Recommendations</span>
+      </div>
+      <div class="docs-steps-row">
+        <div class="docs-thumb">
+          <img src="assets/images/ss_ai.png" alt="AI game recommendations screen">
+        </div>
+        <div class="docs-steps">
+          <div class="docs-step">
+            <div class="docs-step-num">1</div>
+            <div class="docs-step-text">Tap the <strong>Ask AI</strong> tab in the navigation bar at the bottom of the screen.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">2</div>
+            <div class="docs-step-text">The page shows your current <strong>Favorites</strong> at the top — these are the games GameVault uses to understand your taste.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">3</div>
+            <div class="docs-step-text">Tap <strong>Ask AI For A Recommendation</strong>. GameVault sends your favorites list to the AI and returns up to 5 personalized game suggestions.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">4</div>
+            <div class="docs-step-text">Each result shows the <strong>game title</strong>, genre, and a short reason why it was recommended based on what you love.</div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">5</div>
+            <div class="docs-step-text">To get better recommendations, favorite more games first. The more GameVault knows about your taste, the more accurate the suggestions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1131,7 +1169,7 @@
         </div>
         <div class="chip">
           <div class="chip-label">Contact</div>
-          <div class="chip-val">gamevault@uri.edu</div>
+          <div class="chip-val">keelyfowler@uri.edu · nate.barrios@uri.edu · brietkerk2024@uri.edu · liam_washburn@uri.edu</div>
         </div>
       </div>
     </div>
@@ -1239,7 +1277,7 @@
     <img src="assets/images/icon.png" alt="GameVault">
     <span>GameVault</span>
   </div>
-  <div>Built by Team GameVault — Keely, Liam, Nate, Bianca &middot; URI CSC 305 Spring 2026 &middot; <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></div>
+  <div>Built by Team GameVault — Keely, Liam, Nate, Bianca &middot; URI CSC 305 Spring 2026 &middot; <a href="mailto:keelyfowler@uri.edu">keelyfowler@uri.edu</a> &middot; <a href="mailto:nate.barrios@uri.edu">nate.barrios@uri.edu</a> &middot; <a href="mailto:brietkerk2024@uri.edu">brietkerk2024@uri.edu</a> &middot; <a href="mailto:liam_washburn@uri.edu">liam_washburn@uri.edu</a></div>
   <div>Free &middot; Android 5.0+ &middot; Everyone &middot; <a href="privacy.html">Privacy Policy</a></div>
 </footer>
 

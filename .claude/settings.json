@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python3)"
+      "Bash(python3)",
+      "Bash(gh issue *)",
+      "Bash(file /Users/keelyfowler/Documents/URI/URI_S26/CSC_305/vscode/video-game-305/assets/images/ss_*.png /Users/keelyfowler/Documents/URI/URI_S26/CSC_305/vscode/video-game-305/assets/images/hero_*.png)",
+      "Bash(cp /Users/keelyfowler/Documents/URI/URI_S26/CSC_305/vscode/video-game-305/assets/images/ss_login1.png /Users/keelyfowler/Documents/URI/URI_S26/CSC_305/vscode/video-game-305/assets/images/ss_login.png)",
+      "Bash(cp /Users/keelyfowler/Documents/URI/URI_S26/CSC_305/vscode/video-game-305/assets/images/ss_game2.png /Users/keelyfowler/Documents/URI/URI_S26/CSC_305/vscode/video-game-305/assets/images/ss_game.png)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

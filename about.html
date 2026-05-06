@@ -189,6 +189,13 @@
   .team-name { font-weight: 700; color: var(--text); font-size: 1rem; margin-bottom: 4px; }
   .team-role { font-size: 0.8rem; color: var(--green); margin-bottom: 8px; }
   .team-detail { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+  .team-photo {
+    width: 100%; border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden; margin-bottom: 24px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .team-photo img { width: 100%; display: block; }
   .team-meta {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 14px; padding: 24px 28px;
@@ -333,23 +340,26 @@
     border-radius: 14px;
     padding: 14px 0 8px;
     box-shadow: 0 8px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
-    min-width: 158px;
+    width: 164px;
   }
   .sidebar-title {
     font-size: 0.58rem; letter-spacing: 2.5px;
     text-transform: uppercase; color: var(--muted); font-weight: 700;
-    padding: 0 16px 10px;
+    padding: 0 10px 10px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 4px;
   }
   .sidebar-nav { display: flex; flex-direction: column; }
   .sidebar-nav a {
-    display: flex; align-items: center; gap: 10px;
-    padding: 7px 16px;
+    display: flex; align-items: left; gap: 10px;
+    padding: 7px 10px;
+    width: 100%;
     font-size: 0.8rem; color: var(--muted);
     text-decoration: none;
     transition: color 0.15s, background 0.15s;
     line-height: 1.2;
+    white-space: nowrap;
+    box-sizing: border-box;
   }
   .sidebar-nav a::before {
     content: '';
@@ -374,12 +384,12 @@
       top: 50%;
       right: 10px;
       transform: translateY(-50%);
-      min-width: auto;
+      width: auto;
       padding: 10px 8px;
       border-radius: 999px;
     }
     .sidebar-title { display: none; }
-    .sidebar-nav a { padding: 6px 8px; gap: 0; justify-content: center; }
+    .sidebar-nav a { padding: 6px 8px; gap: 0; justify-content: center; width: auto; }
     .sidebar-nav a span { display: none; }
     .sidebar-nav a::before { width: 8px; height: 8px; }
   }
@@ -442,12 +452,16 @@
     <p class="section-sub">A look at GameVault's clean, dark interface — from onboarding to reviews.</p>
     <div class="screenshots-scroll">
       <div class="screenshot-frame">
-        <img src="assets/images/ss_login.png" alt="Login screen">
+        <img src="assets/images/ss_login.png" alt="Sign in screen">
         <div class="screenshot-label">Sign In</div>
       </div>
       <div class="screenshot-frame">
-        <img src="assets/images/ss_login2.png" alt="Sign up screen">
-        <div class="screenshot-label">Create Account</div>
+        <img src="assets/images/ss_login3.png" alt="Sign up screen">
+        <div class="screenshot-label">Sign Up</div>
+      </div>
+      <div class="screenshot-frame">
+        <img src="assets/images/ss_login2.png" alt="Create your gamer profile">
+        <div class="screenshot-label">Create Profile</div>
       </div>
       <div class="screenshot-frame">
         <img src="assets/images/ss_feed.png" alt="Community feed">
@@ -458,12 +472,20 @@
         <div class="screenshot-label">Discover Games</div>
       </div>
       <div class="screenshot-frame">
-        <img src="assets/images/ss_game.png" alt="Game detail page">
+        <img src="assets/images/ss_game1.png" alt="Game info page">
+        <div class="screenshot-label">Game Info</div>
+      </div>
+      <div class="screenshot-frame">
+        <img src="assets/images/ss_game.png" alt="Game detail page with review buttons">
         <div class="screenshot-label">Game Details</div>
       </div>
       <div class="screenshot-frame">
         <img src="assets/images/ss_review.png" alt="Write a review">
         <div class="screenshot-label">Write a Review</div>
+      </div>
+      <div class="screenshot-frame">
+        <img src="assets/images/ss_ai.png" alt="AI game recommendations">
+        <div class="screenshot-label">AI Picks</div>
       </div>
     </div>
   </div>
@@ -508,8 +530,8 @@
       </div>
       <div class="tech-card">
         <div class="tech-icon">🤖</div>
-        <div class="tech-name">Claude AI (Anthropic)</div>
-        <div class="tech-desc">Powers the AI Recommendations feature — analyzes your favorites list and returns personalized game suggestions via the Claude API.</div>
+        <div class="tech-name">Gemini Flash (Google)</div>
+        <div class="tech-desc">Powers the AI Recommendations feature — analyzes your favorites list and returns personalized game suggestions via the Gemini Flash API.</div>
       </div>
     </div>
 
@@ -574,25 +596,32 @@
         <div class="team-name">Keely</div>
         <div class="team-role">Product / Frontend</div>
         <div class="team-detail">UI design, FlutterFlow architecture, product strategy & marketing site</div>
+        <div class="team-detail" style="margin-top:8px;"><a href="mailto:keelyfowler@uri.edu" style="color:var(--green);text-decoration:none;font-size:0.78rem;">keelyfowler@uri.edu</a></div>
       </div>
       <div class="team-card">
         <div class="team-avatar">🔥</div>
         <div class="team-name">Liam</div>
         <div class="team-role">Backend / Data</div>
         <div class="team-detail">Firebase architecture, Firestore schema, data modeling & backend logic</div>
+        <div class="team-detail" style="margin-top:8px;"><a href="mailto:liam_washburn@uri.edu" style="color:var(--green);text-decoration:none;font-size:0.78rem;">liam_washburn@uri.edu</a></div>
       </div>
       <div class="team-card">
         <div class="team-avatar">🤖</div>
         <div class="team-name">Nate</div>
         <div class="team-role">AI / Integrations</div>
-        <div class="team-detail">Claude AI recommendations, IGDB API integration & Firebase Analytics</div>
+        <div class="team-detail">Gemini AI recommendations, IGDB API integration & Firebase Analytics</div>
+        <div class="team-detail" style="margin-top:8px;"><a href="mailto:nate.barrios@uri.edu" style="color:var(--green);text-decoration:none;font-size:0.78rem;">nate.barrios@uri.edu</a></div>
       </div>
       <div class="team-card">
         <div class="team-avatar">⭐</div>
         <div class="team-name">Bianca</div>
-        <div class="team-role">UX / QA</div>
-        <div class="team-detail">User flows, onboarding design, A/B testing & quality assurance</div>
+        <div class="team-role">UX / QA / Documentation</div>
+        <div class="team-detail">User flows, onboarding design, A/B testing, quality assurance & GitHub Wiki documentation</div>
+        <div class="team-detail" style="margin-top:8px;"><a href="mailto:brietkerk2024@uri.edu" style="color:var(--green);text-decoration:none;font-size:0.78rem;">brietkerk2024@uri.edu</a></div>
       </div>
+    </div>
+    <div class="team-photo">
+      <img src="assets/images/group.png" alt="Team 305Soft at demo day — Keely, Liam, Nate, Bianca">
     </div>
     <div class="team-meta">
       <div class="team-meta-block">
@@ -609,7 +638,12 @@
       </div>
       <div class="team-meta-block">
         <span class="team-meta-label">Contact</span>
-        <span class="team-meta-val"><a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></span>
+        <span class="team-meta-val">
+          <a href="mailto:keelyfowler@uri.edu">keelyfowler@uri.edu</a><br>
+          <a href="mailto:nate.barrios@uri.edu">nate.barrios@uri.edu</a><br>
+          <a href="mailto:brietkerk2024@uri.edu">brietkerk2024@uri.edu</a><br>
+          <a href="mailto:liam_washburn@uri.edu">liam_washburn@uri.edu</a>
+        </span>
       </div>
     </div>
   </div>
@@ -629,9 +663,9 @@
           <div class="lc-cell-label">Problem</div>
           <div class="lc-cell-body">
             <ul>
-              <li>Gamers have no dedicated social app to log and review video games on mobile</li>
-              <li>Existing tools (spreadsheets, Backloggd) lack social features or are web-only</li>
-              <li>Game discovery is fragmented — no single source for peer recommendations</li>
+              <li>There is no clean, social-focused app specifically for tracking and reviewing video games the way Letterboxd does for movies</li>
+              <li>Gamers struggle to keep track of games they have played, want to play, or recommend</li>
+              <li>Reviews are scattered across Reddit, YouTube, Metacritic, and Steam with no centralized or personal hub</li>
             </ul>
           </div>
         </div>
@@ -641,9 +675,9 @@
           <div class="lc-cell-label">Solution</div>
           <div class="lc-cell-body">
             <ul>
-              <li>Mobile-first game tracking with star ratings and written reviews</li>
-              <li>Global and social feed for community discovery</li>
-              <li>AI-powered recommendations from your favorites list</li>
+              <li>Personal game library tracker with Played, Playing, and Want to Play</li>
+              <li>Social review with ratings, comments, and recommendations</li>
+              <li>Personalized feed based on user ratings and favorite genres</li>
             </ul>
           </div>
         </div>
@@ -652,19 +686,20 @@
         <div class="lc-cell lc-uvp" style="grid-column: 5 / 7; grid-row: 1 / 3;">
           <div class="lc-cell-label">Unique Value Proposition</div>
           <div class="lc-cell-body">
-            <em>The Letterboxd for gaming.</em>
-            Track, review, and discover video games with your community — free, mobile-first, and powered by 500K+ IGDB titles and AI recommendations.
+            <em>The social hub for gamers to track, review, and discover their next favorite game.</em>
+            A clean, community-driven platform where gamers build their personal game journal, share opinions, and discover new games through friends — just like Letterboxd but built for gaming culture.
           </div>
         </div>
 
         <!-- Unfair Advantage: cols 7-8, row 1 -->
         <div class="lc-cell" style="grid-column: 7 / 9; grid-row: 1;">
-          <div class="lc-cell-label">Unfair Advantage</div>
+          <div class="lc-cell-label">Advantage</div>
           <div class="lc-cell-body">
             <ul>
-              <li>Built by gamers — we are the target user</li>
-              <li>Claude AI integration for personalized recs</li>
-              <li>IGDB's complete, up-to-date game catalog</li>
+              <li>Built specifically for gamers, not a general review site</li>
+              <li>Social-first design with friend activity feeds and a clean, modern UI like Letterboxd (not cluttered like Metacritic)</li>
+              <li>Potential gaming platform integration</li>
+              <li>Strong engagement since gamers love ranking and sharing opinions</li>
             </ul>
           </div>
         </div>
@@ -674,9 +709,8 @@
           <div class="lc-cell-label">Customer Segments</div>
           <div class="lc-cell-body">
             <ul>
-              <li>College-age gamers (18–25) who want to track their library</li>
-              <li>Social gamers who share opinions online</li>
-              <li>Casual players looking for what to play next</li>
+              <li><strong style="color:var(--text);">Primary:</strong> Casual gamers ages 16–24, hardcore/competitive gamers ages 18–30, college students ages 18–22, console and PC players</li>
+              <li><strong style="color:var(--text);">Early Adopters:</strong> Gaming content creators on YouTube and Twitch, Reddit gaming community users, and people already using Letterboxd</li>
             </ul>
           </div>
         </div>
@@ -686,10 +720,11 @@
           <div class="lc-cell-label">Key Metrics</div>
           <div class="lc-cell-body">
             <ul>
-              <li>Reviews posted per week</li>
-              <li>Daily active users (DAU)</li>
-              <li>AI recommendations tapped</li>
-              <li>Follow network growth</li>
+              <li>Number of registered users and monthly active users</li>
+              <li>Games logged and reviews written</li>
+              <li>Friend connections made</li>
+              <li>User retention rate</li>
+              <li>App store rating and review sentiment</li>
             </ul>
           </div>
         </div>
@@ -699,10 +734,10 @@
           <div class="lc-cell-label">Channels</div>
           <div class="lc-cell-body">
             <ul>
-              <li>Google Play Store listing</li>
-              <li>URI & college word-of-mouth</li>
-              <li>Gaming Discord communities</li>
-              <li>Social media sharing</li>
+              <li>App Store and Google Play listings</li>
+              <li>Promotion through TikTok, Instagram, and Reddit gaming communities</li>
+              <li>Partnerships with YouTubers and Twitch streamers</li>
+              <li>Word of mouth via college gaming communities and Letterboxd users</li>
             </ul>
           </div>
         </div>
@@ -712,10 +747,9 @@
           <div class="lc-cell-label">Cost Structure</div>
           <div class="lc-cell-body">
             <ul>
-              <li>Firebase free tier (Firestore, Auth, Hosting, Analytics, Remote Config)</li>
-              <li>IGDB API — free tier, rate-limited</li>
-              <li>Claude AI API — pay-per-call for recommendations</li>
-              <li>Development time — URI CSC 305 student project</li>
+              <li>FlutterFlow development and hosting fees</li>
+              <li>Firebase backend costs scaling with user base</li>
+              <li>API access is free with the IGDB API from Twitch</li>
             </ul>
           </div>
         </div>
@@ -725,10 +759,10 @@
           <div class="lc-cell-label">Revenue Streams</div>
           <div class="lc-cell-body">
             <ul>
-              <li>Currently free — no revenue model in v1.0</li>
-              <li>Future: Premium tier with unlimited AI recommendations</li>
-              <li>Future: Affiliate links to game storefronts (Steam, PSN)</li>
-              <li>Future: Optional cosmetic profile upgrades</li>
+              <li>Freemium model — free tier for basic game tracking and reviews</li>
+              <li>Premium subscription (GameVault, $4.99/month) for unlimited follows, detailed stats, custom lists, and early access — managed via RevenueCat</li>
+              <li>Non-premium users capped at following 5 people</li>
+              <li>In-app advertising via Google AdMob displaying banner ads on profile pages for free tier users</li>
             </ul>
           </div>
         </div>
@@ -773,7 +807,7 @@
           <li>Display your profile, reviews, and favorites in the app</li>
           <li>Power the global and following community feeds</li>
           <li>Generate AI-powered game recommendations from your favorites</li>
-          <li>Respond to support requests sent to gamevault@uri.edu</li>
+          <li>Respond to support requests sent to keelyfowler@uri.edu, nate.barrios@uri.edu, brietkerk2024@uri.edu, or liam_washburn@uri.edu</li>
         </ul>
         <p style="margin-top:16px;">We do not use your data for advertising, profiling, or any purpose beyond operating GameVault.</p>
       </div>
@@ -801,7 +835,7 @@
 
       <div class="privacy-block">
         <h3>Your Rights &amp; Data Deletion</h3>
-        <p>You have the right to access, correct, or delete your personal data at any time. To request account and data deletion, email <a href="mailto:gamevault@uri.edu" style="color:var(--green);">gamevault@uri.edu</a>. We will process deletion requests within 30 days.</p>
+        <p>You have the right to access, correct, or delete your personal data at any time. To request account and data deletion, email <a href="mailto:keelyfowler@uri.edu" style="color:var(--green);">keelyfowler@uri.edu</a>, <a href="mailto:nate.barrios@uri.edu" style="color:var(--green);">nate.barrios@uri.edu</a>, <a href="mailto:brietkerk2024@uri.edu" style="color:var(--green);">brietkerk2024@uri.edu</a>, or <a href="mailto:liam_washburn@uri.edu" style="color:var(--green);">liam_washburn@uri.edu</a>. We will process deletion requests within 30 days.</p>
         <p>Public reviews may remain briefly visible after deletion while caches clear.</p>
       </div>
 
@@ -825,7 +859,7 @@
     <img src="assets/images/icon.png" alt="GameVault">
     <span>GameVault</span>
   </div>
-  <div>Built by Team GameVault — Keely, Liam, Nate, Bianca &middot; URI CSC 305 Spring 2026 &middot; <a href="mailto:gamevault@uri.edu">gamevault@uri.edu</a></div>
+  <div>Built by Team GameVault — Keely, Liam, Nate, Bianca &middot; URI CSC 305 Spring 2026 &middot; <a href="mailto:keelyfowler@uri.edu">keelyfowler@uri.edu</a> &middot; <a href="mailto:nate.barrios@uri.edu">nate.barrios@uri.edu</a> &middot; <a href="mailto:brietkerk2024@uri.edu">brietkerk2024@uri.edu</a> &middot; <a href="mailto:liam_washburn@uri.edu">liam_washburn@uri.edu</a></div>
   <div><a href="index.html">Store Listing</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; About</div>
 </footer>
 
