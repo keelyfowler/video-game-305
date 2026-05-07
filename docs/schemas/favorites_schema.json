@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Favorite",
+  "description": "Schema for favorites documents in the video-game-305 Firestore database. Each document represents one game saved to a user's favorites list.",
+  "type": "object",
+  "properties": {
+    "game_name": {
+      "type": "string",
+      "description": "The name of the favorited game"
+    },
+    "game_desc": {
+      "type": "string",
+      "description": "Short description of the game"
+    },
+    "game_pic": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the game's cover art image"
+    },
+    "user_ref": {
+      "type": "string",
+      "description": "Firestore document reference path pointing to the user's document in the users collection (e.g. users/uid)"
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "The user's ID stored as an integer in this collection"
+    }
+  },
+  "required": ["game_name", "user_ref"]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Review",
+  "description": "Schema for review documents in the video-game-305 Firestore database. Each document represents one review written by a user for a specific game.",
+  "type": "object",
+  "properties": {
+    "game_name": {
+      "type": "string",
+      "description": "The name of the game being reviewed"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "The Firebase Auth UID of the user who wrote the review"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Star rating from 1 to 5"
+    },
+    "review_text": {
+      "type": "string",
+      "description": "The written review content"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the review was submitted"
+    },
+    "user_ref": {
+      "type": "string",
+      "description": "Firestore document reference path pointing to the reviewer's document in the users collection (e.g. users/uid)"
+    }
+  },
+  "required": ["game_name", "user_id", "rating", "timestamp"]
+}

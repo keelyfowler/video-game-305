@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NPS Response",
+  "description": "Schema for nps_responses documents in the video-game-305 Firestore database. Each document stores one NPS survey response from a user.",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "The Firebase Auth UID of the user who submitted the response"
+    },
+    "score": {
+      "type": "string",
+      "description": "The NPS score the user submitted"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the NPS response was recorded"
+    }
+  },
+  "required": ["user_id", "score", "timestamp"]
+}

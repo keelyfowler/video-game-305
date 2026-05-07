@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User",
+  "description": "Schema for user documents in the video-game-305 Firestore database. Document ID matches the Firebase Auth UID.",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The user's email address"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Display name from the auth provider or set by the user"
+    },
+    "photo_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the user's profile photo"
+    },
+    "uid": {
+      "type": "string",
+      "description": "Firebase Authentication user ID"
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the user account was first created"
+    },
+    "phone_number": {
+      "type": "string",
+      "description": "User's phone number (optional)"
+    },
+    "username": {
+      "type": "string",
+      "description": "App-specific username chosen by the user during profile creation"
+    },
+    "bio": {
+      "type": "string",
+      "description": "Short bio written by the user about themselves"
+    },
+    "favorite_genre": {
+      "type": "string",
+      "description": "The user's favorite game genre"
+    },
+    "favorite_game": {
+      "type": "string",
+      "description": "The user's all-time favorite game"
+    },
+    "discord_name": {
+      "type": "string",
+      "description": "The user's Discord handle"
+    },
+    "twitch_name": {
+      "type": "string",
+      "description": "The user's Twitch username"
+    },
+    "has_answered_nps": {
+      "type": "boolean",
+      "description": "Whether the user has completed the NPS survey. Prevents the survey from being shown more than once.",
+      "default": false
+    }
+  },
+  "required": ["email", "uid", "created_time"]
+}
