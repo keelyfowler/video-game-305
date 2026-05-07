@@ -135,7 +135,8 @@ class _SettingsOptionWidgetState extends State<SettingsOptionWidget> {
                                         .titleSmall
                                         .fontStyle,
                                   ),
-                                  color: Colors.white,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -175,7 +176,8 @@ class _SettingsOptionWidgetState extends State<SettingsOptionWidget> {
                                         .titleSmall
                                         .fontStyle,
                                   ),
-                                  color: Colors.white,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                   fontStyle: FlutterFlowTheme.of(context)

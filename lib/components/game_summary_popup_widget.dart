@@ -98,7 +98,7 @@ class _GameSummaryPopupWidgetState extends State<GameSummaryPopupWidget> {
                         fontStyle:
                             FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
-                      color: Color(0xFFCAE0CD),
+                      color: FlutterFlowTheme.of(context).primaryBackground,
                       letterSpacing: 0.0,
                       fontWeight:
                           FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -127,7 +127,7 @@ class _GameSummaryPopupWidgetState extends State<GameSummaryPopupWidget> {
                         fontStyle:
                             FlutterFlowTheme.of(context).titleSmall.fontStyle,
                       ),
-                      color: FlutterFlowTheme.of(context).info,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
                       letterSpacing: 0.0,
                       fontWeight:
                           FlutterFlowTheme.of(context).titleSmall.fontWeight,

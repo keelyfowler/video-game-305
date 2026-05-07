@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,6 +10,7 @@ import '/index.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'game_info_page_model.dart';
@@ -45,9 +47,9 @@ export 'game_info_page_model.dart';
 class GameInfoPageWidget extends StatefulWidget {
   const GameInfoPageWidget({
     super.key,
-    required this.gameName,
-    required this.gameSummary,
-    required this.gameCover,
+    this.gameName,
+    this.gameSummary,
+    this.gameCover,
     required this.gameId,
   });
 
@@ -63,10 +65,13 @@ class GameInfoPageWidget extends StatefulWidget {
   State<GameInfoPageWidget> createState() => _GameInfoPageWidgetState();
 }
 
-class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
+class _GameInfoPageWidgetState extends State<GameInfoPageWidget>
+    with TickerProviderStateMixin {
   late GameInfoPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -83,6 +88,61 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
         gameID: widget.gameId,
       );
 
+      logFirebaseEvent('GameInfoPage_update_page_state');
+      _model.gameName = getJsonField(
+        (_model.gameDetailsResult?.jsonBody ?? ''),
+        r'''$.game.name''',
+      ).toString();
+      _model.gameDescr = getJsonField(
+        (_model.gameDetailsResult?.jsonBody ?? ''),
+        r'''$.game.summary''',
+      ).toString();
+      _model.gameImage = getJsonField(
+        (_model.gameDetailsResult?.jsonBody ?? ''),
+        r'''$.game.cover.url''',
+      ).toString();
+      _model.gameGenre = getJsonField(
+        (_model.gameDetailsResult?.jsonBody ?? ''),
+        r'''$.game.genres[0].name''',
+      ).toString();
+      _model.gameDev = getJsonField(
+        (_model.gameDetailsResult?.jsonBody ?? ''),
+        r'''$.game.developer''',
+      ).toString();
+      _model.gamePlatform = getJsonField(
+        (_model.gameDetailsResult?.jsonBody ?? ''),
+        r'''$.game.platforms[0].name''',
+      ).toString();
+      _model.gameReleased = getJsonField(
+        (_model.gameDetailsResult?.jsonBody ?? ''),
+        r'''$.game.released''',
+      ).toString();
+      safeSetState(() {});
+      if (getJsonField(
+        (_model.gameDetailsResult?.jsonBody ?? ''),
+        r'''$.game.screenshots''',
+      )) {
+        logFirebaseEvent('GameInfoPage_update_page_state');
+        _model.gameScreenshots = (getJsonField(
+          (_model.gameDetailsResult?.jsonBody ?? ''),
+          r'''$.game.screenshots[:].url''',
+          true,
+        ) as List?)!
+            .map<String>((e) => e.toString())
+            .toList()
+            .cast<String>()
+            .toList()
+            .cast<String>();
+        safeSetState(() {});
+      } else {
+        logFirebaseEvent('GameInfoPage_update_page_state');
+        _model.addToGameScreenshots(widget.gameCover!);
+        safeSetState(() {});
+      }
+
+      logFirebaseEvent('GameInfoPage_update_page_state');
+      _model.isLoading = false;
+      safeSetState(() {});
       logFirebaseEvent('GameInfoPage_firestore_query');
       _model.favoriteCheckVisuale = await queryFavoritesRecordOnce(
         queryBuilder: (favoritesRecord) => favoritesRecord
@@ -105,6 +165,34 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
         _model.iconClicked = 0;
         safeSetState(() {});
       }
+    });
+
+    animationsMap.addAll({
+      'columnOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          RotateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'imageOnPageLoadAnimation': AnimationInfo(
+        loop: true,
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          RotateEffect(
+            curve: Curves.linear,
+            delay: 0.0.ms,
+            duration: 3000.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -172,746 +260,729 @@ class _GameInfoPageWidgetState extends State<GameInfoPageWidget> {
             elevation: 5.0,
           ),
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
+        body: Stack(
           children: [
-            Container(
-              width: double.infinity,
-              height: 319.0,
-              child: Stack(
-                alignment: AlignmentDirectional(0.0, 1.0),
+            if (!_model.isLoading)
+              Column(
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 300.0,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Colors.transparent, Color(0xFF4A4D4D)],
-                        stops: [0.0, 1.0],
-                        begin: AlignmentDirectional(0.07, -1.0),
-                        end: AlignmentDirectional(-0.07, 1.0),
-                      ),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        widget.gameCover!,
-                        width: 200.0,
-                        height: 200.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 4.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    height: 319.0,
+                    child: Stack(
+                      alignment: AlignmentDirectional(0.0, 1.0),
                       children: [
                         Container(
+                          width: double.infinity,
+                          height: 320.0,
                           decoration: BoxDecoration(
-                            color: Color(0x7E445552),
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: GradientText(
-                            valueOrDefault<String>(
-                              widget.gameName,
-                              'gameName',
+                            gradient: LinearGradient(
+                              colors: [Colors.transparent, Color(0xFF4A4D4D)],
+                              stops: [0.0, 1.0],
+                              begin: AlignmentDirectional(0.03, -1.0),
+                              end: AlignmentDirectional(-0.03, 1.0),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .displaySmall
-                                .override(
-                                  font: GoogleFonts.urbanist(
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .displaySmall
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  fontSize: 24.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .displaySmall
-                                      .fontStyle,
-                                  lineHeight: 1.2,
-                                ),
-                            colors: [
-                              Color(0xFF4C6959),
-                              FlutterFlowTheme.of(context).primary
-                            ],
-                            gradientDirection: GradientDirection.ltr,
-                            gradientType: GradientType.linear,
-                            overflow: TextOverflow.fade,
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              _model.gameImage!,
+                              width: 200.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 6.0, 0.0, 0.0),
-                          child: Row(
+                              8.0, 0.0, 8.0, 4.0),
+                          child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Opacity(
-                                opacity: 0.0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Color(0x7E445552),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      '2024',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .override(
-                                            font: GoogleFonts.dmSans(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .fontStyle,
-                                            ),
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelSmall
-                                                    .fontStyle,
-                                          ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 6.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Color(0xF3364441),
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: GradientText(
+                                          _model.gameName,
+                                          style: FlutterFlowTheme.of(context)
+                                              .displaySmall
+                                              .override(
+                                                font: GoogleFonts.urbanist(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmall
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                fontSize: 22.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .displaySmall
+                                                        .fontStyle,
+                                                lineHeight: 1.2,
+                                              ),
+                                          colors: [
+                                            Color(0xFF4C6959),
+                                            FlutterFlowTheme.of(context).primary
+                                          ],
+                                          gradientDirection:
+                                              GradientDirection.ltr,
+                                          gradientType: GradientType.linear,
+                                          overflow: TextOverflow.fade,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 8.0)),
+                            ],
+                          ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(1.01, -1.04),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0x7E445552),
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: FlutterFlowIconButton(
+                              key: ValueKey('IconButton_pqe9'),
+                              borderRadius: 22.0,
+                              hoverIconColor: Color(0xFF552E2E),
+                              icon: Icon(
+                                Icons.favorite,
+                                color: _model.iconClicked == 1
+                                    ? Color(0xFFFF7CE8)
+                                    : Colors.black,
+                                size: 44.0,
+                              ),
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'GAME_INFO_PAGE_PAGE_favorite_ICN_ON_TAP');
+                                logFirebaseEvent('IconButton_firestore_query');
+                                _model.favoriteCheck =
+                                    await queryFavoritesRecordOnce(
+                                  queryBuilder: (favoritesRecord) =>
+                                      favoritesRecord
+                                          .where(
+                                            'user_ref',
+                                            isEqualTo: currentUserReference,
+                                          )
+                                          .where(
+                                            'game_id',
+                                            isEqualTo: widget.gameId,
+                                          ),
+                                  singleRecord: true,
+                                ).then((s) => s.firstOrNull);
+                                if (_model.favoriteCheck != null) {
+                                  logFirebaseEvent('IconButton_backend_call');
+                                  await _model.favoriteCheck!.reference
+                                      .delete();
+                                  logFirebaseEvent(
+                                      'IconButton_update_page_state');
+                                  _model.iconClicked = 0;
+                                  safeSetState(() {});
+                                } else {
+                                  logFirebaseEvent('IconButton_backend_call');
+
+                                  await FavoritesRecord.collection
+                                      .doc(
+                                          '${currentUserUid}_${widget.gameId}')
+                                      .set(createFavoritesRecordData(
+                                        gameName: widget.gameName,
+                                        gameDesc: widget.gameSummary,
+                                        userRef: currentUserReference,
+                                        gamePic: widget.gameCover,
+                                        gameId: widget.gameId,
+                                        userId: currentUserUid,
+                                      ));
+                                  logFirebaseEvent(
+                                      'IconButton_update_page_state');
+                                  _model.iconClicked = 1;
+                                  safeSetState(() {});
+                                }
+
+                                safeSetState(() {});
+                              },
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Align(
-                    alignment: AlignmentDirectional(1.01, -1.04),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color(0x7E445552),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: FlutterFlowIconButton(
-                        key: ValueKey('IconButton_pqe9'),
-                        borderRadius: 22.0,
-                        hoverIconColor: Color(0xFF552E2E),
-                        icon: Icon(
-                          Icons.favorite,
-                          color: _model.iconClicked == 1
-                              ? Color(0xFFFF7CE8)
-                              : Colors.black,
-                          size: 44.0,
-                        ),
-                        onPressed: () async {
-                          logFirebaseEvent(
-                              'GAME_INFO_PAGE_PAGE_favorite_ICN_ON_TAP');
-                          logFirebaseEvent('IconButton_firestore_query');
-                          _model.favoriteCheck = await queryFavoritesRecordOnce(
-                            queryBuilder: (favoritesRecord) => favoritesRecord
-                                .where(
-                                  'user_ref',
-                                  isEqualTo: currentUserReference,
-                                )
-                                .where(
-                                  'game_id',
-                                  isEqualTo: widget.gameId,
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'About',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontStyle,
+                                        ),
+                                        color: Color(0xFF9CC5A1),
+                                        fontSize: 15.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .fontStyle,
+                                      ),
                                 ),
-                            singleRecord: true,
-                          ).then((s) => s.firstOrNull);
-                          if (_model.favoriteCheck != null) {
-                            logFirebaseEvent('IconButton_backend_call');
-                            await _model.favoriteCheck!.reference.delete();
-                            logFirebaseEvent('IconButton_update_page_state');
-                            _model.iconClicked = 0;
-                            safeSetState(() {});
-                          } else {
-                            logFirebaseEvent('IconButton_backend_call');
+                                Text(
+                                  _model.gameDescr,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: Color(0xFFDDDDDD),
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                        lineHeight: 1.6,
+                                      ),
+                                ),
+                              ].divide(SizedBox(height: 8.0)),
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Details',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontStyle,
+                                        ),
+                                        color: Color(0xFF9CC5A1),
+                                        fontSize: 15.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .fontStyle,
+                                      ),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(2.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFF3A3D3D),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'GENRE',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xFF9CC5A1),
+                                                        letterSpacing: 1.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  _model.gameGenre,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        color: Colors.white,
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(height: 4.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(2.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFF3A3D3D),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'PLATFORM',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xFF9CC5A1),
+                                                        letterSpacing: 1.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  _model.gamePlatform,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        color: Colors.white,
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(height: 4.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(2.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFF3A3D3D),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'DEVELOPER',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xFF9CC5A1),
+                                                        letterSpacing: 1.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  _model.gameDev,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        color: Colors.white,
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(height: 4.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ].divide(SizedBox(width: 12.0)),
+                                ),
+                              ].divide(SizedBox(height: 12.0)),
+                            ),
+                            SingleChildScrollView(
+                              primary: false,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    'Screenshots',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                          font: GoogleFonts.dmSans(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLarge
+                                                    .fontStyle,
+                                          ),
+                                          color: Color(0xFF9CC5A1),
+                                          fontSize: 15.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    height: 120.0,
+                                    decoration: BoxDecoration(),
+                                    child: Builder(
+                                      builder: (context) {
+                                        final screenshotList =
+                                            _model.gameScreenshots.toList();
 
-                            await FavoritesRecord.collection
-                                .doc('${currentUserUid}_${widget.gameId}')
-                                .set(createFavoritesRecordData(
-                                  gameName: widget.gameName,
-                                  gameDesc: widget.gameSummary,
-                                  userRef: currentUserReference,
-                                  gamePic: widget.gameCover,
-                                  gameId: widget.gameId,
-                                  userId: currentUserUid,
-                                ));
-                            logFirebaseEvent('IconButton_update_page_state');
-                            _model.iconClicked = 1;
-                            safeSetState(() {});
-                          }
+                                        return ListView.separated(
+                                          padding: EdgeInsets.zero,
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: screenshotList.length,
+                                          separatorBuilder: (_, __) =>
+                                              SizedBox(width: 40.0),
+                                          itemBuilder:
+                                              (context, screenshotListIndex) {
+                                            final screenshotListItem =
+                                                screenshotList[
+                                                    screenshotListIndex];
+                                            return ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                screenshotListItem,
+                                                width: 200.0,
+                                                height: 200.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ].divide(SizedBox(height: 8.0)),
+                              ),
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    logFirebaseEvent(
+                                        'GAME_INFO_WRITE_A_REVIEW_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_navigate_to');
 
-                          safeSetState(() {});
-                        },
+                                    context.pushNamed(
+                                      GameReviewPageWidget.routeName,
+                                      queryParameters: {
+                                        'gameName': serializeParam(
+                                          widget.gameName,
+                                          ParamType.String,
+                                        ),
+                                        'gameCover': serializeParam(
+                                          widget.gameCover,
+                                          ParamType.String,
+                                        ),
+                                        'gameId': serializeParam(
+                                          widget.gameId,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  text: 'Write a Review',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 54.0,
+                                    padding: EdgeInsets.all(8.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: Color(0xFFAC9A5E),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          font: GoogleFonts.manrope(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontStyle,
+                                          ),
+                                          color: Colors.white,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontStyle,
+                                        ),
+                                    elevation: 0.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(14.0),
+                                  ),
+                                ),
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    logFirebaseEvent(
+                                        'GAME_INFO_SEE_ALL_REVIEWS_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_navigate_to');
+
+                                    context.pushNamed(
+                                      AllReviewsPageWidget.routeName,
+                                      queryParameters: {
+                                        'gameId': serializeParam(
+                                          widget.gameId,
+                                          ParamType.String,
+                                        ),
+                                        'gameName': serializeParam(
+                                          widget.gameName,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  text: 'See All Reviews',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 54.0,
+                                    padding: EdgeInsets.all(8.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: Color(0xFF57886C),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          font: GoogleFonts.manrope(
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontStyle,
+                                          ),
+                                          color: Colors.white,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontStyle,
+                                        ),
+                                    elevation: 0.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(14.0),
+                                  ),
+                                ),
+                              ].divide(SizedBox(height: 12.0)),
+                            ),
+                          ]
+                              .divide(SizedBox(height: 11.0))
+                              .addToStart(SizedBox(height: 24.0))
+                              .addToEnd(SizedBox(height: 32.0)),
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                child: SingleChildScrollView(
-                  primary: false,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'About',
-                            style: FlutterFlowTheme.of(context)
-                                .labelLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .fontStyle,
-                                  ),
-                                  color: Color(0xFF9CC5A1),
-                                  fontSize: 15.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                          Text(
-                            valueOrDefault<String>(
-                              widget.gameSummary,
-                              'gameSummary',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                                  color: Color(0xFFDDDDDD),
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
-                                  lineHeight: 1.6,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 8.0)),
+            if (_model.isLoading)
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        'assets/images/edited_square.png',
+                        width: 200.0,
+                        height: 200.0,
+                        fit: BoxFit.contain,
+                        alignment: Alignment(0.0, 0.0),
                       ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Details',
-                            style: FlutterFlowTheme.of(context)
-                                .labelLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .fontStyle,
-                                  ),
-                                  color: Color(0xFF9CC5A1),
-                                  fontSize: 15.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.all(2.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF3A3D3D),
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'GENRE',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.dmSans(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF9CC5A1),
-                                                  letterSpacing: 1.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                          Text(
-                                            getJsonField(
-                                              (_model.gameDetailsResult
-                                                      ?.jsonBody ??
-                                                  ''),
-                                              r'''$.game.genres[0].name''',
-                                            ).toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.dmSans(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Colors.white,
-                                                  fontSize: 13.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ].divide(SizedBox(height: 4.0)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.all(2.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF3A3D3D),
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'PLATFORM',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.dmSans(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF9CC5A1),
-                                                  letterSpacing: 1.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                          Text(
-                                            getJsonField(
-                                              (_model.gameDetailsResult
-                                                      ?.jsonBody ??
-                                                  ''),
-                                              r'''$.game.platforms[0].name''',
-                                            ).toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.dmSans(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Colors.white,
-                                                  fontSize: 13.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ].divide(SizedBox(height: 4.0)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.all(2.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF3A3D3D),
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'DEVELOPER',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.dmSans(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF9CC5A1),
-                                                  letterSpacing: 1.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                          Text(
-                                            getJsonField(
-                                              (_model.gameDetailsResult
-                                                      ?.jsonBody ??
-                                                  ''),
-                                              r'''$.game.developer''',
-                                            ).toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.dmSans(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Colors.white,
-                                                  fontSize: 13.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ].divide(SizedBox(height: 4.0)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ].divide(SizedBox(width: 12.0)),
-                          ),
-                        ].divide(SizedBox(height: 12.0)),
-                      ),
-                      SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              'Screenshots',
-                              style: FlutterFlowTheme.of(context)
-                                  .labelLarge
-                                  .override(
-                                    font: GoogleFonts.dmSans(
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFF9CC5A1),
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .fontStyle,
-                                  ),
-                            ),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    child: Image.network(
-                                      getJsonField(
-                                        (_model.gameDetailsResult?.jsonBody ??
-                                            ''),
-                                        r'''$.game.screenshots[0].url''',
-                                      ).toString(),
-                                      width: 140.0,
-                                      height: 90.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    child: Image.network(
-                                      getJsonField(
-                                        (_model.gameDetailsResult?.jsonBody ??
-                                            ''),
-                                        r'''$.game.screenshots[1].url''',
-                                      ).toString(),
-                                      width: 140.0,
-                                      height: 90.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    child: Image.network(
-                                      getJsonField(
-                                        (_model.gameDetailsResult?.jsonBody ??
-                                            ''),
-                                        r'''$.game.screenshots[2].url''',
-                                      ).toString(),
-                                      width: 140.0,
-                                      height: 90.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    child: Image.network(
-                                      getJsonField(
-                                        (_model.gameDetailsResult?.jsonBody ??
-                                            ''),
-                                        r'''$.game.screenshots[3].url''',
-                                      ).toString(),
-                                      width: 140.0,
-                                      height: 90.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    child: Image.network(
-                                      getJsonField(
-                                        (_model.gameDetailsResult?.jsonBody ??
-                                            ''),
-                                        r'''$.game.screenshots[4].url''',
-                                      ).toString(),
-                                      width: 140.0,
-                                      height: 90.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    child: Image.network(
-                                      getJsonField(
-                                        (_model.gameDetailsResult?.jsonBody ??
-                                            ''),
-                                        r'''$.game.screenshots[5].url''',
-                                      ).toString(),
-                                      width: 140.0,
-                                      height: 90.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ].divide(SizedBox(width: 12.0)),
-                              ),
-                            ),
-                          ].divide(SizedBox(height: 8.0)),
-                        ),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'GAME_INFO_WRITE_A_REVIEW_BTN_ON_TAP');
-                              logFirebaseEvent('Button_navigate_to');
-
-                              context.pushNamed(
-                                GameReviewPageWidget.routeName,
-                                queryParameters: {
-                                  'gameName': serializeParam(
-                                    widget.gameName,
-                                    ParamType.String,
-                                  ),
-                                  'gameCover': serializeParam(
-                                    widget.gameCover,
-                                    ParamType.String,
-                                  ),
-                                  'gameId': serializeParam(
-                                    widget.gameId,
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                              );
-                            },
-                            text: 'Write a Review',
-                            options: FFButtonOptions(
-                              width: double.infinity,
-                              height: 54.0,
-                              padding: EdgeInsets.all(8.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFFAC9A5E),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    font: GoogleFonts.manrope(
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    color: Colors.white,
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                              elevation: 0.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(14.0),
-                            ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'GAME_INFO_SEE_ALL_REVIEWS_BTN_ON_TAP');
-                              logFirebaseEvent('Button_navigate_to');
-
-                              context.pushNamed(
-                                AllReviewsPageWidget.routeName,
-                                queryParameters: {
-                                  'gameId': serializeParam(
-                                    widget.gameId,
-                                    ParamType.String,
-                                  ),
-                                  'gameName': serializeParam(
-                                    widget.gameName,
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                              );
-                            },
-                            text: 'See All Reviews',
-                            options: FFButtonOptions(
-                              width: double.infinity,
-                              height: 54.0,
-                              padding: EdgeInsets.all(8.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF57886C),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    font: GoogleFonts.manrope(
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    color: Colors.white,
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                              elevation: 0.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(14.0),
-                            ),
-                          ),
-                        ].divide(SizedBox(height: 12.0)),
-                      ),
-                    ]
-                        .divide(SizedBox(height: 11.0))
-                        .addToStart(SizedBox(height: 24.0))
-                        .addToEnd(SizedBox(height: 32.0)),
-                  ),
-                ),
+                    ).animateOnPageLoad(
+                        animationsMap['imageOnPageLoadAnimation']!),
+                  ],
+                ).animateOnPageLoad(
+                    animationsMap['columnOnPageLoadAnimation']!),
               ),
-            ),
           ],
         ),
       ),

@@ -2,11 +2,13 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/ai_agents/ai_agent.dart';
 import '/backend/backend.dart';
 import '/components/recommendation_card_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'recommended_games_model.dart';
 export 'recommended_games_model.dart';
@@ -49,10 +51,13 @@ class RecommendedGamesWidget extends StatefulWidget {
   State<RecommendedGamesWidget> createState() => _RecommendedGamesWidgetState();
 }
 
-class _RecommendedGamesWidgetState extends State<RecommendedGamesWidget> {
+class _RecommendedGamesWidgetState extends State<RecommendedGamesWidget>
+    with TickerProviderStateMixin {
   late RecommendedGamesModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -61,6 +66,34 @@ class _RecommendedGamesWidgetState extends State<RecommendedGamesWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'RecommendedGames'});
+    animationsMap.addAll({
+      'columnOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          RotateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'imageOnPageLoadAnimation': AnimationInfo(
+        loop: true,
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          RotateEffect(
+            curve: Curves.linear,
+            delay: 0.0.ms,
+            duration: 3000.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -199,127 +232,41 @@ class _RecommendedGamesWidgetState extends State<RecommendedGamesWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     4.0, 0.0, 4.0, 0.0),
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.28,
-                                              height: MediaQuery.sizeOf(context)
-                                                      .height *
-                                                  0.2,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 4.0,
-                                                    color: Color(0x33000000),
-                                                    offset: Offset(
-                                                      3.0,
-                                                      -3.0,
-                                                    ),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Stack(
-                                                    children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Container(
-                                                            width: 100.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Color(
-                                                                  0xFFF1F4F8),
-                                                              boxShadow: [
-                                                                BoxShadow(
-                                                                  blurRadius:
-                                                                      4.0,
-                                                                  color: Color(
-                                                                      0x33000000),
-                                                                  offset:
-                                                                      Offset(
-                                                                    1.0,
-                                                                    1.0,
-                                                                  ),
-                                                                )
-                                                              ],
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20.0),
-                                                            ),
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(2.0),
-                                                              child: Text(
-                                                                favoriteItemItem
-                                                                    .gameName,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .urbanist(
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .titleSmall
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
-                                                                          .fontStyle,
-                                                                    ),
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .fade,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.28,
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        0.2,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .alternate,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 4.0,
+                                                      color: Color(0x33000000),
+                                                      offset: Offset(
+                                                        3.0,
+                                                        -3.0,
                                                       ),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 12.0),
-                                                    child: Row(
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          12.0),
+                                                ),
+                                                child: Stack(
+                                                  children: [
+                                                    Column(
                                                       mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceAround,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
+                                                          MainAxisSize.min,
                                                       children: [
                                                         ClipRRect(
                                                           borderRadius:
@@ -329,15 +276,95 @@ class _RecommendedGamesWidgetState extends State<RecommendedGamesWidget> {
                                                           child: Image.network(
                                                             favoriteItemItem
                                                                 .gamePic,
-                                                            width: 109.7,
-                                                            height: 178.2,
+                                                            width:
+                                                                double.infinity,
                                                             fit: BoxFit.cover,
                                                           ),
                                                         ),
                                                       ],
                                                     ),
-                                                  ),
-                                                ],
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 1.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: Color(
+                                                                    0xF3364441),
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    blurRadius:
+                                                                        4.0,
+                                                                    color: Color(
+                                                                        0x33000000),
+                                                                    offset:
+                                                                        Offset(
+                                                                      1.0,
+                                                                      1.0,
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20.0),
+                                                              ),
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            2.0),
+                                                                child: Text(
+                                                                  favoriteItemItem
+                                                                      .gameName,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .start,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .urbanist(
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        fontSize:
+                                                                            11.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .fontStyle,
+                                                                      ),
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .visible,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           );
@@ -391,6 +418,10 @@ class _RecommendedGamesWidgetState extends State<RecommendedGamesWidget> {
                                               _model.aiResult = generatedText);
                                         });
 
+                                        logFirebaseEvent(
+                                            'Button_update_page_state');
+                                        _model.aiClicked = true;
+                                        safeSetState(() {});
                                         logFirebaseEvent(
                                             'Button_update_page_state');
                                         _model.aiResponse = _model.aiResult;
@@ -451,100 +482,147 @@ class _RecommendedGamesWidgetState extends State<RecommendedGamesWidget> {
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  width: double.infinity,
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.499,
-                                  constraints: BoxConstraints(
-                                    maxHeight: 500.0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 4.0,
-                                        color: Color(0x33000000),
-                                        offset: Offset(
-                                          3.0,
-                                          3.0,
-                                        ),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(12.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: SingleChildScrollView(
-                                            child: IntrinsicWidth(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Builder(
-                                                    builder: (context) {
-                                                      final rec = _model
-                                                          .recommendationsList
-                                                          .take(5)
-                                                          .toList()
-                                                          .take(5)
-                                                          .toList();
+                                Stack(
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              0.499,
+                                      constraints: BoxConstraints(
+                                        maxHeight: 500.0,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 4.0,
+                                            color: Color(0x33000000),
+                                            offset: Offset(
+                                              3.0,
+                                              3.0,
+                                            ),
+                                          )
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(12.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: SingleChildScrollView(
+                                                primary: false,
+                                                child: IntrinsicWidth(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      if (_model.aiClicked)
+                                                        Builder(
+                                                          builder: (context) {
+                                                            final rec = _model
+                                                                .recommendationsList
+                                                                .take(5)
+                                                                .toList()
+                                                                .take(5)
+                                                                .toList();
 
-                                                      return ListView.builder(
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                        shrinkWrap: true,
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        itemCount: rec.length,
-                                                        itemBuilder: (context,
-                                                            recIndex) {
-                                                          final recItem =
-                                                              rec[recIndex];
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child:
-                                                                RecommendationCardWidget(
-                                                              key: Key(
-                                                                  'Key0sk_${recIndex}_of_${rec.length}'),
-                                                              recommendation:
-                                                                  recItem,
-                                                            ),
-                                                          );
-                                                        },
-                                                      );
-                                                    },
+                                                            return ListView
+                                                                .builder(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              shrinkWrap: true,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  rec.length,
+                                                              itemBuilder:
+                                                                  (context,
+                                                                      recIndex) {
+                                                                final recItem =
+                                                                    rec[recIndex];
+                                                                return Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          12.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      RecommendationCardWidget(
+                                                                    key: Key(
+                                                                        'Key0sk_${recIndex}_of_${rec.length}'),
+                                                                    recommendation:
+                                                                        recItem,
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      Container(
+                                                        width: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              Color(0xFF0F3460),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                        ),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(height: 8.0)),
                                                   ),
-                                                  Container(
-                                                    width: 60.0,
-                                                    decoration: BoxDecoration(
-                                                      color: Color(0xFF0F3460),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                    ),
-                                                  ),
-                                                ].divide(SizedBox(height: 8.0)),
+                                                ),
                                               ),
                                             ),
-                                          ),
+                                          ].divide(SizedBox(width: 12.0)),
                                         ),
-                                      ].divide(SizedBox(width: 12.0)),
+                                      ),
                                     ),
-                                  ),
+                                    if (!_model.aiClicked)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 80.0, 0.0, 0.0),
+                                        child: Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.asset(
+                                                  'assets/images/edited_square_Background_Removed_2.png',
+                                                  width: 200.0,
+                                                  height: 200.0,
+                                                  fit: BoxFit.contain,
+                                                  alignment:
+                                                      Alignment(0.0, 0.0),
+                                                ),
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'imageOnPageLoadAnimation']!),
+                                            ],
+                                          ).animateOnPageLoad(animationsMap[
+                                              'columnOnPageLoadAnimation']!),
+                                        ),
+                                      ),
+                                  ],
                                 ),
                               ].divide(SizedBox(height: 16.0)),
                             ),

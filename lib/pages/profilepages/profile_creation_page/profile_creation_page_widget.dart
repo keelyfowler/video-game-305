@@ -2,7 +2,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -104,7 +103,7 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 220.0,
+                    height: 150.0,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [Color(0xFF177BDD), Color(0xFF445552)],
@@ -113,106 +112,73 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                         end: AlignmentDirectional(-1.0, -1.0),
                       ),
                     ),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                24.0, 60.0, 24.0, 24.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Create Your Gamer Profile',
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .displaySmall
-                                      .override(
-                                        font: GoogleFonts.urbanist(
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .displaySmall
-                                                  .fontStyle,
-                                        ),
-                                        color: Colors.white,
-                                        fontSize: 26.0,
-                                        letterSpacing: 0.0,
+                    child: Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 15.0, 24.0, 10.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 18.0, 0.0, 0.0),
+                              child: Text(
+                                'Create Your Gamer Profile',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .override(
+                                      font: GoogleFonts.urbanist(
                                         fontWeight: FontWeight.bold,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .displaySmall
                                             .fontStyle,
                                       ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Track and review your favorite games.',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.manrope(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: Color(0xCCFFFFFF),
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        if (getRemoteConfigBool('skip_goes_to_landing'))
-                          Align(
-                            alignment: AlignmentDirectional(1.0, -1.0),
-                            child: Padding(
-                              padding: EdgeInsets.all(20.0),
-                              child: FlutterFlowIconButton(
-                                borderRadius: 8.0,
-                                buttonSize: 40.0,
-                                fillColor: Color(0xFFAC9A5E),
-                                icon: Icon(
-                                  Icons.arrow_forward,
-                                  color: FlutterFlowTheme.of(context).info,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  logFirebaseEvent(
-                                      'PROFILE_CREATION_ABTestingButton_ON_TAP');
-                                  logFirebaseEvent(
-                                      'ABTestingButton_google_analytics_event');
-                                  logFirebaseEvent('skip_button_clicked');
-                                  logFirebaseEvent(
-                                      'ABTestingButton_navigate_to');
-
-                                  context.pushNamed(FeedPageWidget.routeName);
-                                },
+                                      color: Colors.white,
+                                      fontSize: 26.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontStyle,
+                                    ),
                               ),
                             ),
-                          ),
-                      ],
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 0.0),
+                              child: Text(
+                                'Track and review your favorite games.',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.manrope(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      color: Color(0xCCFFFFFF),
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   Padding(
@@ -258,10 +224,9 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                           logFirebaseEvent(
                                               'PROFILE_CREATION_Stack_d5cm2i0i_ON_TAP');
                                           logFirebaseEvent(
-                                              'Stack_upload_media_to_firebase');
+                                              'Stack_store_media_for_upload');
                                           final selectedMedia =
                                               await selectMedia(
-                                            maxWidth: 100.00,
                                             mediaSource:
                                                 MediaSource.photoGallery,
                                             multiImage: false,
@@ -272,12 +237,11 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                                       m.storagePath,
                                                       context))) {
                                             safeSetState(() => _model
-                                                    .isDataUploading_uploadDataProfilePic =
+                                                    .isDataUploading_photoUrlStoredCreation =
                                                 true);
                                             var selectedUploadedFiles =
                                                 <FFUploadedFile>[];
 
-                                            var downloadUrls = <String>[];
                                             try {
                                               selectedUploadedFiles =
                                                   selectedMedia
@@ -300,29 +264,15 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                                                     m.originalFilename,
                                                               ))
                                                       .toList();
-
-                                              downloadUrls = (await Future.wait(
-                                                selectedMedia.map(
-                                                  (m) async => await uploadData(
-                                                      m.storagePath, m.bytes),
-                                                ),
-                                              ))
-                                                  .where((u) => u != null)
-                                                  .map((u) => u!)
-                                                  .toList();
                                             } finally {
-                                              _model.isDataUploading_uploadDataProfilePic =
+                                              _model.isDataUploading_photoUrlStoredCreation =
                                                   false;
                                             }
                                             if (selectedUploadedFiles.length ==
-                                                    selectedMedia.length &&
-                                                downloadUrls.length ==
-                                                    selectedMedia.length) {
+                                                selectedMedia.length) {
                                               safeSetState(() {
-                                                _model.uploadedLocalFile_uploadDataProfilePic =
+                                                _model.uploadedLocalFile_photoUrlStoredCreation =
                                                     selectedUploadedFiles.first;
-                                                _model.uploadedFileUrl_uploadDataProfilePic =
-                                                    downloadUrls.first;
                                               });
                                             } else {
                                               safeSetState(() {});
@@ -331,33 +281,38 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                           }
 
                                           logFirebaseEvent(
-                                              'Stack_backend_call');
-
-                                          await currentUserReference!
-                                              .update(createUsersRecordData(
-                                            photoUrl: _model
-                                                .uploadedFileUrl_uploadDataProfilePic,
-                                          ));
+                                              'Stack_update_page_state');
+                                          _model.uploadDateProPicCreation = _model
+                                              .uploadedLocalFile_photoUrlStoredCreation;
+                                          safeSetState(() {});
                                         },
                                         child: Stack(
                                           alignment:
                                               AlignmentDirectional(1.0, 1.0),
                                           children: [
-                                            Container(
-                                              width: 100.0,
-                                              height: 100.0,
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  fit: BoxFit.cover,
-                                                  image: Image.network(
-                                                    _model
-                                                        .uploadedFileUrl_uploadDataProfilePic,
-                                                  ).image,
+                                            ClipOval(
+                                              child: Container(
+                                                width: 100.0,
+                                                height: 100.0,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: Color(0xFFAC9A5E),
+                                                    width: 3.0,
+                                                  ),
                                                 ),
-                                                shape: BoxShape.circle,
-                                                border: Border.all(
-                                                  color: Color(0xFFAC9A5E),
-                                                  width: 3.0,
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          200.0),
+                                                  child: Image.memory(
+                                                    _model.uploadedLocalFile_photoUrlStoredCreation
+                                                            .bytes ??
+                                                        Uint8List.fromList([]),
+                                                    width: 200.0,
+                                                    height: 200.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1552,91 +1507,232 @@ class _ProfileCreationPageWidgetState extends State<ProfileCreationPageWidget> {
                                       ),
                                     ].divide(SizedBox(height: 14.0)),
                                   ),
-                                  Column(
+                                  Row(
                                     mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'PROFILE_CREATION_FINISH_PROFILE_BTN_ON_T');
-                                          if ((_model.textController1.text != '') ||
-                                              (_model.textController2.text !=
-                                                  '') ||
-                                              (_model.textController3.text !=
-                                                  '')) {
-                                            logFirebaseEvent(
-                                                'Button_backend_call');
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          if (getRemoteConfigBool(
+                                              'skip_goes_to_landing'))
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'PROFILE_CREATION_SKIP_BTN_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Button_google_analytics_event');
+                                                logFirebaseEvent(
+                                                    'skip_button_clicked');
+                                                logFirebaseEvent(
+                                                    'Button_navigate_to');
 
-                                            await currentUserReference!
-                                                .update(createUsersRecordData(
-                                              displayName:
-                                                  _model.textController1.text,
-                                              username:
-                                                  _model.textController2.text,
-                                              bio: _model.textController3.text,
-                                              favoriteGenre:
-                                                  _model.dropDownValue,
-                                              favoriteGame:
-                                                  _model.textController4.text,
-                                              discordName: _model
-                                                  .discordNameTextFieldTextController
-                                                  .text,
-                                              twitchName: _model
-                                                  .twitchTextFieldTextController
-                                                  .text,
-                                              photoUrl: _model
-                                                  .uploadedFileUrl_uploadDataProfilePic,
-                                            ));
-                                            logFirebaseEvent(
-                                                'Button_navigate_to');
-
-                                            context.pushNamed(
-                                                FeedPageWidget.routeName);
-                                          }
-                                        },
-                                        text: 'Finish Profile',
-                                        options: FFButtonOptions(
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: Color(0xFFAC9A5E),
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .titleSmall
-                                              .override(
-                                                font: GoogleFonts.urbanist(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontStyle,
-                                                ),
-                                                color: Colors.white,
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontStyle,
+                                                context.pushNamed(
+                                                    FeedPageWidget.routeName);
+                                              },
+                                              text: 'Skip',
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 16.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color: Color(0xFFAC9A5E),
+                                                textStyle: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleSmall
+                                                    .override(
+                                                      font:
+                                                          GoogleFonts.urbanist(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Colors.white,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontStyle,
+                                                    ),
+                                                elevation: 0.0,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
                                               ),
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
+                                            ),
+                                        ].divide(SizedBox(height: 12.0)),
                                       ),
-                                    ].divide(SizedBox(height: 12.0)),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          FFButtonWidget(
+                                            onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'PROFILE_CREATION_FINISH_PROFILE_BTN_ON_T');
+                                              if ((_model.textController1.text != '') ||
+                                                  (_model.textController2
+                                                          .text !=
+                                                      '') ||
+                                                  (_model.textController3
+                                                          .text !=
+                                                      '')) {
+                                                logFirebaseEvent(
+                                                    'Button_upload_media_to_firebase');
+                                                {
+                                                  safeSetState(() => _model
+                                                          .isDataUploading_uploadDataCreation =
+                                                      true);
+                                                  var selectedUploadedFiles =
+                                                      <FFUploadedFile>[];
+                                                  var selectedMedia =
+                                                      <SelectedFile>[];
+                                                  var downloadUrls = <String>[];
+                                                  try {
+                                                    selectedUploadedFiles = _model
+                                                            .uploadedLocalFile_photoUrlStoredCreation
+                                                            .bytes!
+                                                            .isNotEmpty
+                                                        ? [
+                                                            _model
+                                                                .uploadedLocalFile_photoUrlStoredCreation
+                                                          ]
+                                                        : <FFUploadedFile>[];
+                                                    selectedMedia =
+                                                        selectedFilesFromUploadedFiles(
+                                                      selectedUploadedFiles,
+                                                    );
+                                                    downloadUrls = (await Future
+                                                            .wait(
+                                                      selectedMedia.map(
+                                                        (m) async =>
+                                                            await uploadData(
+                                                                m.storagePath,
+                                                                m.bytes),
+                                                      ),
+                                                    ))
+                                                        .where((u) => u != null)
+                                                        .map((u) => u!)
+                                                        .toList();
+                                                  } finally {
+                                                    _model.isDataUploading_uploadDataCreation =
+                                                        false;
+                                                  }
+                                                  if (selectedUploadedFiles
+                                                              .length ==
+                                                          selectedMedia
+                                                              .length &&
+                                                      downloadUrls.length ==
+                                                          selectedMedia
+                                                              .length) {
+                                                    safeSetState(() {
+                                                      _model.uploadedLocalFile_uploadDataCreation =
+                                                          selectedUploadedFiles
+                                                              .first;
+                                                      _model.uploadedFileUrl_uploadDataCreation =
+                                                          downloadUrls.first;
+                                                    });
+                                                  } else {
+                                                    safeSetState(() {});
+                                                    return;
+                                                  }
+                                                }
+
+                                                logFirebaseEvent(
+                                                    'Button_backend_call');
+
+                                                await currentUserReference!
+                                                    .update(
+                                                        createUsersRecordData(
+                                                  displayName: _model
+                                                      .textController1.text,
+                                                  username: _model
+                                                      .textController2.text,
+                                                  bio: _model
+                                                      .textController3.text,
+                                                  favoriteGenre:
+                                                      _model.dropDownValue,
+                                                  favoriteGame: _model
+                                                      .textController4.text,
+                                                  discordName: _model
+                                                      .discordNameTextFieldTextController
+                                                      .text,
+                                                  twitchName: _model
+                                                      .twitchTextFieldTextController
+                                                      .text,
+                                                  photoUrl: _model
+                                                      .uploadedFileUrl_uploadDataCreation,
+                                                ));
+                                                logFirebaseEvent(
+                                                    'Button_navigate_to');
+
+                                                context.pushNamed(
+                                                    ProfileViewWidget
+                                                        .routeName);
+                                              }
+                                            },
+                                            text: 'Finish Profile',
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color: Color(0xFFAC9A5E),
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    font: GoogleFonts.urbanist(
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontStyle,
+                                                    ),
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontStyle,
+                                                  ),
+                                              elevation: 0.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
                                 ].divide(SizedBox(height: 20.0)),
                               ),

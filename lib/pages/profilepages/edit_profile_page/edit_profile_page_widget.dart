@@ -178,63 +178,57 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                       onPressed: () async {
                         logFirebaseEvent(
                             'EDIT_PROFILE_PAGE_PAGE_SAVE_BTN_ON_TAP');
-                        logFirebaseEvent('Button_backend_call');
-
-                        await currentUserReference!
-                            .update(createUsersRecordData(
-                          displayName: _model.textController1.text,
-                          username: _model.textController2.text,
-                          bio: _model.textController3.text,
-                          favoriteGenre: _model.dropDownValue,
-                          favoriteGame: _model.textController4.text,
-                          discordName: _model.textController5.text,
-                          twitchName: _model.textController6.text,
-                          photoUrl: _model.uploadedFileUrl_uploadedPhotoUrl,
-                        ));
-                        if (_model.uploadedFileUrl_uploadedPhotoUrl != '') {
-                          logFirebaseEvent('Button_upload_media_to_firebase');
-                          {
-                            safeSetState(() =>
-                                _model.isDataUploading_uploadedPhotoUrl = true);
-                            var selectedUploadedFiles = <FFUploadedFile>[];
-                            var selectedMedia = <SelectedFile>[];
-                            var downloadUrls = <String>[];
-                            try {
-                              selectedUploadedFiles = _model
-                                      .uploadedLocalFile_photoUrlStored
-                                      .bytes!
-                                      .isNotEmpty
-                                  ? [_model.uploadedLocalFile_photoUrlStored]
-                                  : <FFUploadedFile>[];
-                              selectedMedia = selectedFilesFromUploadedFiles(
-                                selectedUploadedFiles,
-                              );
-                              downloadUrls = (await Future.wait(
-                                selectedMedia.map(
-                                  (m) async =>
-                                      await uploadData(m.storagePath, m.bytes),
-                                ),
-                              ))
-                                  .where((u) => u != null)
-                                  .map((u) => u!)
-                                  .toList();
-                            } finally {
-                              _model.isDataUploading_uploadedPhotoUrl = false;
-                            }
-                            if (selectedUploadedFiles.length ==
-                                    selectedMedia.length &&
-                                downloadUrls.length == selectedMedia.length) {
-                              safeSetState(() {
-                                _model.uploadedLocalFile_uploadedPhotoUrl =
-                                    selectedUploadedFiles.first;
-                                _model.uploadedFileUrl_uploadedPhotoUrl =
-                                    downloadUrls.first;
-                              });
-                            } else {
-                              safeSetState(() {});
-                              return;
-                            }
+                        logFirebaseEvent('Button_upload_media_to_firebase');
+                        {
+                          safeSetState(() =>
+                              _model.isDataUploading_uploadDataFos = true);
+                          var selectedUploadedFiles = <FFUploadedFile>[];
+                          var selectedMedia = <SelectedFile>[];
+                          var downloadUrls = <String>[];
+                          try {
+                            selectedUploadedFiles = _model
+                                    .uploadedLocalFile_photoUrlStored
+                                    .bytes!
+                                    .isNotEmpty
+                                ? [_model.uploadedLocalFile_photoUrlStored]
+                                : <FFUploadedFile>[];
+                            selectedMedia = selectedFilesFromUploadedFiles(
+                              selectedUploadedFiles,
+                            );
+                            downloadUrls = (await Future.wait(
+                              selectedMedia.map(
+                                (m) async =>
+                                    await uploadData(m.storagePath, m.bytes),
+                              ),
+                            ))
+                                .where((u) => u != null)
+                                .map((u) => u!)
+                                .toList();
+                          } finally {
+                            _model.isDataUploading_uploadDataFos = false;
                           }
+                          if (selectedUploadedFiles.length ==
+                                  selectedMedia.length &&
+                              downloadUrls.length == selectedMedia.length) {
+                            safeSetState(() {
+                              _model.uploadedLocalFile_uploadDataFos =
+                                  selectedUploadedFiles.first;
+                              _model.uploadedFileUrl_uploadDataFos =
+                                  downloadUrls.first;
+                            });
+                          } else {
+                            safeSetState(() {});
+                            return;
+                          }
+                        }
+
+                        if (_model.uploadedFileUrl_uploadDataFos != '') {
+                          logFirebaseEvent('Button_backend_call');
+
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            photoUrl: _model.uploadedFileUrl_uploadDataFos,
+                          ));
                         }
                         logFirebaseEvent('Button_navigate_to');
 
@@ -353,55 +347,52 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                                       'Container_update_page_state');
                                   _model.uploadDataProfilePic =
                                       _model.uploadedLocalFile_photoUrlStored;
-                                  _model.photoUrl =
-                                      _model.uploadedFileUrl_uploadedPhotoUrl;
                                   safeSetState(() {});
                                 },
-                                child: Container(
-                                  width: 150.0,
-                                  height: 150.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x3A000000),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        editProfilePageUsersRecord!.photoUrl,
-                                      ).image,
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 4.0,
-                                        color: Color(0x33000000),
-                                        offset: Offset(
-                                          5.0,
-                                          5.0,
-                                        ),
-                                      )
-                                    ],
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: Color(0xFF57886C),
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(110.0),
-                                        child: Image.network(
-                                          _model.uploadedFileUrl_uploadedPhotoUrl !=
-                                                      ''
-                                              ? _model
-                                                  .uploadedFileUrl_uploadedPhotoUrl
-                                              : editProfilePageUsersRecord
-                                                  .photoUrl,
-                                          width: 200.0,
-                                          height: 200.0,
-                                          fit: BoxFit.cover,
-                                        ),
+                                child: ClipOval(
+                                  child: Container(
+                                    width: 200.0,
+                                    height: 200.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0x3A000000),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(
+                                          editProfilePageUsersRecord!.photoUrl,
+                                        ).image,
                                       ),
-                                    ],
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 4.0,
+                                          color: Color(0x33000000),
+                                          offset: Offset(
+                                            5.0,
+                                            5.0,
+                                          ),
+                                        )
+                                      ],
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Color(0xFF57886C),
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(180.0),
+                                          child: Image.memory(
+                                            _model.uploadDataProfilePic
+                                                    ?.bytes ??
+                                                Uint8List.fromList([]),
+                                            width: 220.0,
+                                            height: 220.0,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

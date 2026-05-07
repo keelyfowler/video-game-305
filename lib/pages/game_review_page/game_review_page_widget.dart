@@ -336,7 +336,8 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                                       child: Icon(
                                         Icons.star_rounded,
                                         color: _model.starRating! >= 3
-                                            ? Color(0xFFAC9A5E)
+                                            ? FlutterFlowTheme.of(context)
+                                                .warning
                                             : Colors.black,
                                         size: 36.0,
                                       ),

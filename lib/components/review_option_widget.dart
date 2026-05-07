@@ -1,10 +1,8 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'review_option_model.dart';
 export 'review_option_model.dart';
@@ -24,9 +22,9 @@ class ReviewOptionWidget extends StatefulWidget {
     super.key,
     required this.gameId,
     required this.userID,
-    required this.gameName,
-    required this.gameSummary,
-    required this.gameCover,
+    this.gameName,
+    this.gameSummary,
+    this.gameCover,
   });
 
   final String? gameId;
@@ -52,20 +50,6 @@ class _ReviewOptionWidgetState extends State<ReviewOptionWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ReviewOptionModel());
-
-    // On component load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      logFirebaseEvent('REVIEW_OPTION_ReviewOption_ON_INIT_STATE');
-      logFirebaseEvent('ReviewOption_backend_call');
-      _model.gameDetailsResult = await GetGameDetailsKFCall.call(
-        gameID: widget.gameId,
-      );
-
-      if ((_model.gameDetailsResult?.succeeded ?? true)) {
-        logFirebaseEvent('ReviewOption_rebuild_component');
-        safeSetState(() {});
-      }
-    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -119,20 +103,8 @@ class _ReviewOptionWidgetState extends State<ReviewOptionWidget> {
                         context.pushNamed(
                           GameInfoPageWidget.routeName,
                           queryParameters: {
-                            'gameName': serializeParam(
-                              '',
-                              ParamType.String,
-                            ),
-                            'gameSummary': serializeParam(
-                              '',
-                              ParamType.String,
-                            ),
-                            'gameCover': serializeParam(
-                              '',
-                              ParamType.String,
-                            ),
                             'gameId': serializeParam(
-                              '',
+                              widget.gameId,
                               ParamType.String,
                             ),
                           }.withoutNulls,
@@ -144,7 +116,7 @@ class _ReviewOptionWidgetState extends State<ReviewOptionWidget> {
                         padding: EdgeInsets.all(8.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFF177BDD),
+                        color: Color(0xFFAC9A5E),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   font: GoogleFonts.dmSans(

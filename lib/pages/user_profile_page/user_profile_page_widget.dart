@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/view_game_option_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -930,197 +931,243 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget>
                                                           final listViewReviewsRecord =
                                                               listViewReviewsRecordList[
                                                                   listViewIndex];
-                                                          return Container(
-                                                            width:
-                                                                double.infinity,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Color(
-                                                                  0xFF445552),
-                                                              boxShadow: [
-                                                                BoxShadow(
-                                                                  blurRadius:
-                                                                      8.0,
-                                                                  color: Color(
-                                                                      0x33000000),
-                                                                  offset:
-                                                                      Offset(
-                                                                    0.0,
-                                                                    2.0,
-                                                                  ),
-                                                                )
-                                                              ],
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          16.0),
-                                                            ),
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(
-                                                                          16.0),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Text(
-                                                                          listViewReviewsRecord
-                                                                              .gameName,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .titleMedium
-                                                                              .override(
-                                                                                font: GoogleFonts.dmSans(
+                                                          return InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              logFirebaseEvent(
+                                                                  'USER_PROFILE_Container_bjlpe5la_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Container_bottom_sheet');
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                enableDrag:
+                                                                    false,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return GestureDetector(
+                                                                    onTap: () {
+                                                                      FocusScope.of(
+                                                                              context)
+                                                                          .unfocus();
+                                                                      FocusManager
+                                                                          .instance
+                                                                          .primaryFocus
+                                                                          ?.unfocus();
+                                                                    },
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: MediaQuery
+                                                                          .viewInsetsOf(
+                                                                              context),
+                                                                      child:
+                                                                          ViewGameOptionWidget(
+                                                                        gameId:
+                                                                            listViewReviewsRecord.gameId,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(
+                                                                      () {}));
+                                                            },
+                                                            child: Container(
+                                                              width: double
+                                                                  .infinity,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: Color(
+                                                                    0xFF445552),
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    blurRadius:
+                                                                        8.0,
+                                                                    color: Color(
+                                                                        0x33000000),
+                                                                    offset:
+                                                                        Offset(
+                                                                      0.0,
+                                                                      2.0,
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            16.0),
+                                                              ),
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            16.0),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        Expanded(
+                                                                          child:
+                                                                              Text(
+                                                                            listViewReviewsRecord.gameName,
+                                                                            style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                  font: GoogleFonts.dmSans(
+                                                                                    fontWeight: FontWeight.bold,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                  ),
+                                                                                  color: Colors.white,
+                                                                                  fontSize: 16.0,
+                                                                                  letterSpacing: 0.0,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
                                                                                 ),
-                                                                                color: Colors.white,
-                                                                                fontSize: 16.0,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.bold,
-                                                                                fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
-                                                                              ),
+                                                                          ),
                                                                         ),
-                                                                      ),
-                                                                      Container(
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              Color(0xFF177BDD),
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                        ),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              8.0,
-                                                                              4.0,
-                                                                              8.0,
-                                                                              4.0),
+                                                                        Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                Color(0xFF177BDD),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                          ),
                                                                           child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children:
-                                                                                [
-                                                                              Icon(
-                                                                                Icons.star_rounded,
-                                                                                color: Colors.white,
-                                                                                size: 12.0,
-                                                                              ),
-                                                                              Text(
-                                                                                listViewReviewsRecord.rating.toString(),
-                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                      font: GoogleFonts.dmSans(
+                                                                              Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                8.0,
+                                                                                4.0,
+                                                                                8.0,
+                                                                                4.0),
+                                                                            child:
+                                                                                Row(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              children: [
+                                                                                Icon(
+                                                                                  Icons.star_rounded,
+                                                                                  color: Colors.white,
+                                                                                  size: 12.0,
+                                                                                ),
+                                                                                Text(
+                                                                                  listViewReviewsRecord.rating.toString(),
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.dmSans(
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        color: Colors.white,
+                                                                                        fontSize: 12.0,
+                                                                                        letterSpacing: 0.0,
                                                                                         fontWeight: FontWeight.bold,
                                                                                         fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                       ),
-                                                                                      color: Colors.white,
-                                                                                      fontSize: 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ].divide(SizedBox(width: 3.0)),
+                                                                                ),
+                                                                              ].divide(SizedBox(width: 3.0)),
+                                                                            ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  Text(
-                                                                    listViewReviewsRecord
-                                                                        .reviewText,
-                                                                    maxLines: 2,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.dmSans(
+                                                                      ],
+                                                                    ),
+                                                                    Text(
+                                                                      listViewReviewsRecord
+                                                                          .reviewText,
+                                                                      maxLines:
+                                                                          2,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.dmSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            color:
+                                                                                Color(0xFFB0B8B4),
+                                                                            fontSize:
+                                                                                13.0,
+                                                                            letterSpacing:
+                                                                                0.0,
                                                                             fontWeight:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            lineHeight:
+                                                                                1.5,
                                                                           ),
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children:
+                                                                          [
+                                                                        Icon(
+                                                                          Icons
+                                                                              .calendar_today_rounded,
                                                                           color:
-                                                                              Color(0xFFB0B8B4),
-                                                                          fontSize:
-                                                                              13.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                          lineHeight:
-                                                                              1.5,
+                                                                              Color(0xFF57886C),
+                                                                          size:
+                                                                              14.0,
                                                                         ),
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                  ),
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Icon(
-                                                                        Icons
-                                                                            .calendar_today_rounded,
-                                                                        color: Color(
-                                                                            0xFF57886C),
-                                                                        size:
-                                                                            14.0,
-                                                                      ),
-                                                                      Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          dateTimeFormat(
-                                                                              "yMMMd",
-                                                                              listViewReviewsRecord.timestamp),
-                                                                          'Date',
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelSmall
-                                                                            .override(
-                                                                              font: GoogleFonts.dmSans(
+                                                                        Text(
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            dateTimeFormat("yMMMd",
+                                                                                listViewReviewsRecord.timestamp),
+                                                                            'Date',
+                                                                          ),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .labelSmall
+                                                                              .override(
+                                                                                font: GoogleFonts.dmSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                ),
+                                                                                color: Color(0xFF57886C),
+                                                                                fontSize: 12.0,
+                                                                                letterSpacing: 0.0,
                                                                                 fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                               ),
-                                                                              color: Color(0xFF57886C),
-                                                                              fontSize: 12.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                            ),
-                                                                      ),
-                                                                    ].divide(SizedBox(
-                                                                        width:
-                                                                            6.0)),
-                                                                  ),
-                                                                ].divide(SizedBox(
-                                                                    height:
-                                                                        8.0)),
+                                                                        ),
+                                                                      ].divide(SizedBox(
+                                                                              width: 6.0)),
+                                                                    ),
+                                                                  ].divide(SizedBox(
+                                                                      height:
+                                                                          8.0)),
+                                                                ),
                                                               ),
                                                             ),
                                                           );

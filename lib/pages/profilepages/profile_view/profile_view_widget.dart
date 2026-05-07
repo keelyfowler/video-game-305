@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/settings_option_widget.dart';
+import '/components/view_game_option_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -115,6 +116,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
             body: SafeArea(
               top: true,
               child: SingleChildScrollView(
+                primary: false,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -834,263 +836,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                             final listViewReviewsRecord =
                                                                 listViewReviewsRecordList[
                                                                     listViewIndex];
-                                                            return Container(
-                                                              width: double
-                                                                  .infinity,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Color(
-                                                                    0xFF445552),
-                                                                boxShadow: [
-                                                                  BoxShadow(
-                                                                    blurRadius:
-                                                                        8.0,
-                                                                    color: Color(
-                                                                        0x33000000),
-                                                                    offset:
-                                                                        Offset(
-                                                                      0.0,
-                                                                      2.0,
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            16.0),
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            16.0),
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child:
-                                                                              Text(
-                                                                            listViewReviewsRecord.gameName,
-                                                                            style: FlutterFlowTheme.of(context).titleMedium.override(
-                                                                                  font: GoogleFonts.dmSans(
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
-                                                                                  ),
-                                                                                  color: Colors.white,
-                                                                                  fontSize: 16.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                        Container(
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                Color(0xFF177BDD),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                          ),
-                                                                          child:
-                                                                              Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                8.0,
-                                                                                4.0,
-                                                                                8.0,
-                                                                                4.0),
-                                                                            child:
-                                                                                Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Icon(
-                                                                                  Icons.star_rounded,
-                                                                                  color: Colors.white,
-                                                                                  size: 12.0,
-                                                                                ),
-                                                                                Text(
-                                                                                  listViewReviewsRecord.rating.toString(),
-                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                        font: GoogleFonts.dmSans(
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                        ),
-                                                                                        color: Colors.white,
-                                                                                        fontSize: 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ].divide(SizedBox(width: 3.0)),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Text(
-                                                                      listViewReviewsRecord
-                                                                          .reviewText,
-                                                                      maxLines:
-                                                                          2,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.dmSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Color(0xFFB0B8B4),
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            lineHeight:
-                                                                                1.5,
-                                                                          ),
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                    ),
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children:
-                                                                          [
-                                                                        Icon(
-                                                                          Icons
-                                                                              .calendar_today_rounded,
-                                                                          color:
-                                                                              Color(0xFF57886C),
-                                                                          size:
-                                                                              14.0,
-                                                                        ),
-                                                                        Text(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            dateTimeFormat("yMMMd",
-                                                                                listViewReviewsRecord.timestamp),
-                                                                            'Date',
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelSmall
-                                                                              .override(
-                                                                                font: GoogleFonts.dmSans(
-                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                ),
-                                                                                color: Color(0xFF57886C),
-                                                                                fontSize: 12.0,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                              ),
-                                                                        ),
-                                                                      ].divide(SizedBox(
-                                                                              width: 6.0)),
-                                                                    ),
-                                                                  ].divide(SizedBox(
-                                                                      height:
-                                                                          8.0)),
-                                                                ),
-                                                              ),
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  StreamBuilder<
-                                                      List<FavoritesRecord>>(
-                                                    stream:
-                                                        queryFavoritesRecord(
-                                                      queryBuilder:
-                                                          (favoritesRecord) =>
-                                                              favoritesRecord
-                                                                  .where(
-                                                        'user_ref',
-                                                        isEqualTo:
-                                                            currentUserReference,
-                                                      ),
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              valueColor:
-                                                                  AlwaysStoppedAnimation<
-                                                                      Color>(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      List<FavoritesRecord>
-                                                          listViewFavoritesRecordList =
-                                                          snapshot.data!;
-
-                                                      return ListView.builder(
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                        primary: false,
-                                                        shrinkWrap: true,
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        itemCount:
-                                                            listViewFavoritesRecordList
-                                                                .length,
-                                                        itemBuilder: (context,
-                                                            listViewIndex) {
-                                                          final listViewFavoritesRecord =
-                                                              listViewFavoritesRecordList[
-                                                                  listViewIndex];
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: InkWell(
+                                                            return InkWell(
                                                               splashColor: Colors
                                                                   .transparent,
                                                               focusColor: Colors
@@ -1102,46 +848,46 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                                       .transparent,
                                                               onTap: () async {
                                                                 logFirebaseEvent(
-                                                                    'PROFILE_VIEW_Container_m3klqudn_ON_TAP');
+                                                                    'PROFILE_VIEW_Container_daj2sioi_ON_TAP');
                                                                 logFirebaseEvent(
-                                                                    'Container_navigate_to');
-
-                                                                context
-                                                                    .pushNamed(
-                                                                  GameInfoPageWidget
-                                                                      .routeName,
-                                                                  queryParameters:
-                                                                      {
-                                                                    'gameName':
-                                                                        serializeParam(
-                                                                      listViewFavoritesRecord
-                                                                          .gameName,
-                                                                      ParamType
-                                                                          .String,
-                                                                    ),
-                                                                    'gameSummary':
-                                                                        serializeParam(
-                                                                      listViewFavoritesRecord
-                                                                          .gameDesc,
-                                                                      ParamType
-                                                                          .String,
-                                                                    ),
-                                                                    'gameCover':
-                                                                        serializeParam(
-                                                                      listViewFavoritesRecord
-                                                                          .gamePic,
-                                                                      ParamType
-                                                                          .String,
-                                                                    ),
-                                                                    'gameId':
-                                                                        serializeParam(
-                                                                      listViewFavoritesRecord
-                                                                          .gameId,
-                                                                      ParamType
-                                                                          .String,
-                                                                    ),
-                                                                  }.withoutNulls,
-                                                                );
+                                                                    'Container_bottom_sheet');
+                                                                await showModalBottomSheet(
+                                                                  isScrollControlled:
+                                                                      true,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  enableDrag:
+                                                                      false,
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return GestureDetector(
+                                                                      onTap:
+                                                                          () {
+                                                                        FocusScope.of(context)
+                                                                            .unfocus();
+                                                                        FocusManager
+                                                                            .instance
+                                                                            .primaryFocus
+                                                                            ?.unfocus();
+                                                                      },
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            MediaQuery.viewInsetsOf(context),
+                                                                        child:
+                                                                            ViewGameOptionWidget(
+                                                                          gameId:
+                                                                              listViewReviewsRecord.gameId,
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                ).then((value) =>
+                                                                    safeSetState(
+                                                                        () {}));
                                                               },
                                                               child: Container(
                                                                 width: double
@@ -1149,7 +895,7 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                                 decoration:
                                                                     BoxDecoration(
                                                                   color: Color(
-                                                                      0x3A000000),
+                                                                      0xFF445552),
                                                                   boxShadow: [
                                                                     BoxShadow(
                                                                       blurRadius:
@@ -1189,57 +935,112 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                                         crossAxisAlignment:
                                                                             CrossAxisAlignment.start,
                                                                         children: [
-                                                                          Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                0.0,
-                                                                                12.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Container(
-                                                                              decoration: BoxDecoration(
-                                                                                color: Color(0xFF177BDD),
-                                                                                boxShadow: [
-                                                                                  BoxShadow(
-                                                                                    blurRadius: 4.0,
-                                                                                    color: Color(0x33000000),
-                                                                                    offset: Offset(
-                                                                                      -2.0,
-                                                                                      0.0,
-                                                                                    ),
-                                                                                  )
-                                                                                ],
-                                                                                borderRadius: BorderRadius.circular(8.0),
-                                                                              ),
-                                                                              child: ClipRRect(
-                                                                                borderRadius: BorderRadius.circular(8.0),
-                                                                                child: Image.network(
-                                                                                  listViewFavoritesRecord.gamePic,
-                                                                                  width: 48.0,
-                                                                                  height: 48.0,
-                                                                                  fit: BoxFit.cover,
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
                                                                           Expanded(
                                                                             child:
                                                                                 Text(
-                                                                              listViewFavoritesRecord.gameName,
+                                                                              listViewReviewsRecord.gameName,
                                                                               style: FlutterFlowTheme.of(context).titleMedium.override(
-                                                                                    font: GoogleFonts.manrope(
-                                                                                      fontWeight: FontWeight.w600,
+                                                                                    font: GoogleFonts.dmSans(
+                                                                                      fontWeight: FontWeight.bold,
                                                                                       fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
                                                                                     ),
                                                                                     color: Colors.white,
                                                                                     fontSize: 16.0,
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.w600,
+                                                                                    fontWeight: FontWeight.bold,
                                                                                     fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
+                                                                          Container(
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Color(0xFF177BDD),
+                                                                              borderRadius: BorderRadius.circular(8.0),
+                                                                            ),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 4.0),
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Icon(
+                                                                                    Icons.star_rounded,
+                                                                                    color: Colors.white,
+                                                                                    size: 12.0,
+                                                                                  ),
+                                                                                  Text(
+                                                                                    listViewReviewsRecord.rating.toString(),
+                                                                                    style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                          font: GoogleFonts.dmSans(
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                          color: Colors.white,
+                                                                                          fontSize: 12.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                  ),
+                                                                                ].divide(SizedBox(width: 3.0)),
+                                                                              ),
+                                                                            ),
+                                                                          ),
                                                                         ],
+                                                                      ),
+                                                                      Text(
+                                                                        listViewReviewsRecord
+                                                                            .reviewText,
+                                                                        maxLines:
+                                                                            2,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.dmSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              color: Color(0xFFB0B8B4),
+                                                                              fontSize: 13.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              lineHeight: 1.5,
+                                                                            ),
+                                                                        overflow:
+                                                                            TextOverflow.ellipsis,
+                                                                      ),
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children:
+                                                                            [
+                                                                          Icon(
+                                                                            Icons.calendar_today_rounded,
+                                                                            color:
+                                                                                Color(0xFF57886C),
+                                                                            size:
+                                                                                14.0,
+                                                                          ),
+                                                                          Text(
+                                                                            valueOrDefault<String>(
+                                                                              dateTimeFormat("yMMMd", listViewReviewsRecord.timestamp),
+                                                                              'Date',
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                  font: GoogleFonts.dmSans(
+                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                  ),
+                                                                                  color: Color(0xFF57886C),
+                                                                                  fontSize: 12.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                ),
+                                                                          ),
+                                                                        ].divide(SizedBox(width: 6.0)),
                                                                       ),
                                                                     ].divide(SizedBox(
                                                                         height:
@@ -1247,13 +1048,241 @@ class _ProfileViewWidgetState extends State<ProfileViewWidget>
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      );
-                                                    },
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
                                                 ],
+                                              ),
+                                              SingleChildScrollView(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    StreamBuilder<
+                                                        List<FavoritesRecord>>(
+                                                      stream:
+                                                          queryFavoritesRecord(
+                                                        queryBuilder:
+                                                            (favoritesRecord) =>
+                                                                favoritesRecord
+                                                                    .where(
+                                                          'user_ref',
+                                                          isEqualTo:
+                                                              currentUserReference,
+                                                        ),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<FavoritesRecord>
+                                                            listViewFavoritesRecordList =
+                                                            snapshot.data!;
+
+                                                        return ListView.builder(
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                          primary: false,
+                                                          shrinkWrap: true,
+                                                          scrollDirection:
+                                                              Axis.vertical,
+                                                          itemCount:
+                                                              listViewFavoritesRecordList
+                                                                  .length,
+                                                          itemBuilder: (context,
+                                                              listViewIndex) {
+                                                            final listViewFavoritesRecord =
+                                                                listViewFavoritesRecordList[
+                                                                    listViewIndex];
+                                                            return Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  logFirebaseEvent(
+                                                                      'PROFILE_VIEW_Container_m3klqudn_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'Container_navigate_to');
+
+                                                                  context
+                                                                      .pushNamed(
+                                                                    GameInfoPageWidget
+                                                                        .routeName,
+                                                                    queryParameters:
+                                                                        {
+                                                                      'gameName':
+                                                                          serializeParam(
+                                                                        listViewFavoritesRecord
+                                                                            .gameName,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                      'gameSummary':
+                                                                          serializeParam(
+                                                                        listViewFavoritesRecord
+                                                                            .gameDesc,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                      'gameCover':
+                                                                          serializeParam(
+                                                                        listViewFavoritesRecord
+                                                                            .gamePic,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                      'gameId':
+                                                                          serializeParam(
+                                                                        listViewFavoritesRecord
+                                                                            .gameId,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  width: double
+                                                                      .infinity,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: Color(
+                                                                        0x3A000000),
+                                                                    boxShadow: [
+                                                                      BoxShadow(
+                                                                        blurRadius:
+                                                                            8.0,
+                                                                        color: Color(
+                                                                            0x33000000),
+                                                                        offset:
+                                                                            Offset(
+                                                                          0.0,
+                                                                          2.0,
+                                                                        ),
+                                                                      )
+                                                                    ],
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            16.0),
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            16.0),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children:
+                                                                          [
+                                                                        Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                                                                              child: Container(
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Color(0xFF177BDD),
+                                                                                  boxShadow: [
+                                                                                    BoxShadow(
+                                                                                      blurRadius: 4.0,
+                                                                                      color: Color(0x33000000),
+                                                                                      offset: Offset(
+                                                                                        -2.0,
+                                                                                        0.0,
+                                                                                      ),
+                                                                                    )
+                                                                                  ],
+                                                                                  borderRadius: BorderRadius.circular(8.0),
+                                                                                ),
+                                                                                child: ClipRRect(
+                                                                                  borderRadius: BorderRadius.circular(8.0),
+                                                                                  child: Image.network(
+                                                                                    listViewFavoritesRecord.gamePic,
+                                                                                    width: 48.0,
+                                                                                    height: 48.0,
+                                                                                    fit: BoxFit.cover,
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            Expanded(
+                                                                              child: Text(
+                                                                                listViewFavoritesRecord.gameName,
+                                                                                style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                      font: GoogleFonts.manrope(
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                      ),
+                                                                                      color: Colors.white,
+                                                                                      fontSize: 16.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ].divide(SizedBox(
+                                                                              height: 8.0)),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),

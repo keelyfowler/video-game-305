@@ -20,6 +20,8 @@ class RecommendedGamesModel extends FlutterFlowModel<RecommendedGamesWidget> {
   void updateRecommendationsListAtIndex(int index, Function(String) updateFn) =>
       recommendationsList[index] = updateFn(recommendationsList[index]);
 
+  bool aiClicked = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [AI Agent - Send Message to AIGameRec] action in Button widget.

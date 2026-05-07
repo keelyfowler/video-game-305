@@ -10,6 +10,38 @@ class GameInfoPageModel extends FlutterFlowModel<GameInfoPageWidget> {
 
   int? iconClicked;
 
+  String gameName = 'Loading...';
+
+  String gameDescr = 'Loading...';
+
+  String? gameImage;
+
+  String gameGenre = 'Loading...';
+
+  String gameDev = 'Loading...';
+
+  String gamePlatform = 'Loading...';
+
+  String gameReleased = 'Loading...';
+
+  double? gameRating;
+
+  List<String> gameScreenshots = [];
+  void addToGameScreenshots(String item) => gameScreenshots.add(item);
+  void removeFromGameScreenshots(String item) => gameScreenshots.remove(item);
+  void removeAtIndexFromGameScreenshots(int index) =>
+      gameScreenshots.removeAt(index);
+  void insertAtIndexInGameScreenshots(int index, String item) =>
+      gameScreenshots.insert(index, item);
+  void updateGameScreenshotsAtIndex(int index, Function(String) updateFn) =>
+      gameScreenshots[index] = updateFn(gameScreenshots[index]);
+
+  int? reviewCount;
+
+  bool isLoading = true;
+
+  bool isLoadingAI = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - API (getGameDetailsKF)] action in GameInfoPage widget.

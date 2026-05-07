@@ -6,13 +6,16 @@ import 'package:flutter/material.dart';
 
 class ProfileCreationPageModel
     extends FlutterFlowModel<ProfileCreationPageWidget> {
+  ///  Local state fields for this page.
+
+  FFUploadedFile? uploadDateProPicCreation;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
-  bool isDataUploading_uploadDataProfilePic = false;
-  FFUploadedFile uploadedLocalFile_uploadDataProfilePic =
+  bool isDataUploading_photoUrlStoredCreation = false;
+  FFUploadedFile uploadedLocalFile_photoUrlStoredCreation =
       FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
-  String uploadedFileUrl_uploadDataProfilePic = '';
 
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
@@ -43,6 +46,10 @@ class ProfileCreationPageModel
   TextEditingController? twitchTextFieldTextController;
   String? Function(BuildContext, String?)?
       twitchTextFieldTextControllerValidator;
+  bool isDataUploading_uploadDataCreation = false;
+  FFUploadedFile uploadedLocalFile_uploadDataCreation =
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
+  String uploadedFileUrl_uploadDataCreation = '';
 
   @override
   void initState(BuildContext context) {}

@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -91,49 +90,17 @@ class _ViewGameOptionWidgetState extends State<ViewGameOptionWidget> {
                       onPressed: () async {
                         logFirebaseEvent(
                             'VIEW_GAME_OPTION_VIEW_GAME_BTN_ON_TAP');
-                        logFirebaseEvent('Button_backend_call');
-                        _model.aPIsearchNameResult =
-                            await SearchGamesKFCall.call(
-                          query: widget.gameId,
-                        );
-
                         logFirebaseEvent('Button_navigate_to');
 
                         context.pushNamed(
                           GameInfoPageWidget.routeName,
                           queryParameters: {
-                            'gameName': serializeParam(
-                              getJsonField(
-                                (_model.aPIsearchNameResult?.jsonBody ?? ''),
-                                r'''$.games[0].name''',
-                              ).toString(),
-                              ParamType.String,
-                            ),
-                            'gameSummary': serializeParam(
-                              getJsonField(
-                                (_model.aPIsearchNameResult?.jsonBody ?? ''),
-                                r'''$.games[0].summary''',
-                              ).toString(),
-                              ParamType.String,
-                            ),
-                            'gameCover': serializeParam(
-                              getJsonField(
-                                (_model.aPIsearchNameResult?.jsonBody ?? ''),
-                                r'''$.games[0].cover.url''',
-                              ).toString(),
-                              ParamType.String,
-                            ),
                             'gameId': serializeParam(
-                              getJsonField(
-                                (_model.aPIsearchNameResult?.jsonBody ?? ''),
-                                r'''$.games[0].id''',
-                              ).toString(),
+                              widget.gameId,
                               ParamType.String,
                             ),
                           }.withoutNulls,
                         );
-
-                        safeSetState(() {});
                       },
                       text: 'View Game',
                       options: FFButtonOptions(
@@ -150,7 +117,8 @@ class _ViewGameOptionWidgetState extends State<ViewGameOptionWidget> {
                                         .titleSmall
                                         .fontStyle,
                                   ),
-                                  color: Colors.white,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                   fontStyle: FlutterFlowTheme.of(context)
