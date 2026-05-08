@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.0+3
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -43,7 +43,7 @@ dependencies:
   dropdown_button2: 
     git:
       url: https://github.com/FlutterFlow/dropdown_button2.git
-      ref: 9bbeb2fd68e12615251a67208eb21bc75628c02c
+      ref: 514178337dfbea442f617daed39c704b57593fc9
       path: packages/dropdown_button2
   easy_debounce: 2.0.1
   equatable: 2.0.7
@@ -114,6 +114,7 @@ dependencies:
   sign_in_with_apple: 7.0.1
   sign_in_with_apple_platform_interface: 2.0.0
   sign_in_with_apple_web: 3.0.0
+  simple_gradient_text: 1.2.3
   sqflite: 2.3.3+1
   sqflite_common: 2.5.4+3
   stream_transform: 2.1.0
@@ -181,6 +182,7 @@ flutter:
     - assets/pdfs/
     - assets/jsons/
 
+    - assets/environment_values/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

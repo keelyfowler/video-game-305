@@ -30,22 +30,28 @@ class FavoritesRecord extends FirestoreRecord {
   DocumentReference? get userRef => _userRef;
   bool hasUserRef() => _userRef != null;
 
-  // "user_id" field.
-  int? _userId;
-  int get userId => _userId ?? 0;
-  bool hasUserId() => _userId != null;
-
   // "game_pic" field.
   String? _gamePic;
   String get gamePic => _gamePic ?? '';
   bool hasGamePic() => _gamePic != null;
 
+  // "user_id" field.
+  String? _userId;
+  String get userId => _userId ?? '';
+  bool hasUserId() => _userId != null;
+
+  // "game_id" field.
+  String? _gameId;
+  String get gameId => _gameId ?? '';
+  bool hasGameId() => _gameId != null;
+
   void _initializeFields() {
     _gameName = snapshotData['game_name'] as String?;
     _gameDesc = snapshotData['game_desc'] as String?;
     _userRef = snapshotData['user_ref'] as DocumentReference?;
-    _userId = castToType<int>(snapshotData['user_id']);
     _gamePic = snapshotData['game_pic'] as String?;
+    _userId = snapshotData['user_id'] as String?;
+    _gameId = snapshotData['game_id'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -86,16 +92,18 @@ Map<String, dynamic> createFavoritesRecordData({
   String? gameName,
   String? gameDesc,
   DocumentReference? userRef,
-  int? userId,
   String? gamePic,
+  String? userId,
+  String? gameId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'game_name': gameName,
       'game_desc': gameDesc,
       'user_ref': userRef,
-      'user_id': userId,
       'game_pic': gamePic,
+      'user_id': userId,
+      'game_id': gameId,
     }.withoutNulls,
   );
 
@@ -110,13 +118,14 @@ class FavoritesRecordDocumentEquality implements Equality<FavoritesRecord> {
     return e1?.gameName == e2?.gameName &&
         e1?.gameDesc == e2?.gameDesc &&
         e1?.userRef == e2?.userRef &&
+        e1?.gamePic == e2?.gamePic &&
         e1?.userId == e2?.userId &&
-        e1?.gamePic == e2?.gamePic;
+        e1?.gameId == e2?.gameId;
   }
 
   @override
-  int hash(FavoritesRecord? e) => const ListEquality()
-      .hash([e?.gameName, e?.gameDesc, e?.userRef, e?.userId, e?.gamePic]);
+  int hash(FavoritesRecord? e) => const ListEquality().hash(
+      [e?.gameName, e?.gameDesc, e?.userRef, e?.gamePic, e?.userId, e?.gameId]);
 
   @override
   bool isValidKey(Object? o) => o is FavoritesRecord;

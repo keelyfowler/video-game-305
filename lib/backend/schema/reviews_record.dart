@@ -45,6 +45,11 @@ class ReviewsRecord extends FirestoreRecord {
   DocumentReference? get userRef => _userRef;
   bool hasUserRef() => _userRef != null;
 
+  // "game_id" field.
+  String? _gameId;
+  String get gameId => _gameId ?? '';
+  bool hasGameId() => _gameId != null;
+
   void _initializeFields() {
     _gameName = snapshotData['game_name'] as String?;
     _userId = snapshotData['user_id'] as String?;
@@ -52,6 +57,7 @@ class ReviewsRecord extends FirestoreRecord {
     _reviewText = snapshotData['review_text'] as String?;
     _timestamp = snapshotData['timestamp'] as DateTime?;
     _userRef = snapshotData['user_ref'] as DocumentReference?;
+    _gameId = snapshotData['game_id'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -95,6 +101,7 @@ Map<String, dynamic> createReviewsRecordData({
   String? reviewText,
   DateTime? timestamp,
   DocumentReference? userRef,
+  String? gameId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -104,6 +111,7 @@ Map<String, dynamic> createReviewsRecordData({
       'review_text': reviewText,
       'timestamp': timestamp,
       'user_ref': userRef,
+      'game_id': gameId,
     }.withoutNulls,
   );
 
@@ -120,7 +128,8 @@ class ReviewsRecordDocumentEquality implements Equality<ReviewsRecord> {
         e1?.rating == e2?.rating &&
         e1?.reviewText == e2?.reviewText &&
         e1?.timestamp == e2?.timestamp &&
-        e1?.userRef == e2?.userRef;
+        e1?.userRef == e2?.userRef &&
+        e1?.gameId == e2?.gameId;
   }
 
   @override
@@ -130,7 +139,8 @@ class ReviewsRecordDocumentEquality implements Equality<ReviewsRecord> {
         e?.rating,
         e?.reviewText,
         e?.timestamp,
-        e?.userRef
+        e?.userRef,
+        e?.gameId
       ]);
 
   @override

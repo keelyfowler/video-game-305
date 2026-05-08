@@ -17,6 +17,8 @@ class SearchPageModel extends FlutterFlowModel<SearchPageWidget> {
   void updateSearchResultsKFAtIndex(int index, Function(dynamic) updateFn) =>
       searchResultsKF[index] = updateFn(searchResultsKF[index]);
 
+  String? searchText;
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.

@@ -123,6 +123,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               'gameCover',
               ParamType.String,
             ),
+            gameId: params.getParam(
+              'gameId',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -135,6 +139,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
             ),
             gameCover: params.getParam(
               'gameCover',
+              ParamType.String,
+            ),
+            gameId: params.getParam(
+              'gameId',
               ParamType.String,
             ),
           ),
@@ -168,6 +176,34 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'profileView')
               : ProfileViewWidget(),
+        ),
+        FFRoute(
+          name: UserProfilePageWidget.routeName,
+          path: UserProfilePageWidget.routePath,
+          builder: (context, params) => UserProfilePageWidget(
+            userID: params.getParam(
+              'userID',
+              ParamType.String,
+            ),
+            gameId: params.getParam(
+              'gameId',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AllReviewsPageWidget.routeName,
+          path: AllReviewsPageWidget.routePath,
+          builder: (context, params) => AllReviewsPageWidget(
+            gameId: params.getParam(
+              'gameId',
+              ParamType.String,
+            ),
+            gameName: params.getParam(
+              'gameName',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

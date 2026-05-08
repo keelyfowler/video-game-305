@@ -1,44 +1,13 @@
 const axios = require("axios").default;
 const qs = require("qs");
 
-async function _searchGameCall(context, ffVariables) {
-  var query = ffVariables["query"];
-
-  var url = `https://api.igdb.com/v4/games`;
-  var headers = {
-    "Content-Type": `text/plain`,
-    Authorization: `Bearer 1jbtvazdxa0h1gfpzcg1hltj8kmqiw`,
-    "Client-ID": `yjbcbf2fv9zptbu4ow8u53nt1ze4gd`,
-  };
-  var params = {};
-  var ffApiRequestBody = `
-${query}`;
-
-  return makeApiRequest({
-    method: "post",
-    url,
-    headers,
-    params,
-    body: createBody({
-      headers,
-      params,
-      body: ffApiRequestBody,
-      bodyType: "TEXT",
-    }),
-    returnBody: true,
-    isStreamingApi: false,
-  });
-}
-
 /// Helper functions to route to the appropriate API Call.
 
 async function makeApiCall(context, data) {
   var callName = data["callName"] || "";
   var variables = data["variables"] || {};
 
-  const callMap = {
-    SearchGameCall: _searchGameCall,
-  };
+  const callMap = {};
 
   if (!(callName in callMap)) {
     return {

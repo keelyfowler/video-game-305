@@ -9,6 +9,7 @@ import 'schema/users_record.dart';
 import 'schema/nps_responses_record.dart';
 import 'schema/reviews_record.dart';
 import 'schema/favorites_record.dart';
+import 'schema/follows_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -21,6 +22,7 @@ export 'schema/users_record.dart';
 export 'schema/nps_responses_record.dart';
 export 'schema/reviews_record.dart';
 export 'schema/favorites_record.dart';
+export 'schema/follows_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -165,6 +167,43 @@ Future<List<FavoritesRecord>> queryFavoritesRecordOnce({
     queryCollectionOnce(
       FavoritesRecord.collection,
       FavoritesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query FollowsRecords (as a Stream and as a Future).
+Future<int> queryFollowsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      FollowsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<FollowsRecord>> queryFollowsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      FollowsRecord.collection,
+      FollowsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<FollowsRecord>> queryFollowsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      FollowsRecord.collection,
+      FollowsRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

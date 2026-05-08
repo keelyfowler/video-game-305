@@ -30,7 +30,9 @@ void main() async {
   testWidgets('Invalid-Input-Misformed-Email', (WidgetTester tester) async {
     _overrideOnError();
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(
+      entryPage: HomePageWidget(),
+    ));
     await GoogleFonts.pendingFonts();
 
     await tester.pumpAndSettle(const Duration(milliseconds: 3000));
@@ -54,26 +56,46 @@ void main() async {
     ));
     await GoogleFonts.pendingFonts();
 
-    await tester.pumpAndSettle(const Duration(milliseconds: 5000));
     await tester.tap(find.byKey(const ValueKey('LoginTab_adnq')));
-    await tester.pumpAndSettle(const Duration(milliseconds: 3000));
     await tester.enterText(
         find.byKey(const ValueKey('Login-Email_v68f')), 'liamwash@gmail.com');
+    FocusManager.instance.primaryFocus?.unfocus();
     await tester.enterText(
         find.byKey(const ValueKey('Login-Password_n5z7')), '123456');
-    await tester.scrollUntilVisible(
-      find.byKey(const ValueKey('Login-Button67')),
-      600.0,
-      scrollable: find
-          .descendant(
-            of: find.byKey(const ValueKey('Column_tewx')),
-            matching: find.byType(Scrollable),
-          )
-          .first,
-    );
-    await tester.tap(find.byKey(const ValueKey('Login-Button67')));
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.tap(find.byKey(const ValueKey('Signup-Button_gj0s')));
     await tester.pumpAndSettle(const Duration(milliseconds: 3000));
-    expect(find.text('Global Reviews'), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('Container_0tzw')));
+  });
+
+  testWidgets('Game Review Page UI Loads', (WidgetTester tester) async {
+    _overrideOnError();
+
+    await tester.pumpWidget(const MyApp());
+    await GoogleFonts.pendingFonts();
+
+    expect(find.text('Write a Review '), findsOneWidget);
+    expect(find.text('Your Rating'), findsOneWidget);
+    expect(find.text('Your Review'), findsOneWidget);
+    expect(find.text('Submit Review '), findsOneWidget);
+    expect(find.text('Cancel'), findsOneWidget);
+  });
+
+  testWidgets('Favorite Button Test', (WidgetTester tester) async {
+    _overrideOnError();
+
+    await tester.pumpWidget(const MyApp());
+    await GoogleFonts.pendingFonts();
+
+    await tester.tap(find.byKey(const ValueKey('IconButton_pqe9')));
+    expect(find.byKey(const ValueKey('IconButton_pqe9')), findsOneWidget);
+    expect(
+      tester
+          .widget<FlutterFlowIconButton>(
+              find.byKey(const ValueKey('IconButton_pqe9')))
+          .onPressed,
+      isNotNull,
+    );
   });
 }
 

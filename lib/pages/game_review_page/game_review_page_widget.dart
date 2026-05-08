@@ -50,10 +50,12 @@ class GameReviewPageWidget extends StatefulWidget {
     super.key,
     required this.gameName,
     required this.gameCover,
+    this.gameId,
   });
 
   final String? gameName;
   final String? gameCover;
+  final String? gameId;
 
   static String routeName = 'GameReviewPage';
   static String routePath = '/gameReviewPage';
@@ -97,45 +99,48 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFF4A4D4D),
-        appBar: AppBar(
-          backgroundColor: Color(0xFF4A4D4D),
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 20.0,
-            borderWidth: 1.0,
-            buttonSize: 40.0,
-            icon: Icon(
-              Icons.arrow_back_ios_rounded,
-              color: Color(0xFF9CC5A1),
-              size: 24.0,
-            ),
-            onPressed: () async {
-              logFirebaseEvent('GAME_REVIEW_arrow_back_ios_rounded_ICN_O');
-              logFirebaseEvent('IconButton_navigate_to');
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).alternate,
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 20.0,
+              borderWidth: 1.0,
+              buttonSize: 40.0,
+              icon: Icon(
+                Icons.arrow_back_ios_rounded,
+                color: Color(0xFF9CC5A1),
+                size: 24.0,
+              ),
+              onPressed: () async {
+                logFirebaseEvent('GAME_REVIEW_arrow_back_ios_rounded_ICN_O');
+                logFirebaseEvent('IconButton_navigate_to');
 
-              context.pushNamed(SearchPageWidget.routeName);
-            },
-          ),
-          title: Text(
-            'Write a Review',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.urbanist(
+                context.pushNamed(SearchPageWidget.routeName);
+              },
+            ),
+            title: Text(
+              'Write a Review',
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    font: GoogleFonts.urbanist(
+                      fontWeight: FontWeight.w600,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                    ),
+                    color: Color(0xFF9CC5A1),
+                    fontSize: 28.0,
+                    letterSpacing: 0.0,
                     fontWeight: FontWeight.w600,
                     fontStyle:
                         FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                   ),
-                  color: Color(0xFF9CC5A1),
-                  fontSize: 28.0,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.w600,
-                  fontStyle:
-                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
-                ),
+            ),
+            actions: [],
+            centerTitle: true,
+            elevation: 5.0,
           ),
-          actions: [],
-          centerTitle: true,
-          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
@@ -146,6 +151,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
                         padding: EdgeInsets.all(20.0),
@@ -153,6 +159,16 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: Color(0xFF445552),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0.0,
+                                  2.0,
+                                ),
+                              )
+                            ],
                             borderRadius: BorderRadius.circular(16.0),
                           ),
                           child: Padding(
@@ -191,7 +207,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                                       .headlineSmall
                                       .override(
                                         font: GoogleFonts.urbanist(
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.w600,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .headlineSmall
@@ -200,7 +216,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                                         color: Colors.white,
                                         fontSize: 20.0,
                                         letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .headlineSmall
                                             .fontStyle,
@@ -217,6 +233,16 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: Color(0xFF445552),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0.0,
+                                  2.0,
+                                ),
+                              )
+                            ],
                             borderRadius: BorderRadius.circular(16.0),
                           ),
                           child: Padding(
@@ -362,27 +388,6 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                                     ),
                                   ].divide(SizedBox(width: 8.0)),
                                 ),
-                                Text(
-                                  '4 out of 5 stars',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .override(
-                                        font: GoogleFonts.manrope(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelSmall
-                                                  .fontStyle,
-                                        ),
-                                        color: Color(0xFF9CC5A1),
-                                        fontSize: 11.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelSmall
-                                            .fontStyle,
-                                      ),
-                                ),
                               ].divide(SizedBox(height: 12.0)),
                             ),
                           ),
@@ -392,8 +397,19 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                         padding: EdgeInsets.all(20.0),
                         child: Container(
                           width: double.infinity,
+                          height: 250.0,
                           decoration: BoxDecoration(
                             color: Color(0xFF445552),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0.0,
+                                  2.0,
+                                ),
+                              )
+                            ],
                             borderRadius: BorderRadius.circular(16.0),
                           ),
                           child: Padding(
@@ -510,115 +526,15 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                           ),
                         ),
                       ),
-                      Opacity(
-                        opacity: 0.0,
-                        child: Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF445552),
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Review Summary',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.manrope(
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: Color(0xFF9CC5A1),
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.star_rounded,
-                                        color: Color(0xFFFFCC00),
-                                        size: 16.0,
-                                      ),
-                                      Text(
-                                        '4.0  ·  Elden Ring',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.manrope(
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color: Colors.white,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ].divide(SizedBox(width: 8.0)),
-                                  ),
-                                  Text(
-                                    'Your review will be visible to other players.',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodySmall
-                                        .override(
-                                          font: GoogleFonts.manrope(
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall
-                                                    .fontStyle,
-                                          ),
-                                          color: Color(0x80FFFFFF),
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodySmall
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ].divide(SizedBox(height: 12.0)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]
-                        .divide(SizedBox(height: 24.0))
-                        .addToStart(SizedBox(height: 24.0))
-                        .addToEnd(SizedBox(height: 32.0)),
+                    ].addToEnd(SizedBox(height: 20.0)),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 24.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
@@ -634,6 +550,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                               rating: _model.starRating,
                               reviewText: _model.textController.text,
                               timestamp: getCurrentTimestamp,
+                              gameId: widget.gameId,
                             ));
                         if (valueOrDefault<bool>(
                                 currentUserDocument?.hasAnsweredNps, false) ==
@@ -669,7 +586,7 @@ class _GameReviewPageWidgetState extends State<GameReviewPageWidget> {
                         padding: EdgeInsets.all(8.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFF177BDD),
+                        color: Color(0xFFAC9A5E),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   font: GoogleFonts.manrope(
